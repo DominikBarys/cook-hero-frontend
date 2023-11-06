@@ -1,1 +1,23 @@
-<p>header works!</p>
+<div style="padding-left: 5%; padding-right: 5%; " class="header" id="header-id">
+  <nav>
+    <img style="width: 15%" src="assets/CookHeroLogo.png" class="logo">
+    <ul>
+      <li><a href="">Zaloguj się</a></li>
+      <li><a href="">Konto</a></li>
+      <li><a href="">Wirtualna lodówka</a></li>
+    </ul>
+    <img src="assets/notification-bell.png" class="notification-bell-icon">
+  </nav>
+</div>
+
+<script>
+  document.addEventListener('scroll', () => {
+    const header = document.querySelector('#header-id');
+
+    if (window.scrollY > 200) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
