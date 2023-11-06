@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginForm } from '../../../core/models/user/user.forms.models';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,6 @@ export class LoginComponent {
   get controls() {
     return this.loginForm.controls;
   }
-
   constructor(private formService: FormService) {}
 
   getErrorMessage(formControl: FormControl): string {

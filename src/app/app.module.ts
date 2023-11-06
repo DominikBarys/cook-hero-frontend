@@ -10,6 +10,22 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { HomeModule } from './modules/home/home.module';
 import { authenticationReducer } from './modules/authentication/store/authentication.reducer';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
+
+const notifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'right',
+      distance: 16,
+    },
+    vertical: {
+      position: 'top',
+      distance: 80,
+      gap: 10,
+    },
+  },
+  theme: 'material',
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +38,7 @@ import { authenticationReducer } from './modules/authentication/store/authentica
     BrowserAnimationsModule,
     StoreModule.forRoot({ authentication: authenticationReducer }, {}),
     EffectsModule.forRoot([]),
+    NotifierModule.withConfig(notifierOptions),
   ],
   providers: [],
   bootstrap: [AppComponent],

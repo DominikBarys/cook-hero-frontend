@@ -1,7 +1,7 @@
 export interface UserInterface {
   username: string;
-  password: string;
   email: string;
+  role: string;
 }
 
 export class User implements UserInterface {
@@ -9,7 +9,7 @@ export class User implements UserInterface {
   constructor(
     public username: string,
     public email: string,
-    public password: string,
+    public role: string,
   ) {}
 }
 
@@ -20,4 +20,19 @@ export interface UserLogin {
 
 export interface UserRegister extends UserLogin {
   email: string;
+}
+
+export interface AuthenticationResponse {
+  timestamp: string;
+  message: string;
+  code: string;
+}
+
+export interface PasswordRecovery {
+  email: string;
+}
+
+export interface PasswordReset {
+  password: string;
+  uuid: string;
 }
