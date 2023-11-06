@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { CoreModule } from './modules/core/core.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    HomeModule,
     AuthenticationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),

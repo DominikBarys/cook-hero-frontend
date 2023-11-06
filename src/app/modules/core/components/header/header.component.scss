@@ -1,19 +1,23 @@
 .custom-header {
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 4;
   transition: background-color 0.4s ease-in-out;
-  background-color: transparent !important;
+  opacity: 0.98;
+  background-color: #333333;
 }
 
 .logo {
-  width: 120px;
+  width: 100px;
+  scale: 90%;
   cursor: pointer;
 }
 
 .notification-bell-icon {
-  width: 30px;
+  position: relative;
+  width: 20px;
   cursor: pointer;
+
 }
 
 .scrolled {
@@ -21,7 +25,7 @@
   opacity: 0.9;
 }
 
-nav {
+.custom-nav {
   display: flex;
   width: 100%;
   align-items: center;
@@ -29,25 +33,32 @@ nav {
   padding: 5px 0;
 }
 
-nav ul {
+.custom-ul {
   flex: 1;
   text-align: right;
   padding-right: 30px;
 }
 
-nav ul li {
+.custom-li {
+  position: relative;
   display: inline-block;
   list-style: none;
   margin: 10px 30px;
 }
 
-nav ul li a{
-  color: #fff;
+.custom-a {
+  color: #fff !important;
   text-decoration: none;
   position: relative;
+  top: 6px;
 }
 
-nav ul li a::after{
+.custom-a:hover::after {
+  width: 90%;
+  z-index: 5;
+}
+
+.custom-a::after {
   content: '';
   width: 0;
   height: 3px;
@@ -55,11 +66,10 @@ nav ul li a::after{
   bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
-  background: #fff;
   transition: width 0.3s;
+  z-index: 5;
 }
 
-nav ul li a:hover::after{
-  width: 90%;
-}
+
+
 

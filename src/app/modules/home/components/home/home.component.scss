@@ -21,6 +21,9 @@
   background-image: url("home-bottom-grey-white-wave.svg");
 }
 
+.bottom-wave {
+  background-image: url("bottom-wave.svg");
+}
 
 .wave {
   position: absolute;
@@ -102,6 +105,10 @@ section {
 }
 
 
+.dark-body{
+  background: #1a1a1a;
+  overflow-x: hidden;
+}
 
 .dark {
   background: #1a1a1a;
@@ -128,26 +135,13 @@ section {
   height: 20vh;
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 4;
-  transition: background-color 0.4s ease-in-out;
-  background-color: transparent;
-}
-
-.scrolled {
-  background-color: #FE8C2A;
-  opacity: 0.9;
-}
-
 .background-image-custom {
   position: absolute;
   z-index: 0;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 92vh;
   object-fit: cover; /* Zapewnia, że obraz wypełni całą sekcję */
   opacity: 0.6; /* Dostosuj przezroczystość zdjęcia według potrzeb */
 }
@@ -158,60 +152,13 @@ section {
   background-size: cover;
   background-color: transparent;
   background-position: center;
-  padding: 8% 8%;
+  padding: 5%;
   position: relative;
-}
-
-nav {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 5px 0;
-}
-
-.logo {
-  width: 120px;
-  cursor: pointer;
 }
 
 .cart-icon {
   width: 30px;
   cursor: pointer;
-}
-
-nav ul {
-  flex: 1;
-  text-align: right;
-  padding-right: 30px;
-}
-
-nav ul li {
-  display: inline-block;
-  list-style: none;
-  margin: 10px 30px;
-}
-
-nav ul li a{
-  color: #fff;
-  text-decoration: none;
-  position: relative;
-}
-
-nav ul li a::after{
-  content: '';
-  width: 0;
-  height: 3px;
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  transition: width 0.3s;
-}
-
-nav ul li a:hover::after{
-  width: 90%;
 }
 
 .text-box {
@@ -258,7 +205,7 @@ nav ul li a:hover::after{
 .chef-logo {
   position: absolute;
   top: 50%;
-  left: 5%; /* Adjust the left value as needed */
+  left: 15%; /* Adjust the left value as needed */
   transform: translate(320%, -35%);
   z-index: 2;
   width: 15%; /* Adjust the width as needed */
@@ -272,8 +219,6 @@ nav ul li a:hover::after{
   color: transparent;
   -webkit-text-stroke: 3px white;
   -webkit-background-clip: text;
-  background-position: 0 0;
-  animation: back 20s linear infinite;
 }
 
 .text-box h3 {
@@ -281,7 +226,7 @@ nav ul li a:hover::after{
   font-weight: 500;
 }
 
-.text-box .row {
+.custom-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
