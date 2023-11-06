@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ResetPasswordForm } from '../../../core/models/auth.models';
+import { ResetPasswordForm } from '../../../core/models/user/user.forms.models';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

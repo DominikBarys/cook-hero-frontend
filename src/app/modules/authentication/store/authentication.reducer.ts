@@ -1,0 +1,62 @@
+import {
+  User,
+  UserInterface,
+} from '../../core/models/authentication/authentication.models';
+import { Action, createReducer, on } from '@ngrx/store';
+import * as AuthenticationActions from './authentication.actions';
+
+export interface AuthenticationState {
+  user: User | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: AuthenticationState = {
+  user: null,
+  loading: false,
+  error: null,
+};
+
+const _authenticationReducer = createReducer(
+  initialState,
+  on(AuthenticationActions.login, (state, action) => ({
+    ...state, // tutaj te ... sie robi po to aby przekopiowac caly state, bez tego przekopiowany zostaloby tylko loading
+    loading: true,
+  })),
+  on(AuthenticationActions.loginSuccess, (state, action) => ({
+    ...state,
+    loading: false,
+    user: action.user,
+    error: null,
+  })),
+  on(AuthenticationActions.loginFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    error: action.error,
+  })),
+  on(AuthenticationActions.register, (state, action) => ({
+    ...state,
+    loading: true,
+  })),
+  on(AuthenticationActions.registerSuccess, (state, action) => ({
+    ...state,
+    loading: false,
+    error: null,
+  })),
+  on(AuthenticationActions.registerFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    error: action.error,
+  })),
+  on(AuthenticationActions.clearError, (state, action) => ({
+    ...state,
+    error: null,
+  })),
+);
+
+export function authenticationReducer(
+  authenticationState: AuthenticationState | undefined,
+  action: Action,
+) {
+  return _authenticationReducer(authenticationState, action);
+}

@@ -9,6 +9,7 @@ import { CoreModule } from './modules/core/core.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { HomeModule } from './modules/home/home.module';
+import { authenticationReducer } from './modules/authentication/store/authentication.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,7 @@ import { HomeModule } from './modules/home/home.module';
     HomeModule,
     AuthenticationModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ authentication: authenticationReducer }, {}),
     EffectsModule.forRoot([]),
   ],
   providers: [],
