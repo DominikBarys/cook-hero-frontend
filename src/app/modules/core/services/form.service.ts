@@ -6,6 +6,7 @@ import {
   RecoveryPasswordForm,
   ResetPasswordForm,
 } from '../models/auth.models';
+import { equalValidator } from '../../shared/validators/equal.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -33,36 +34,39 @@ export class FormService {
   }
 
   initRegisterForm(): FormGroup<RegisterForm> {
-    return new FormGroup({
-      username: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(30),
-        ],
-        nonNullable: true,
-      }),
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.email],
-        nonNullable: true,
-      }),
-      password: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
-        nonNullable: true,
-      }),
-      repeatPassword: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
-        nonNullable: true,
-      }),
-    });
+    return new FormGroup(
+      {
+        username: new FormControl('', {
+          validators: [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(30),
+          ],
+          nonNullable: true,
+        }),
+        email: new FormControl('', {
+          validators: [Validators.required, Validators.email],
+          nonNullable: true,
+        }),
+        password: new FormControl('', {
+          validators: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+          nonNullable: true,
+        }),
+        repeatPassword: new FormControl('', {
+          validators: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+          nonNullable: true,
+        }),
+      },
+      { validators: [equalValidator('password', 'repeatPassword')] },
+    );
   }
 
   initRecoveryPasswordForm(): FormGroup<RecoveryPasswordForm> {
@@ -75,24 +79,27 @@ export class FormService {
   }
 
   initResetPasswordForm(): FormGroup<ResetPasswordForm> {
-    return new FormGroup({
-      password: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
-        nonNullable: true,
-      }),
-      repeatPassword: new FormControl('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(50),
-        ],
-        nonNullable: true,
-      }),
-    });
+    return new FormGroup(
+      {
+        password: new FormControl('', {
+          validators: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+          nonNullable: true,
+        }),
+        repeatPassword: new FormControl('', {
+          validators: [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(50),
+          ],
+          nonNullable: true,
+        }),
+      },
+      { validators: [equalValidator('password', 'repeatPassword')] },
+    );
   }
 
   getErrorMessage(formControl: FormControl): string {
@@ -107,6 +114,9 @@ export class FormService {
     }
     if (formControl.hasError('email')) {
       return 'Niepoprawny adres email';
+    }
+    if (formControl.hasError('passwordsNotEqual')) {
+      return 'Hasła nie są takie same';
     }
     return '';
   }
