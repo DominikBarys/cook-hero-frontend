@@ -1,9 +1,9 @@
-.header {
+.custom-header {
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 3;
   transition: background-color 0.4s ease-in-out;
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .logo {

@@ -10,7 +10,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body class="mat-typography">
+<body >
   <app-root></app-root>
 </body>
+<script>
+  document.addEventListener('scroll', () => {
+    const header = document.querySelector('#header-id');
+
+    if (window.scrollY > 200) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
 </html>
