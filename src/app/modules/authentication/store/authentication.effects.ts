@@ -31,16 +31,19 @@ export class AuthenticationEffects {
         return this.authenticationService.register(action.userRegister).pipe(
           map((user) => {
             this.router.navigate(['/logowanie']);
-            this.notifierService.notify('success', 'Zarejestrowano pomyślnie.');
+            this.notifierService.notify(
+              'success',
+              'Zarejestrowano pomyślnie. Został wysłany link aktywacyjny na podanego emaila',
+            );
             return AuthenticationActions.registerSuccess();
           }),
-          catchError((err) =>
-            of(
+          catchError((err) => {
+            return of(
               AuthenticationActions.registerFailure({
-                error: 'Wystąpił błąd.',
+                error: err,
               }),
-            ),
-          ),
+            );
+          }),
         );
       }),
     ),

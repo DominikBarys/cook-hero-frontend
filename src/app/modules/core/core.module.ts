@@ -4,11 +4,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterLink } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
   imports: [CommonModule, RouterLink, SharedModule, HttpClientModule],
   exports: [HeaderComponent, FooterComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class CoreModule {}

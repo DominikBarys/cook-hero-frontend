@@ -35,5 +35,12 @@
       {{passwordsNotEqualErrorMessage}}
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' (click)='passwordsNotEqualErrorMessage = null'></button>
     </div>
+    <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>
+      {{error}}
+    </div>
+    <div class='mt-2' *ngIf='loading$ | async'>
+<!--      todo make spinner-->
+      Wczytywanie...
+    </div>
   </form>
 </div>

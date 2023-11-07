@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  apiUrl = environment.apiUrl;
+  apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private httpClient: HttpClient) {}
 
