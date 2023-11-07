@@ -1,23 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RegisterForm } from '../../../core/models/user/user.forms.models';
+import * as AuthenticationActions from '../../store/authentication.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/app.reducer';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
+  passwordsNotEqualErrorMessage: string | null = null;
 
   get controls() {
     return this.registerForm.controls;
   }
 
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private store: Store<AppState>,
+  ) {}
 
   getErrorMessage(formControl: FormControl): string {
     return this.formService.getErrorMessage(formControl);
+  }
+
+  onRegister() {
+    const { username, email, password, repeatPassword } =
+      this.registerForm.getRawValue();
+
+    if (password !== repeatPassword) {
+      this.passwordsNotEqualErrorMessage = 'Hasła nie są takie same.';
+      return;
+    }
+
+    this.store.dispatch(
+      AuthenticationActions.register({
+        userRegister: { username, email, password },
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(AuthenticationActions.clearError());
   }
 }

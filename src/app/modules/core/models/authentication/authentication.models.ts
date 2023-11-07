@@ -14,7 +14,7 @@ export class User implements UserInterface {
 }
 
 export interface UserLogin {
-  login: string;
+  username: string;
   password: string;
 }
 

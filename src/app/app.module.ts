@@ -11,6 +11,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { HomeModule } from './modules/home/home.module';
 import { authenticationReducer } from './modules/authentication/store/authentication.reducer';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { AuthenticationEffects } from './modules/authentication/store/authentication.effects';
 
 const notifierOptions: NotifierOptions = {
   position: {
@@ -37,7 +38,7 @@ const notifierOptions: NotifierOptions = {
     AuthenticationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({ authentication: authenticationReducer }, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthenticationEffects]),
     NotifierModule.withConfig(notifierOptions),
   ],
   providers: [],

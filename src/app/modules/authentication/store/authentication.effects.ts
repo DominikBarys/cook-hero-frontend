@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../core/services/authentication.servic
 import * as AuthenticationActions from './authentication.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -30,6 +31,7 @@ export class AuthenticationEffects {
         return this.authenticationService.register(action.userRegister).pipe(
           map((user) => {
             this.router.navigate(['/logowanie']);
+            this.notifierService.notify('success', 'Zarejestrowano pomyślnie.');
             return AuthenticationActions.registerSuccess();
           }),
           catchError((err) =>
@@ -48,5 +50,6 @@ export class AuthenticationEffects {
     private actions$: Actions,
     private authenticationService: AuthenticationService,
     private router: Router,
+    private notifierService: NotifierService,
   ) {}
 }

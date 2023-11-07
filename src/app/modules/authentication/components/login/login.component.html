@@ -1,5 +1,5 @@
 <div class='container'>
-  <form [formGroup]='loginForm'>
+  <form [formGroup]='loginForm' (ngSubmit)='onLogin()'>
     <div class='form-input'>
       <mat-form-field appearance='fill'>
         <mat-label>Nazwa użytkownika</mat-label>
