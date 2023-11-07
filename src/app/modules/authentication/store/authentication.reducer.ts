@@ -52,6 +52,17 @@ const _authenticationReducer = createReducer(
     ...state,
     error: null,
   })),
+  on(AuthenticationActions.logout, (state, action) => ({
+    ...state, // tutaj te ... sie robi po to aby przekopiowac caly state, bez tego przekopiowany zostaloby tylko loading
+  })),
+  on(AuthenticationActions.logoutSuccess, (state, action) => ({
+    ...state,
+    user: null,
+    error: null,
+  })),
+  on(AuthenticationActions.logoutFailure, (state, action) => ({
+    ...state,
+  })),
 );
 
 export function authenticationReducer(

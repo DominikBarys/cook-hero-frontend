@@ -13,9 +13,11 @@ export class AuthenticationEffects {
       ofType(AuthenticationActions.login),
       switchMap((action) => {
         return this.authenticationService.login(action.userLogin).pipe(
-          map((user) =>
-            AuthenticationActions.loginSuccess({ user: { ...user } }),
-          ),
+          map((user) => {
+            this.router.navigate(['/']);
+            this.notifierService.notify('success', 'Zalogowano pomyślnie.');
+            return AuthenticationActions.loginSuccess({ user: { ...user } });
+          }),
           catchError((err) =>
             of(AuthenticationActions.loginFailure({ error: 'Wystąpił błąd.' })),
           ),
@@ -43,6 +45,25 @@ export class AuthenticationEffects {
                 error: err,
               }),
             );
+          }),
+        );
+      }),
+    ),
+  );
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthenticationActions.logout),
+      switchMap(() => {
+        return this.authenticationService.logout().pipe(
+          map(() => {
+            this.router.navigate(['/']);
+            this.notifierService.notify('success', 'Wylogowano pomyślnie.');
+            return AuthenticationActions.logoutSuccess();
+          }),
+          catchError((err) => {
+            this.notifierService.notify('warning', err);
+            return of(AuthenticationActions.logoutFailure());
           }),
         );
       }),

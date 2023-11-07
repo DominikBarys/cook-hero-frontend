@@ -20,11 +20,18 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
   login(body: UserLogin): Observable<UserInterface> {
-    return this.httpClient.post<UserInterface>(`${this.apiUrl}/login`, body);
+    return this.httpClient.post<UserInterface>(`${this.apiUrl}/login`, body, {
+      withCredentials: true,
+    });
   }
 
   logout(): Observable<AuthenticationResponse> {
-    return this.httpClient.get<AuthenticationResponse>(`${this.apiUrl}/logout`);
+    return this.httpClient.get<AuthenticationResponse>(
+      `${this.apiUrl}/logout`,
+      {
+        withCredentials: true,
+      },
+    );
   }
 
   register(body: UserRegister): Observable<AuthenticationResponse> {
