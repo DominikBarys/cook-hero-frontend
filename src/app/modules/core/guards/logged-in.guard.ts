@@ -37,9 +37,9 @@ export class LoggedInGuard implements CanActivate {
         }
         return true;
       }),
-      // catchError((err) => {
-      //   return of(true);
-      // }),
+      catchError(() => {
+        return of(true);
+      }),
     );
   }
 }
