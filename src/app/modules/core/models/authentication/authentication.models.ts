@@ -28,6 +28,11 @@ export interface AuthenticationResponse {
   code: string;
 }
 
+export interface UserLoggedInResponse
+  extends Omit<AuthenticationResponse, 'message'> {
+  loggedIn: boolean;
+}
+
 export interface PasswordRecovery {
   email: string;
 }

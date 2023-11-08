@@ -6,6 +6,7 @@ import {
   PasswordRecovery,
   PasswordReset,
   UserInterface,
+  UserLoggedInResponse,
   UserLogin,
   UserRegister,
 } from '../models/authentication/authentication.models';
@@ -63,6 +64,15 @@ export class AuthenticationService {
     return this.httpClient.patch<AuthenticationResponse>(
       `${this.apiUrl}/reset-password`,
       body,
+    );
+  }
+
+  isUserLoggedIn(): Observable<UserLoggedInResponse> {
+    return this.httpClient.get<UserLoggedInResponse>(
+      `${this.apiUrl}/logged-in`,
+      {
+        withCredentials: true,
+      },
     );
   }
 }
