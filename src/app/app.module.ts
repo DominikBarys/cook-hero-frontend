@@ -26,6 +26,9 @@ const notifierOptions: NotifierOptions = {
     },
   },
   theme: 'material',
+  behaviour: {
+    autoHide: 2000,
+  },
 };
 
 @NgModule({

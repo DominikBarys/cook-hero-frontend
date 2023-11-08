@@ -1,31 +1,35 @@
-<div class='container'>
-  <form [formGroup]='loginForm' (ngSubmit)='onLogin()'>
-    <div class='form-input'>
-      <mat-form-field appearance='fill'>
-        <mat-label>Nazwa użytkownika</mat-label>
-        <input matInput [formControl]='controls.username'>
-        <mat-error *ngIf='controls.username.invalid'>{{getErrorMessage(controls.username)}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div class='form-input'>
-      <mat-form-field appearance='fill'>
-        <mat-label>Hasło</mat-label>
-        <input type='password' matInput [formControl]='controls.password'>
-        <mat-error *ngIf='controls.password.invalid'>{{getErrorMessage(controls.password)}}</mat-error>
-      </mat-form-field>
-    </div>
-<!--    todo wydzielic np ten error do osobnego komponentu. DRY-->
-    <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>
-      {{error}}
-    </div>
-    <div class='mt-2' *ngIf='loading$ | async'>
-      <!--      todo make spinner-->
-      Wczytywanie...
-    </div>
-    <div class='d-flex justify-content-end'>
-      <button mat-raised-button color="primary" [disabled]='loginForm.invalid' >Zaloguj się</button>
-    </div>
-    <p class='text-center'>Nie masz konta w Cook Hero? W takim razie <a routerLink='/rejestracja'>zarejestruj się!</a></p>
-    <p class='text-center'>Zapomniałeś hasła do konta w Cook Hero? Skorzystaj z <a routerLink='/odzyskaj-haslo'>resetowania hasła</a></p>
-  </form>
+<div class='spacer background-login'>
+  <div class='container'>
+    <form class='mt-4' [formGroup]='loginForm' (ngSubmit)='onLogin()'>
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Nazwa użytkownika</mat-label>
+          <input matInput [formControl]='controls.username'>
+          <mat-error *ngIf='controls.username.invalid'>{{getErrorMessage(controls.username)}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Hasło</mat-label>
+          <input type='password' matInput [formControl]='controls.password'>
+          <mat-error *ngIf='controls.password.invalid'>{{getErrorMessage(controls.password)}}</mat-error>
+        </mat-form-field>
+      </div>
+      <!--    todo wydzielic np ten error do osobnego komponentu. DRY-->
+      <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>
+        {{error}}
+      </div>
+      <div class='d-flex justify-content-end'>
+        <button mat-raised-button color="primary" [disabled]='loginForm.invalid' >Zaloguj się</button>
+      </div>
+      <div class='mt-2' *ngIf='loading$ | async'>
+        <!--      todo make spinner-->
+        Wczytywanie...
+      </div>
+      <div class='mt-5 hint-text'>
+        <p class='text-center'>Nie masz konta w Cook Hero? W takim razie <a routerLink='/rejestracja'>zarejestruj się!</a></p>
+        <p class='text-center'>Zapomniałeś hasła do konta w Cook Hero? Skorzystaj z <a routerLink='/odzyskaj-haslo'>resetowania hasła</a></p>
+      </div>
+    </form>
+  </div>
 </div>

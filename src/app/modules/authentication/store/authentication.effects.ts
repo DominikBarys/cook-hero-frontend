@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import * as AuthenticationActions from './authentication.actions';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, EMPTY, map, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 
@@ -65,6 +65,26 @@ export class AuthenticationEffects {
             this.notifierService.notify('warning', err);
             return of(AuthenticationActions.logoutFailure());
           }),
+        );
+      }),
+    ),
+  );
+
+  autoLogin$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthenticationActions.autoLogin),
+      switchMap(() => {
+        return this.authenticationService.autoLogin().pipe(
+          map((user) => {
+            this.notifierService.notify(
+              'success',
+              'Witaj ponownie ' + user.username,
+            );
+            return AuthenticationActions.autoLoginSuccess({
+              user: { ...user },
+            });
+          }),
+          catchError((err) => of(AuthenticationActions.autoLoginFailure())),
         );
       }),
     ),

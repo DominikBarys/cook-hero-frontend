@@ -75,4 +75,10 @@ export class AuthenticationService {
       },
     );
   }
+
+  autoLogin(): Observable<UserInterface> {
+    return this.httpClient.get<UserInterface>(`${this.apiUrl}/auto-login`, {
+      withCredentials: true,
+    });
+  }
 }

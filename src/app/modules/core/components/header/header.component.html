@@ -3,10 +3,14 @@
     <img style="width: 15%" src="assets/CookHeroLogo.png" class="logo" routerLink='/'>
     <ul class='custom-ul'>
       <li class='custom-li'><a class='custom-a' routerLink=''>Strona Główna</a></li>
-      <li class='custom-li'><a class='custom-a' routerLink='logowanie'>Zaloguj się</a></li>
-      <li class='custom-li'><a class='custom-a' routerLink='logowanie' (click)='logout()'>Wyloguj się</a></li>
+      <ng-template #notLoggedIn>
+        <li class='custom-li'><a class='custom-a' routerLink='logowanie'>Zaloguj się</a></li>
+      </ng-template>
+      <ng-container *ngIf='user$ | async; else notLoggedIn'>
+        <li class='custom-li'><a class='custom-a' routerLink='logowanie' (click)='logout()'>Wyloguj się</a></li>
+      </ng-container>
       <li class='custom-li'><a class='custom-a' routerLink=''>Konto</a></li>
-      <li class='custom-li'><a class='custom-a' routerLink='' (click)='test()'>Wirtualna lodówka</a></li>
+      <li class='custom-li'><a class='custom-a' routerLink=''>Wirtualna lodówka</a></li>
     </ul>
     <img src="assets/notification-bell.png" class="notification-bell-icon">
   </nav>

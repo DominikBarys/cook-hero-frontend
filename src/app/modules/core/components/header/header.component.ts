@@ -5,8 +5,11 @@ import * as AuthenticationActions from '../../../authentication/store/authentica
 import { AuthenticationService } from '../../services/authentication.service';
 import {
   AuthenticationResponse,
+  User,
   UserInterface,
 } from '../../models/authentication/authentication.models';
+import { Observable } from 'rxjs';
+import { selectAuthenticationUser } from '../../../authentication/store/authentication.selectors';
 
 @Component({
   selector: 'app-header',
@@ -19,16 +22,9 @@ export class HeaderComponent {
     private authenticationService: AuthenticationService,
   ) {}
 
+  user$: Observable<User | null> = this.store.select(selectAuthenticationUser);
+
   logout() {
     this.store.dispatch(AuthenticationActions.logout());
-  }
-
-  test() {
-    console.log('dziala');
-    let siema = this.authenticationService.isUserLoggedIn().subscribe({
-      next: (value) => {
-        console.log(value.loggedIn);
-      },
-    });
   }
 }
