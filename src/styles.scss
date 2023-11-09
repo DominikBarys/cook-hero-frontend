@@ -1,4 +1,6 @@
+@use '@angular/material' as mat;
 @import "node_modules/angular-notifier/styles.scss";
+@include mat.core();
 
 * {
   margin: 0;
@@ -7,8 +9,142 @@
   font-family: 'poppins', sans-serif;
 }
 
+
+
 //html, body { height: 100%; }
 
 mat-form-field {
   width: 100%;
 }
+
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+/* For use in src/lib/core/theming/_palette.scss */
+$md-primary: (
+  50 : #fff1e5,
+  100 : #ffddbf,
+  200 : #ffc695,
+  300 : #feaf6a,
+  400 : #fe9d4a,
+  500 : #fe8c2a,
+  600 : #fe8425,
+  700 : #fe791f,
+  800 : #fe6f19,
+  900 : #fd5c0f,
+  A100 : #ffffff,
+  A200 : #fff8f6,
+  A400 : #ffd4c3,
+  A700 : #ffc1a9,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-warn: (
+  50 : #f9e0e0,
+  100 : #f0b3b3,
+  200 : #e68080,
+  300 : #db4d4d,
+  400 : #d42626,
+  500 : #cc0000,
+  600 : #c70000,
+  700 : #c00000,
+  800 : #b90000,
+  900 : #ad0000,
+  A100 : #ffd7d7,
+  A200 : #ffa4a4,
+  A400 : #ff7171,
+  A700 : #ff5858,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-accent: (
+  50 : #e7e7e7,
+  100 : #c2c2c2,
+  200 : #999999,
+  300 : #707070,
+  400 : #525252,
+  500 : #333333,
+  600 : #2e2e2e,
+  700 : #272727,
+  800 : #202020,
+  900 : #141414,
+  A100 : #ef6e6e,
+  A200 : #ea4040,
+  A400 : #f60000,
+  A700 : #dd0000,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+
+@-webkit-keyframes autofill {
+  0%,100% {
+    color: #666;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-background-clip: text;
+}
+
+
+$my-app-primary: mat.define-palette($md-primary);
+$my-app-accent:  mat.define-palette($md-accent);
+$my-app-warn:    mat.define-palette($md-warn);
+$my-app-theme:   mat.define-light-theme((
+  color: (
+    primary: $my-app-primary,
+    accent: $my-app-accent,
+    warn: $my-app-warn,
+  )
+));
+
+@include mat.all-component-themes($my-app-theme);

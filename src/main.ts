@@ -3,12 +3,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 
 // todo od aktywacji bez effects
-// todo dodac do notifiera 'witaj <username> jezeli jest zalogowany po wejsciu na home page'
-// todo po niepomyślnym wylogowaniu przekierowuje na logowanie. Trzeba zmienic na home page
 // todo prawdopodobnie trzeba bedzie zmienic model usera aby przechowywal uuid
 // todo resetowanie hasla nie dziala, bo nie ma uuid w body
-// todo dodać coś typu 'remember me'
-// todo zrobic dokladniejszy podzial na to co wyswietla sie w footerze w zaleznosci czy zalogowany/niezalogowany
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch((err) => console.error(err));

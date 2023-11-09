@@ -18,9 +18,10 @@ export class AuthenticationEffects {
             this.notifierService.notify('success', 'Zalogowano pomyślnie.');
             return AuthenticationActions.loginSuccess({ user: { ...user } });
           }),
-          catchError((err) =>
-            of(AuthenticationActions.loginFailure({ error: 'Wystąpił błąd.' })),
-          ),
+          catchError((err) => {
+            this.notifierService.notify('warning', err);
+            return of(AuthenticationActions.loginFailure({ error: '' }));
+          }),
         );
       }),
     ),

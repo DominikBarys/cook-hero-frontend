@@ -27,7 +27,7 @@ const notifierOptions: NotifierOptions = {
   },
   theme: 'material',
   behaviour: {
-    autoHide: 2000,
+    autoHide: 2500,
   },
 };
 
