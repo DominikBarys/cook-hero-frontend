@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   { path: 'aktywuj/:uid', component: ActivationAccountComponent },
   { path: 'odzyskaj-haslo', component: RecoveryPasswordComponent },
-  { path: 'odzyskaj-haslo/:uid', component: ResetPasswordComponent },
+  { path: 'odzyskaj-haslo/:uuid', component: ResetPasswordComponent },
   {
     path: 'profil',
     component: ProfileComponent,

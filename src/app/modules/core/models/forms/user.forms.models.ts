@@ -18,3 +18,7 @@ export interface ResetPasswordForm {
   password: FormControl<string>;
   repeatPassword: FormControl<string>;
 }
+
+export interface ChangeUsernameForm {
+  newUsername: FormControl<string>;
+}

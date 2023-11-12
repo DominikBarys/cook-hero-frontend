@@ -1,13 +1,66 @@
 <div class='profile-container'>
   <div class='profile-card vanillaTilt' data-tilt>
     <img src='assets/Logo.jpg'>
-    <h2>{{username}}</h2>
-    <p>Email: {{email}}</p>
-    <p>Ranga: {{rank}}</p>
-    <p>Rola: {{role}}</p>
-    <p>Ilość stworzonych poradników: {{amountOfCreatedTutorials}}</p>
-    <div class='d-flex justify-content-center profile-button'>
-      <button mat-raised-button color="primary" (click)='logout()' >Wyloguj</button>
-    </div>
+    <ng-container *ngIf='!isChangingPassword && !isChangingUsername; else changingPassword'>
+      <h2>{{username}}</h2>
+      <p>Email: {{email}}</p>
+      <p>Ranga: {{rank}}</p>
+      <p>Rola: {{role}}</p>
+      <p>Ilość stworzonych poradników: {{amountOfCreatedTutorials}}</p>
+      <div class='buttons'>
+        <div class='d-flex justify-content-center profile-button'>
+          <button mat-raised-button color="primary" (click)='logout()' >Wyloguj</button>
+        </div>
+        <div class='d-flex justify-content-center profile-button'>
+          <button mat-raised-button color="primary" (click)='changeUsername()' >Zmień nazwę</button>
+        </div>
+        <div class='d-flex justify-content-center profile-button'>
+          <button mat-raised-button color="primary" (click)='changePassword()' >Zmień hasło</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #changingPassword>
+      <ng-container *ngIf='isChangingPassword; else changingUsername'>
+        <form class='container reset-form' [formGroup]='resetPasswordForm' (ngSubmit)='onResetPassword()'>
+          <div class='form-input'>
+            <mat-form-field appearance='fill' >
+              <mat-label>Nowe hasło</mat-label>
+              <input type='password' matInput [formControl]='passwordControls.password' autocomplete='off' >
+              <mat-error *ngIf='passwordControls.password.invalid'>{{getErrorMessage(passwordControls.password)}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class='form-input'>
+            <mat-form-field appearance='fill'>
+              <mat-label>Powtórz nowe hasło</mat-label>
+              <input type='password' matInput [formControl]='passwordControls.repeatPassword' autocomplete='off'>
+              <mat-error *ngIf='passwordControls.repeatPassword.invalid'>{{getErrorMessage(passwordControls.repeatPassword)}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class='d-flex justify-content-end'>
+            <button type='submit' style='position: relative; top: 5px' mat-raised-button color="primary" [disabled]='resetPasswordForm.invalid'>Zatwierdź</button>
+          </div>
+          <div class='d-flex justify-content-end mt-3 align-bottom'>
+            <button type='button' mat-raised-button color="primary" (click)='return()'>Powrót</button>
+          </div>
+        </form>
+      </ng-container>
+      <ng-template #changingUsername>
+        <form class='container reset-form' [formGroup]='changeUsernameForm' (ngSubmit)='onChangeUsername()  '>
+          <div class='form-input'>
+            <mat-form-field appearance='fill' >
+              <mat-label>Nowa nazwa użytkownika</mat-label>
+              <input type='text' matInput [formControl]='usernameControls.newUsername' autocomplete='off' >
+              <mat-error *ngIf='usernameControls.newUsername.invalid'>{{getErrorMessage(usernameControls.newUsername)}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class='d-flex justify-content-end'>
+            <button type='submit' style='position: relative; top: 5px' mat-raised-button color="primary" [disabled]='changeUsernameForm.invalid'>Zatwierdź</button>
+          </div>
+          <div class='d-flex justify-content-end mt-3 align-bottom'>
+            <button type='button' mat-raised-button color="primary" (click)='return()'>Powrót</button>
+          </div>
+        </form>
+      </ng-template>
+    </ng-template>
   </div>
 </div>

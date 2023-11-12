@@ -74,6 +74,24 @@ export class AuthenticationService {
     );
   }
 
+  passwordResetNoEmail(
+    newPassword: string,
+  ): Observable<AuthenticationResponse> {
+    return this.httpClient.patch<AuthenticationResponse>(
+      `${this.apiUrl}/reset-password-no-email`,
+      newPassword,
+      { withCredentials: true },
+    );
+  }
+
+  changeUsername(newUsername: string): Observable<AuthenticationResponse> {
+    return this.httpClient.patch<AuthenticationResponse>(
+      `${this.apiUrl}/change-username?newUsername=` + newUsername,
+      {},
+      { withCredentials: true },
+    );
+  }
+
   isUserLoggedIn(): Observable<UserLoggedInResponse> {
     return this.httpClient.get<UserLoggedInResponse>(
       `${this.apiUrl}/logged-in`,

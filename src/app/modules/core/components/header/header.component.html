@@ -9,7 +9,6 @@
         </ng-template>
         <ng-container *ngIf='user$ | async; else notLoggedIn'>
           <li class='custom-li'><a class='custom-a' routerLink='/' (click)='logout()'>Wyloguj się</a></li>
-          <li class='custom-li'><a class='custom-a' routerLink=''>Konto</a></li>
           <li class='custom-li'><a class='custom-a' routerLink=''>Wirtualna lodówka</a></li>
         </ng-container>
       </ul>

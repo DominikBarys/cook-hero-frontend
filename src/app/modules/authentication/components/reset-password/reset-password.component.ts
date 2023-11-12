@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../../core/services/authentication.ser
 import { NotifierService } from 'angular-notifier';
 import { AppState } from '../../../../store/app.reducer';
 import { Store } from '@ngrx/store';
+import { UserInterface } from '../../../core/models/authentication/authentication.models';
 
 @Component({
   selector: 'app-recovery-password-form',
@@ -29,7 +30,6 @@ export class ResetPasswordComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private notifierService: NotifierService,
     private router: Router,
-    private store: Store<AppState>,
   ) {}
 
   ngOnInit(): void {

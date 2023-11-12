@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import VanillaTilt from 'vanilla-tilt';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import * as AuthenticationActions from '../../store/authentication.actions';
 import { AppState } from '../../../../store/app.reducer';
 import { Store } from '@ngrx/store';
+import { FormControl, FormGroup } from '@angular/forms';
+import {
+  ChangeUsernameForm,
+  ResetPasswordForm,
+} from '../../../core/models/forms/user.forms.models';
+import { FormService } from '../../../core/services/form.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +18,13 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  isChangingPassword: boolean = false;
+  isChangingUsername: boolean = false;
+  resetPasswordForm: FormGroup<ResetPasswordForm> =
+    this.formService.initResetPasswordForm();
+  changeUsernameForm: FormGroup<ChangeUsernameForm> =
+    this.formService.initChangeUsernameForm();
+
   username: string | null = null;
   email: string | null = null;
   rank: string | null = null;
@@ -20,6 +34,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private store: Store<AppState>,
+    private formService: FormService,
+    private notifierService: NotifierService,
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +54,67 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  get passwordControls() {
+    return this.resetPasswordForm.controls;
+  }
+
+  get usernameControls() {
+    return this.changeUsernameForm.controls;
+  }
+
   logout() {
     this.store.dispatch(AuthenticationActions.logout());
+  }
+
+  changeUsername() {
+    this.isChangingUsername = true;
+  }
+
+  changePassword() {
+    this.isChangingPassword = true;
+  }
+
+  getErrorMessage(formControl: FormControl<string>) {
+    return this.formService.getErrorMessage(formControl);
+  }
+
+  onResetPassword() {
+    const { password, repeatPassword } = this.resetPasswordForm.getRawValue();
+    const newPassword: string = password;
+    this.authenticationService.passwordResetNoEmail(password).subscribe({
+      next: () => {
+        this.notifierService.notify('success', 'Hasło zostało zmienione');
+        this.isChangingPassword = false;
+      },
+      error: (err) => {
+        this.notifierService.notify('warning', err);
+        this.isChangingPassword = false;
+      },
+    });
+  }
+
+  onChangeUsername() {
+    const usernameFormValue = this.changeUsernameForm.getRawValue();
+    const newUsername = usernameFormValue.newUsername;
+
+    this.authenticationService.changeUsername(newUsername).subscribe({
+      next: () => {
+        this.notifierService.notify(
+          'success',
+          'Nazwa użytkownika została zmieniona',
+        );
+        this.isChangingUsername = false;
+        this.username = newUsername;
+      },
+      error: (err) => {
+        this.notifierService.notify('warning', err);
+        this.isChangingUsername = false;
+      },
+    });
+  }
+
+  return() {
+    this.isChangingUsername = false;
+    this.isChangingPassword = false;
   }
 }

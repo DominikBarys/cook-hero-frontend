@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   LoginForm,
   RegisterForm,
   RecoveryPasswordForm,
   ResetPasswordForm,
+  ChangeUsernameForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 
@@ -100,6 +101,19 @@ export class FormService {
       },
       { validators: [equalValidator('password', 'repeatPassword')] },
     );
+  }
+
+  initChangeUsernameForm(): FormGroup<ChangeUsernameForm> {
+    return new FormGroup({
+      newUsername: new FormControl('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(30),
+        ],
+        nonNullable: true,
+      }),
+    });
   }
 
   getErrorMessage(formControl: FormControl): string {
