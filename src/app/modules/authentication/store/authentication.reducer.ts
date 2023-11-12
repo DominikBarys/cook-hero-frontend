@@ -26,7 +26,16 @@ const _authenticationReducer = createReducer(
   on(AuthenticationActions.loginSuccess, (state, action) => ({
     ...state,
     loading: false,
-    user: new User(action.user.username, action.user.email, action.user.role),
+    //user: new User(action.user.username, action.user.email, action.user.role),
+    user: new User(
+      action.user.uuid,
+      action.user.username,
+      action.user.email,
+      action.user.role,
+      action.user.rank,
+      action.user.joinedAt,
+      action.user.amountOfCreatedTutorials,
+    ),
     error: null,
   })),
   on(AuthenticationActions.loginFailure, (state, action) => ({
@@ -68,7 +77,15 @@ const _authenticationReducer = createReducer(
   })),
   on(AuthenticationActions.autoLoginSuccess, (state, action) => ({
     ...state,
-    user: new User(action.user.username, action.user.email, action.user.role),
+    user: new User(
+      action.user.uuid,
+      action.user.username,
+      action.user.email,
+      action.user.role,
+      action.user.rank,
+      action.user.joinedAt,
+      action.user.amountOfCreatedTutorials,
+    ),
   })),
   on(AuthenticationActions.autoLoginFailure, (state, action) => ({
     ...state,

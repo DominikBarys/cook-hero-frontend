@@ -1,15 +1,22 @@
 export interface UserInterface {
+  uuid: string;
   username: string;
   email: string;
   role: string;
+  rank: string;
+  joinedAt: string;
+  amountOfCreatedTutorials: number;
 }
 
 export class User implements UserInterface {
-  //TODO add missing attributes to user
   constructor(
+    public uuid: string,
     public username: string,
     public email: string,
     public role: string,
+    public rank: string,
+    public joinedAt: string,
+    public amountOfCreatedTutorials: number,
   ) {}
 }
 

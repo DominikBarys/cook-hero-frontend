@@ -5,7 +5,7 @@ import {
   RegisterForm,
   RecoveryPasswordForm,
   ResetPasswordForm,
-} from '../models/user/user.forms.models';
+} from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 
 @Injectable({

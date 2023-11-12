@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LoginForm } from '../../../core/models/user/user.forms.models';
+import { LoginForm } from '../../../core/models/forms/user.forms.models';
 import * as AuthenticationActions from '../../store/authentication.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/app.reducer';

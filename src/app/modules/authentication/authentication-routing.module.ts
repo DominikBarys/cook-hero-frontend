@@ -6,6 +6,7 @@ import { ActivationAccountComponent } from './components/activation-account/acti
 import { RecoveryPasswordComponent } from './components/recovery-password/recovery-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LoggedInGuard } from '../core/guards/logged-in.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'aktywuj/:uid', component: ActivationAccountComponent },
   { path: 'odzyskaj-haslo', component: RecoveryPasswordComponent },
   { path: 'odzyskaj-haslo/:uid', component: ResetPasswordComponent },
+  { path: 'profil', component: ProfileComponent },
 ];
 
 @NgModule({

@@ -3,6 +3,9 @@ import { AppState } from './store/app.reducer';
 import { Store } from '@ngrx/store';
 import * as AuthenticationActions from '../app/modules/authentication/store/authentication.actions';
 import { Router } from '@angular/router';
+import { UserInterface } from './modules/core/models/authentication/authentication.models';
+import { AuthenticationService } from './modules/core/services/authentication.service';
+import { map, Observable, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +14,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'CookHero-fe';
+  //user$: Observable<UserInterface> | null = null;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
+    private authenticationService: AuthenticationService,
   ) {}
 
   isHomePage() {
@@ -23,5 +28,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(AuthenticationActions.autoLogin());
+    this.authenticationService
+      .getUser()
+      .pipe()
+      .subscribe({
+        next: (resp) => {
+          console.log(resp.uuid);
+        },
+      });
   }
 }

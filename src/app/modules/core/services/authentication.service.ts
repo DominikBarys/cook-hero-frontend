@@ -5,6 +5,7 @@ import {
   AuthenticationResponse,
   PasswordRecovery,
   PasswordReset,
+  User,
   UserInterface,
   UserLoggedInResponse,
   UserLogin,
@@ -22,6 +23,12 @@ export class AuthenticationService {
 
   login(body: UserLogin): Observable<UserInterface> {
     return this.httpClient.post<UserInterface>(`${this.apiUrl}/login`, body, {
+      withCredentials: true,
+    });
+  }
+
+  getUser(): Observable<UserInterface> {
+    return this.httpClient.get<UserInterface>(`${this.apiUrl}/get-user`, {
       withCredentials: true,
     });
   }

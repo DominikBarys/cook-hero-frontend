@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../../core/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ResetPasswordForm } from '../../../core/models/user/user.forms.models';
+import { ResetPasswordForm } from '../../../core/models/forms/user.forms.models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { NotifierService } from 'angular-notifier';
+import { AppState } from '../../../../store/app.reducer';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-recovery-password-form',
@@ -27,6 +29,7 @@ export class ResetPasswordComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private notifierService: NotifierService,
     private router: Router,
+    private store: Store<AppState>,
   ) {}
 
   ngOnInit(): void {
