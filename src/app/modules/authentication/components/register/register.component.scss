@@ -12,12 +12,8 @@ html, body {
   background-size: cover;
 }
 
-.background-register {
-  background-image: url("background-register.svg");
-}
-
 .mat-form-field {
-  background-color: rgba(255, 255, 255, 0.2); /* Kolor tła z przezroczystością */
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .middle-page {
@@ -35,18 +31,18 @@ html, body {
 }
 
 .orange-background {
-  height: 20vh;
+  height: 5vh;
   background: #FE8C2A;
 }
 
 .grey-background {
-  height: 20vh; /* Ustaw wysokość sekcji na 100% widoku okna */
+  height: 20vh;
   background: #333333;
-  margin: 0; /* Usuń margines */
-  padding: 0; /* Usuń wewnętrzne dopełnienie */
+  margin: 0;
+  padding: 0;
 }
 
-.footer {
+.register-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,3 +55,42 @@ html, body {
   margin: auto;
   padding: 20px;
 }
+
+.register-form {
+  position: relative;
+  top: 50px;
+}
+
+.register-wave-white-orange {
+  aspect-ratio: 900/75;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("register-white-orange.svg");
+}
+
+.register-wave-orange-grey {
+  aspect-ratio: 900/75;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("register-orange-grey.svg");
+}
+
+.register-hint-text {
+  font-family: 'poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+p {
+  color: #333333;
+  font-weight: bold;
+}
+

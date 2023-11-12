@@ -1,56 +1,60 @@
-<section class=' container white-background'>
-  <div style='width: 100%'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Nazwa użytkownika</mat-label>
-      <input matInput [formControl]='controls.username'>
-      <mat-error *ngIf='controls.username.invalid'>{{getErrorMessage(controls.username)}}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Email</mat-label>
-      <input matInput type='email' [formControl]='controls.email'>
-      <mat-error *ngIf='controls.email.invalid'>{{getErrorMessage(controls.email)}}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Hasło</mat-label>
-      <input type='password' matInput [formControl]='controls.password'>
-      <mat-error *ngIf='controls.password.invalid'>{{getErrorMessage(controls.password)}}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='form-input'>
-    <mat-form-field appearance='fill'>
-      <mat-label>Powtórz hasło</mat-label>
-      <input type='password' matInput [formControl]='controls.repeatPassword'>
-      <mat-error *ngIf='controls.repeatPassword.invalid'>{{getErrorMessage(controls.repeatPassword)}}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class='d-flex justify-content-end'>
-    <button mat-raised-button color="primary" [disabled]='registerForm.invalid'>Utwórz konto</button>
-  </div>
+<section class='white-background d-flex flex-column align-items-center justify-content-center'>
+  <form class='container register-form' [formGroup]='registerForm' (ngSubmit)='onRegister()'>
+    <div class='form-input'>
+      <mat-form-field appearance='fill'>
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput [formControl]='controls.username'>
+        <mat-error *ngIf='controls.username.invalid'>{{getErrorMessage(controls.username)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class='form-input'>
+      <mat-form-field appearance='fill'>
+        <mat-label>Email</mat-label>
+        <input matInput type='email' [formControl]='controls.email'>
+        <mat-error *ngIf='controls.email.invalid'>{{getErrorMessage(controls.email)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class='form-input'>
+      <mat-form-field appearance='fill'>
+        <mat-label>Hasło</mat-label>
+        <input type='password' matInput [formControl]='controls.password'>
+        <mat-error *ngIf='controls.password.invalid'>{{getErrorMessage(controls.password)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class='form-input'>
+      <mat-form-field appearance='fill'>
+        <mat-label>Powtórz hasło</mat-label>
+        <input type='password' matInput [formControl]='controls.repeatPassword'>
+        <mat-error *ngIf='controls.repeatPassword.invalid'>{{getErrorMessage(controls.repeatPassword)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class='d-flex justify-content-end'>
+      <button mat-raised-button color="primary" [disabled]='registerForm.invalid'>Utwórz konto</button>
+    </div>
+  </form>
 </section>
+<div class='register-wave-white-orange'></div>
 <section class='orange-background'>
-  <div class='container '>
-    <form class='mt-4' [formGroup]='registerForm' (ngSubmit)='onRegister()'>
-
-      <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='passwordsNotEqualErrorMessage'>
-        {{passwordsNotEqualErrorMessage}}
-        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' (click)='passwordsNotEqualErrorMessage = null'></button>
-      </div>
-      <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>
-        {{error}}
-      </div>
-      <div class='mt-2' *ngIf='loading$ | async'>
-        <!--      todo make spinner-->
-        Wczytywanie...
-      </div>
-    </form>
+  <div class='register-hint-text'>
+    <p class='text-center'>Masz już konto w Cook Hero? W takim razie <a routerLink='/logowanie'>zaloguj się!</a></p>
   </div>
+<!--  <div class='container '>-->
+<!--      <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='passwordsNotEqualErrorMessage'>-->
+<!--        {{passwordsNotEqualErrorMessage}}-->
+<!--        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' (click)='passwordsNotEqualErrorMessage = null'></button>-->
+<!--      </div>-->
+<!--      <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>-->
+<!--        {{error}}-->
+<!--      </div>-->
+<!--      <div class='mt-2' *ngIf='loading$ | async'>-->
+<!--        &lt;!&ndash;      todo make spinner&ndash;&gt;-->
+<!--        Wczytywanie...-->
+<!--      </div>-->
+<!--  </div>-->
 </section>
+<div class='register-wave-orange-grey'></div>
 <section class='grey-background'>
-  <p class="text-center footer">&copy; Cook Hero 2023. Prawa zastrzeżone</p>
+  <p class="text-center register-footer">&copy; Cook Hero 2023. Prawa zastrzeżone</p>
 </section>
 
 

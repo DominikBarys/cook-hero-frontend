@@ -40,7 +40,7 @@ export class RecoveryPasswordComponent {
           );
         },
         error: (err) => {
-          this.recoveryPasswordErrorMessage = err;
+          this.notifierService.notify('warning', err);
         },
       });
   }

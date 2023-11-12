@@ -14,7 +14,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class LoggedInGuard implements CanActivate {
   constructor(
-    private authService: AuthenticationService,
+    private authenticationService: AuthenticationService,
     private router: Router,
   ) {}
   canActivate(
@@ -25,12 +25,10 @@ export class LoggedInGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isUserLoggedIn().pipe(
+    return this.authenticationService.isUserLoggedIn().pipe(
       take(1),
       map((resp) => {
-        console.log(resp);
         const isLoggedIn = resp.loggedIn;
-        console.log(isLoggedIn);
         if (isLoggedIn) {
           this.router.navigate(['/']);
           return false;

@@ -34,7 +34,8 @@ export class ActivationAccountComponent implements OnInit {
           this.notifierService.notify('success', response.message);
         },
         error: (err) => {
-          this.activationAccountErrorMessage = err;
+          this.notifierService.notify('success', err);
+          this.router.navigate(['/']);
         },
       });
   }
