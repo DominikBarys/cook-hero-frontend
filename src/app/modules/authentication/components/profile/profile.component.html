@@ -1,13 +1,13 @@
 <div class='profile-container'>
   <div class='profile-card vanillaTilt' data-tilt>
-    <img src='assets/profile.png'>
-    <h2>John Smith</h2>
-    <p>Jakis tam fajny opis zeby bylo fajnie widać</p>
-    <div class='profile-links'>
-      <a><img src='assets/facebook.png'></a>
-      <a><img src='assets/twitter.png'></a>
-      <a><img src='assets/telegram.png'></a>
+    <img src='assets/Logo.jpg'>
+    <h2>{{username}}</h2>
+    <p>Email: {{email}}</p>
+    <p>Ranga: {{rank}}</p>
+    <p>Rola: {{role}}</p>
+    <p>Ilość stworzonych poradników: {{amountOfCreatedTutorials}}</p>
+    <div class='d-flex justify-content-center profile-button'>
+      <button mat-raised-button color="primary" (click)='logout()' >Wyloguj</button>
     </div>
-    <a href='' class='profile-button'>message me</a>
   </div>
 </div>
