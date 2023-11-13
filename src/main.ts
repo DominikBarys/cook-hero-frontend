@@ -3,7 +3,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 
 // todo od aktywacji bez effects
-// todo zrobic ten spinner
 // todo buguje sie po zmianie nazwy
 platformBrowserDynamic()
   .bootstrapModule(AppModule)

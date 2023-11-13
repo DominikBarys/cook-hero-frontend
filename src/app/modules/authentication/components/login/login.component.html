@@ -22,8 +22,7 @@
           <button mat-raised-button color="primary" [disabled]='loginForm.invalid' >Zaloguj się</button>
         </div>
         <div class='mt-2' *ngIf='loading$ | async'>
-          <!--      todo make spinner-->
-          Wczytywanie...
+          <app-spinner class='login-spinner'></app-spinner>
         </div>
       </form>
     </section>
