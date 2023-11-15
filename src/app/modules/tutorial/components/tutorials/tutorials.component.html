@@ -1,0 +1,11 @@
+<div class='container'>
+  <section>
+    <div class='tutorials-list'>
+      <app-tutorial *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial>
+    </div>
+    <mat-paginator [pageSizeOptions]='[5, 10, 15]' [length]='simpleTutorials.length' showFirstLastButtons>
+
+    </mat-paginator>
+  </section>
+</div>
+

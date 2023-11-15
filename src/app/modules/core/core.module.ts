@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomMatPaginator } from './material/custom-mat-paginator';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -16,6 +18,10 @@ import { ErrorHandlerInterceptor } from './interceptors/error-handler.intercepto
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,
       multi: true,
+    },
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginator,
     },
   ],
 })
