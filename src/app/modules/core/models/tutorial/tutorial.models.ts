@@ -49,3 +49,8 @@ export interface SimpleTutorial {
   isSweetRecipe: boolean;
   isSpicyRecipe: boolean;
 }
+
+export interface GetTutorialResponse {
+  tutorials: SimpleTutorial[];
+  totalCount: number;
+}

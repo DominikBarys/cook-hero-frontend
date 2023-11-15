@@ -3,9 +3,9 @@ import { SimpleTutorial } from '../../../../core/models/tutorial/tutorial.models
 
 @Component({
   selector: 'app-tutorial',
-  templateUrl: './tutorial.component.html',
-  styleUrls: ['./tutorial.component.scss'],
+  templateUrl: './tutorial-card.component.html',
+  styleUrls: ['./tutorial-card.component.scss'],
 })
-export class TutorialComponent {
+export class TutorialCardComponent {
   @Input() simpleTutorial!: SimpleTutorial;
 }

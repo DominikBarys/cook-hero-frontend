@@ -3,7 +3,7 @@
     <div class='tutorials-list'>
       <app-tutorial *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial>
     </div>
-    <mat-paginator [pageSizeOptions]='[5, 10, 15]' [length]='simpleTutorials.length' showFirstLastButtons>
+    <mat-paginator [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
 
     </mat-paginator>
   </section>
