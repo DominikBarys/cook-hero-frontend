@@ -19,6 +19,9 @@ export class TutorialsService {
     pageIndex = 1,
     itemsPerPage = 5,
     name: string | null = null,
+    sortElement: string | null = null,
+    order: string | null = null,
+    categoryShortId: string | null = null,
   ): Observable<GetTutorialResponse> {
     let params = new HttpParams()
       .append('_page', pageIndex)
@@ -30,6 +33,18 @@ export class TutorialsService {
 
       // const encodedName = encodeURIComponent(name);
       params = params.append('name_like', name);
+    }
+
+    if (sortElement) {
+      params = params.append('_sort', sortElement);
+    }
+
+    if (order) {
+      params = params.append('_order', order);
+    }
+
+    if (categoryShortId) {
+      params = params.append('_category', categoryShortId);
     }
 
     return this.httpClient

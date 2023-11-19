@@ -10,6 +10,30 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+      <div class='searched-params'>
+        <mat-form-field>
+          <mat-label>Sortuj po</mat-label>
+          <mat-select [formControl]='sortControl'>
+            <mat-option value='timeToPrepare'>Czasie przygotowania</mat-option>
+            <mat-option value='difficulty'>Trudności wykonania</mat-option>
+            <mat-option value='creationDate'>Dacie utworzenia</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Sortuj</mat-label>
+          <mat-select [formControl]='orderControl'>
+            <mat-option value=''>-</mat-option>
+            <mat-option value='asc'>Rosnąco</mat-option>
+            <mat-option value='desc'>Malejąco</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Kategoria</mat-label>
+          <mat-select [formControl]='categoryControl'>
+            <mat-option *ngFor='let category of categories; let i = index' [value]='category.shortId'>{{category.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div class='d-flex justify-content-end my-2'>
         <button mat-raised-button color='primary' (click)='searchTutorials()'>
           Wyszukaj poradnik

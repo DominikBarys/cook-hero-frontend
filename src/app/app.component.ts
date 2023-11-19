@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
       .pipe()
       .subscribe({
         next: (resp) => {
-          console.log(resp.uuid);
+          //console.log(resp.uuid);
         },
       });
   }

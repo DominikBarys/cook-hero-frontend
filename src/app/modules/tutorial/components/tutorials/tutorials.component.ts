@@ -6,7 +6,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { TutorialsService } from '../../../core/services/tutorials.service';
-import { SimpleTutorial } from '../../../core/models/tutorial/tutorial.models';
+import {
+  Category,
+  SimpleTutorial,
+} from '../../../core/models/tutorial/tutorial.models';
 import { MatPaginator } from '@angular/material/paginator';
 import {
   debounceTime,
@@ -21,6 +24,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { FormControl } from '@angular/forms';
+import { CategoriesService } from '../../../core/services/categories.service';
 
 @Component({
   selector: 'app-tutorials',
@@ -33,7 +37,12 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   totalCount = 0;
   sub$ = new Subscription();
   searchControl = new FormControl<string>('');
+  sortControl = new FormControl<string>('');
+  orderControl = new FormControl<string>('');
+  categoryControl = new FormControl<string>('');
   filteredOptions!: Observable<SimpleTutorial[]>;
+
+  categories: Category[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -42,6 +51,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private notifierService: NotifierService,
+    private categoriesService: CategoriesService,
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +63,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         if (value!.trim() !== '') {
           return this.tutorialService.getTutorials(1, 10, value);
         } else {
-          // Jeśli wartość pola jest pusta, zwróć pustą listę
           return of({ tutorials: [] });
         }
       }),
@@ -61,12 +70,25 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         return [...tutorials];
       }),
     );
+
+    console.log('siema');
+
+    this.categoriesService.getCategories().subscribe({
+      next: (categories) => {
+        console.log(categories);
+        this.categories = [...categories];
+      },
+      error: (err) => {
+        console.log('blad kategoryjny');
+        console.log(err);
+      },
+    });
   }
 
   ngAfterViewInit(): void {
     this.tutorialService.getTutorials().subscribe({
       next: ({ tutorials, totalCount }) => {
-        console.log(tutorials);
+        //console.log(tutorials);
         this.simpleTutorials = [...tutorials];
         this.totalCount = totalCount;
       },
@@ -83,11 +105,25 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
           const tutorialName = queryMap.get('name')
             ? queryMap.get('name')
             : null;
+
+          const sortElement = queryMap.get('sort_of')
+            ? queryMap.get('sort_of')
+            : null;
+
+          const order = queryMap.get('sort') ? queryMap.get('sort') : null;
+
+          const category = queryMap.get('category')
+            ? queryMap.get('category')
+            : null;
+
           //todo mniej wiecej tutaj dodac spinner do ladowania produktow, tutaj zaczyna sie pobieranie
           return this.tutorialService.getTutorials(
             page,
             itemsPerPage,
             tutorialName,
+            sortElement,
+            order,
+            category,
           );
         }),
         map(({ tutorials, totalCount }) => {
@@ -120,17 +156,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         )
         .subscribe({
           next: () => {
-            const pageIndex = this.paginator.pageIndex + 1;
-            const itemsPerPage = this.paginator.pageSize;
-
-            this.router.navigate([], {
-              relativeTo: this.activatedRoute,
-              queryParams: {
-                page: pageIndex,
-                itemsPerPage: itemsPerPage,
-                name: this.searchControl.value,
-              },
-            });
+            this.searchParamsNavigate();
           },
         }),
     );
@@ -142,14 +168,38 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchTutorials() {
     this.paginator.pageIndex = 0;
-    this.paginator.pageSize = 5;
+    //todo to jest prawdopodobnie niepotrzebne
+    //this.paginator.pageSize = 5;
+
+    this.searchParamsNavigate();
+  }
+
+  searchParamsNavigate() {
+    const queryParams: { [key: string]: string | number } = {
+      page: this.paginator.pageIndex + 1,
+      itemsPerPage: this.paginator.pageSize,
+    };
+
+    if (this.searchControl.value) {
+      //todo tylko tutaj nie powinno byc encodowania, do poprawy w przyszlosci
+      queryParams['name'] = this.searchControl.value;
+    }
+
+    if (this.sortControl.value) {
+      queryParams['sort_of'] = this.sortControl.value;
+    }
+
+    if (this.orderControl.value) {
+      queryParams['sort'] = this.orderControl.value;
+    }
+
+    if (this.categoryControl.value) {
+      queryParams['category'] = this.categoryControl.value;
+    }
+
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: {
-        page: this.paginator.pageIndex + 1,
-        itemsPerPage: this.paginator.pageSize,
-        name: this.searchControl.value,
-      },
+      queryParams,
     });
   }
 }

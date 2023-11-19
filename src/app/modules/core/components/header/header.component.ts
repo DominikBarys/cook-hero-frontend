@@ -34,7 +34,7 @@ export class HeaderComponent {
       .pipe(
         take(1),
         map((resp) => {
-          console.log(resp.loggedIn);
+          //console.log(resp.loggedIn);
           const isLoggedIn = resp.loggedIn;
           if (!isLoggedIn) {
             this.notifierService.notify(
