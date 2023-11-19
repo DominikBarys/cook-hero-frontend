@@ -8,11 +8,12 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginator } from './material/custom-mat-paginator';
+import { AdminButtonComponent } from './components/admin-button/admin-button.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, AdminButtonComponent],
   imports: [CommonModule, RouterLink, SharedModule, HttpClientModule],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, AdminButtonComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

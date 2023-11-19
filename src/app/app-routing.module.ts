@@ -9,6 +9,11 @@ const routes: Routes = [
         (m) => m.TutorialModule,
       ),
   },
+  {
+    path: 'administracja',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({
