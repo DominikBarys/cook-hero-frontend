@@ -5,6 +5,7 @@ import { map, Observable } from 'rxjs';
 import {
   GetTutorialResponse,
   SimpleTutorial,
+  Tutorial,
 } from '../models/tutorial/tutorial.models';
 
 @Injectable({
@@ -14,6 +15,14 @@ export class TutorialsService {
   apiUrl = `${environment.apiUrl}/tutorial`;
 
   constructor(private httpClient: HttpClient) {}
+
+  getTutorial(shortId: string): Observable<Tutorial> {
+    const params = new HttpParams().append('_shortId', shortId);
+
+    return this.httpClient.get<Tutorial>(`${this.apiUrl}`, {
+      params,
+    });
+  }
 
   getTutorials(
     pageIndex = 1,

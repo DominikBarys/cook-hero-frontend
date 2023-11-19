@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class='tutorials-list'>
-      <app-tutorial *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial>
+      <app-tutorial-card *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial-card>
     </div>
     <mat-paginator [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
 

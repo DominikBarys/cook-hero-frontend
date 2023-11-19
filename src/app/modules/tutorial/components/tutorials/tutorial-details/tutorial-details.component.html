@@ -1,0 +1,35 @@
+<div class='container'>
+  <ng-container *ngIf='tutorial'>
+    <div class='row'>
+        <div class='col-md-6 col-12'>
+          <app-image-carousel [tutorialName]='tutorial.name' [imageUrls]='tutorial.imageUrls'></app-image-carousel>
+        </div>
+        <div class='col-md-6 col-12 d-flex align-items-center justify-content-center'>
+          <div class='text-center'>
+            <p class='tutorial-name'>{{tutorial.name}}</p>
+            <p>{{tutorial.authorDTO.username}}</p>
+          </div>
+        </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Opis poradnika:</p>
+        <div [innerHTML]='tutorial.shortDescription'></div>
+      </div>
+    </div>
+    <div class='row' *ngIf='parameters'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Składniki:</p>
+        <table class='table table-bordered'>
+          <tbody>
+            <tr *ngFor='let parameter of parameters | keyvalue'>
+              <td class='text-end table-cell'><span class='tutorial-parameter-key'>{{parameter.key}}</span></td>
+              <td class='text-start table-cell'>{{parameter.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
