@@ -1,5 +1,21 @@
 <div class='container'>
   <section>
+    <div class='autocomplete-search'>
+      <mat-form-field>
+        <mat-label>Wyszukaj poradniki</mat-label>
+        <input type='text' matInput [formControl]='searchControl' [matAutocomplete]='auto'>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name'>
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div class='d-flex justify-content-end my-2'>
+        <button mat-raised-button color='primary' (click)='searchTutorials()'>
+          Wyszukaj poradnik
+        </button>
+      </div>
+    </div>
     <div class='tutorials-list'>
       <app-tutorial *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial>
     </div>
