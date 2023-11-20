@@ -14,6 +14,9 @@ import {
   ChangeUsernameForm,
   AddCategoryForm,
   PostTutorial,
+  AddIngredientForm,
+  AddDishForm,
+  ManageUserForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 
@@ -30,7 +33,7 @@ export class FormService {
     });
   }
 
-  initAddDishForm(): FormGroup<AddCategoryForm> {
+  initAddDishForm(): FormGroup<AddDishForm> {
     return new FormGroup({
       name: new FormControl('', {
         validators: [Validators.required],
@@ -39,9 +42,18 @@ export class FormService {
     });
   }
 
-  initAddIngredientForm(): FormGroup<AddCategoryForm> {
+  initAddIngredientForm(): FormGroup<AddIngredientForm> {
     return new FormGroup({
       name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initManageUserForm(): FormGroup<ManageUserForm> {
+    return new FormGroup({
+      username: new FormControl('', {
         validators: [Validators.required],
         nonNullable: true,
       }),

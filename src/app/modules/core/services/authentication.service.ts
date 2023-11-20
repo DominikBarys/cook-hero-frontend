@@ -12,6 +12,7 @@ import {
   UserRegister,
 } from '../models/authentication/authentication.models';
 import { Observable } from 'rxjs';
+import { Response } from '../models/tutorial/tutorial.models';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,12 @@ export class AuthenticationService {
 
   getUser(): Observable<UserInterface> {
     return this.httpClient.get<UserInterface>(`${this.apiUrl}/get-user`, {
+      withCredentials: true,
+    });
+  }
+
+  getAllUsers(): Observable<UserInterface[]> {
+    return this.httpClient.get<UserInterface[]>(`${this.apiUrl}/all`, {
       withCredentials: true,
     });
   }
@@ -105,5 +112,31 @@ export class AuthenticationService {
     return this.httpClient.get<UserInterface>(`${this.apiUrl}/auto-login`, {
       withCredentials: true,
     });
+  }
+
+  changeUserRole(
+    uuid: string,
+    role: string,
+  ): Observable<AuthenticationResponse> {
+    const params = new HttpParams().append('uuid', uuid).append('role', role);
+    return this.httpClient.patch<AuthenticationResponse>(
+      `${this.apiUrl}/change-role`,
+      {},
+      {
+        params,
+        withCredentials: true,
+      },
+    );
+  }
+
+  deleteUser(uuid: string): Observable<AuthenticationResponse> {
+    const params = new HttpParams().append('uuid', uuid);
+    return this.httpClient.delete<AuthenticationResponse>(
+      `${this.apiUrl}/delete`,
+      {
+        params,
+        withCredentials: true,
+      },
+    );
   }
 }

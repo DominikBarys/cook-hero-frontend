@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IngredientFormComponent } from './components/administrator/ingredient-form/ingredient-form.component';
+import { UserFormComponent } from './components/administrator/user-form/user-form.component';
+import { TutorialFormComponent } from './components/administrator/tutorial-form/tutorial-form.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { IngredientFormComponent } from './components/administrator/ingredient-f
     CategoryFormComponent,
     DishFormComponent,
     IngredientFormComponent,
+    UserFormComponent,
+    TutorialFormComponent,
   ],
   imports: [
     SharedModule,

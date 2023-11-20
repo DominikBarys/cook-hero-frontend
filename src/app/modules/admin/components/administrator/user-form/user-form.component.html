@@ -1,0 +1,45 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Usuń użytkownika
+      </mat-panel-title>
+      <mat-panel-description>
+        Wpisz nazwę użytkowanika aby go usunąć
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form class='container login-form' [formGroup]='deleteUserForm' (ngSubmit)='onDeleteUser(deleteUserForm.controls.username)'>
+      <h3>Usuwanie użytkownika</h3>
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Nazwa użytkownika</mat-label>
+          <input matInput [formControl]='deleteUserForm.controls.username'>
+        </mat-form-field>
+      </div>
+      <div class='d-flex justify-content-end'>
+        <button mat-raised-button color="primary" [disabled]='deleteUserForm.invalid' >Dodaj danie</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Zmień uprawnienia użytkownika
+      </mat-panel-title>
+      <mat-panel-description>
+        Wpisz nazwę użytkownika aby zmienić mu uprawnienia
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+      <h3>Zarządzanie uprawnieniami</h3>
+        <mat-form-field appearance='fill'>
+          <mat-label>Nazwa użytkownika</mat-label>
+          <input matInput [formControl]='manageUserForm.controls.username'>
+        </mat-form-field>
+      <div class='d-flex justify-content-end'>
+        <button mat-raised-button color="primary" [disabled]='manageUserForm.invalid' (click)='onManageUser(manageUserForm.controls.username, "USER")' >
+          Zmień rolę na 'USER'</button>
+        <button mat-raised-button color="primary" [disabled]='manageUserForm.invalid' (click)='onManageUser(manageUserForm.controls.username, "ADMIN")'>
+          Zmień rolę na 'ADMIN'</button>
+      </div>
+  </mat-expansion-panel>
+</mat-accordion>

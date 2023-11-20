@@ -12,6 +12,10 @@ export interface AddIngredientForm {
   name: FormControl<string>;
 }
 
+export interface ManageUserForm {
+  username: FormControl<string>;
+}
+
 export interface LoginForm {
   username: FormControl<string>;
   password: FormControl<string>;
