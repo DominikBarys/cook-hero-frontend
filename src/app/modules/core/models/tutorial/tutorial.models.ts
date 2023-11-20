@@ -70,3 +70,16 @@ export interface ImageResponse {
 export interface Image {
   url: string;
 }
+
+export interface AddTutorialData {
+  name: string;
+  shortDescription: string;
+  imagesUuid: string[];
+  parameters: string;
+  categoryShortId: string;
+}
+
+export interface PostImageResponse {
+  createAt: string;
+  shortId: string;
+}

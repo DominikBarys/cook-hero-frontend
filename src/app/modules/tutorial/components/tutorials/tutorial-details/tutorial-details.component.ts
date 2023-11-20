@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { TutorialsService } from '../../../../core/services/tutorials.service';
 import { Tutorial } from '../../../../core/models/tutorial/tutorial.models';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tutorial-card-details',
@@ -12,10 +13,12 @@ import { Tutorial } from '../../../../core/models/tutorial/tutorial.models';
 export class TutorialDetailsComponent implements OnInit {
   tutorial: Tutorial | null = null;
   parameters: { [key: string]: string } | null = null;
+  htmlContent: SafeHtml | null = null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private tutorialsService: TutorialsService,
+    private domSanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -29,8 +32,10 @@ export class TutorialDetailsComponent implements OnInit {
       )
       .subscribe({
         next: (tutorial) => {
-          console.log(tutorial);
           this.tutorial = { ...tutorial };
+          this.htmlContent = this.domSanitizer.bypassSecurityTrustHtml(
+            tutorial.shortDescription,
+          );
           try {
             this.parameters = JSON.parse(tutorial.parameters);
           } catch (err) {
@@ -39,5 +44,10 @@ export class TutorialDetailsComponent implements OnInit {
           console.log(this.parameters);
         },
       });
+  }
+
+  test() {
+    console.log('siema');
+    console.log(this.tutorial);
   }
 }

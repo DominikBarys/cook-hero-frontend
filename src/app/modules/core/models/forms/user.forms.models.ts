@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export interface AddCategoryForm {
   name: FormControl<string>;
@@ -25,4 +25,13 @@ export interface ResetPasswordForm {
 
 export interface ChangeUsernameForm {
   newUsername: FormControl<string>;
+}
+
+export interface PostTutorial {
+  name: FormControl<string>;
+  shortDescription: FormControl<string>;
+  categoryShortId: FormControl<string>;
+  parameters: FormArray<
+    FormGroup<{ value: FormControl<string>; key: FormControl<string> }>
+  >;
 }

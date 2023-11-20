@@ -8,6 +8,7 @@ import { TutorialDetailsComponent } from './components/tutorials/tutorial-detail
 import { ImageCarouselComponent } from './components/tutorials/tutorial-details/image-carousel/image-carousel.component';
 import { CreatorComponent } from './components/creator/creator.component';
 import { UploadedImagesComponent } from './components/creator/uploaded-images/uploaded-images.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { UploadedImagesComponent } from './components/creator/uploaded-images/up
     CreatorComponent,
     UploadedImagesComponent,
   ],
-  imports: [SharedModule, TutorialRoutingModule],
+  imports: [SharedModule, TutorialRoutingModule, AngularEditorModule],
 })
 export class TutorialModule {}

@@ -8,6 +8,6 @@
     <p class='card-text'>Przepis wegański: {{simpleTutorial.isVeganRecipe}}</p>
     <p class='card-text'>Przepis na słodko: {{simpleTutorial.isSweetRecipe}}</p>
     <p class='card-text'>Przepis na ostro: {{simpleTutorial.isSpicyRecipe}}</p>
-    <p class='card-text'>Opis: {{simpleTutorial.shortDescription}}</p>
+    <p [innerHtml]='simpleTutorial.shortDescription' class='card-text'></p>
   </div>
 </div>

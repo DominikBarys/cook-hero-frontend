@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SimpleTutorial } from '../../../../core/models/tutorial/tutorial.models';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tutorial-card',

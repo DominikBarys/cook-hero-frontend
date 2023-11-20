@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Form,
+  FormArray,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   LoginForm,
   RegisterForm,
@@ -7,6 +13,7 @@ import {
   ResetPasswordForm,
   ChangeUsernameForm,
   AddCategoryForm,
+  PostTutorial,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 
@@ -20,6 +27,35 @@ export class FormService {
         validators: [Validators.required],
         nonNullable: true,
       }),
+    });
+  }
+
+  initAddTutorialForm(): FormGroup<PostTutorial> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      shortDescription: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      categoryShortId: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      parameters: new FormArray([
+        new FormGroup({
+          key: new FormControl('', {
+            validators: [Validators.required],
+            nonNullable: true,
+          }),
+          value: new FormControl('', {
+            validators: [Validators.required],
+            nonNullable: true,
+          }),
+        }),
+      ]),
     });
   }
 

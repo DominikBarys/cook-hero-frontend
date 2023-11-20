@@ -7,14 +7,14 @@
         <div class='col-md-6 col-12 d-flex align-items-center justify-content-center'>
           <div class='text-center'>
             <p class='tutorial-name'>{{tutorial.name}}</p>
-            <p>{{tutorial.authorDTO.username}}</p>
+            <p>{{tutorial.authorDTO ? tutorial.authorDTO.username : 'Null username'}}</p>
           </div>
         </div>
     </div>
     <div class='row'>
       <div class='col-md-12 mt-3'>
         <p class='tutorial-description'>Opis poradnika:</p>
-        <div [innerHTML]='tutorial.shortDescription'></div>
+        <div *ngIf='htmlContent' [innerHTML]='htmlContent'></div>
       </div>
     </div>
     <div class='row' *ngIf='parameters'>
@@ -31,5 +31,6 @@
       </div>
     </div>
   </ng-container>
+  <button mat-raised-button (click)='test()' color='primary'>TEST</button>
 </div>
 

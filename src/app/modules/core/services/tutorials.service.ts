@@ -3,7 +3,9 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import {
+  AddTutorialData,
   GetTutorialResponse,
+  Response,
   SimpleTutorial,
   Tutorial,
 } from '../models/tutorial/tutorial.models';
@@ -72,5 +74,11 @@ export class TutorialsService {
           return { tutorials: [...response.body], totalCount };
         }),
       );
+  }
+
+  addTutorial(addTutorialData: AddTutorialData): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.apiUrl}`, addTutorialData, {
+      withCredentials: true,
+    });
   }
 }
