@@ -1,0 +1,27 @@
+.images-wrapper {
+  width: 80%;
+
+  .main-image {
+    min-height: 400px;
+    max-width: 400px;
+  }
+
+  .bottom-small-images{
+    display: grid;
+    gap: .8rem;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+
+    .small-image {
+      height: 80px;
+      width: 80px;
+      border: 2px solid #FE8C2A;
+      border-radius: 4px;
+    }
+
+    .delete-image{
+      font-size: 1rem;
+      font-weight: 550;
+      padding: 2px 6px 2px 6px;
+    }
+  }
+}

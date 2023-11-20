@@ -6,6 +6,7 @@ import {
   RecoveryPasswordForm,
   ResetPasswordForm,
   ChangeUsernameForm,
+  AddCategoryForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 
@@ -13,6 +14,15 @@ import { equalValidator } from '../../shared/validators/equal.validator';
   providedIn: 'root',
 })
 export class FormService {
+  initAddCategoryForm(): FormGroup<AddCategoryForm> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
+  }
+
   initLoginForm(): FormGroup<LoginForm> {
     return new FormGroup({
       username: new FormControl('', {

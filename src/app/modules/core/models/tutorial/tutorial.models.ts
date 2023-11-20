@@ -13,6 +13,8 @@ export interface Category {
   shortId: string;
 }
 
+export type PostCategory = Omit<Category, 'shortId'>;
+
 export interface Author {
   username: string;
   uuid: string;
@@ -53,4 +55,18 @@ export interface SimpleTutorial {
 export interface GetTutorialResponse {
   tutorials: SimpleTutorial[];
   totalCount: number;
+}
+
+export interface Response {
+  timestamp: string;
+  message: string;
+}
+
+export interface ImageResponse {
+  createdAt: string;
+  shortId: string;
+}
+
+export interface Image {
+  url: string;
 }

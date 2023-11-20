@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { TutorialCardComponent } from './components/tutorials/tutorial-card/tutorial-card.component';
 import { TutorialDetailsComponent } from './components/tutorials/tutorial-details/tutorial-details.component';
 import { ImageCarouselComponent } from './components/tutorials/tutorial-details/image-carousel/image-carousel.component';
+import { CreatorComponent } from './components/creator/creator.component';
+import { UploadedImagesComponent } from './components/creator/uploaded-images/uploaded-images.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { ImageCarouselComponent } from './components/tutorials/tutorial-details/
     TutorialCardComponent,
     TutorialDetailsComponent,
     ImageCarouselComponent,
+    CreatorComponent,
+    UploadedImagesComponent,
   ],
   imports: [SharedModule, TutorialRoutingModule],
 })

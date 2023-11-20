@@ -1,1 +1,12 @@
-<p>category-form works!</p>
+<form class='container login-form' [formGroup]='addCategoryForm' (ngSubmit)='onAddCategory()'>
+  <h3>Dodawanie kategorii:</h3>
+  <div class='form-input'>
+    <mat-form-field appearance='fill'>
+      <mat-label>Nazwa kategorii</mat-label>
+      <input matInput [formControl]='addCategoryForm.controls.name'>
+    </mat-form-field>
+  </div>
+  <div class='d-flex justify-content-end'>
+    <button mat-raised-button color="primary" [disabled]='addCategoryForm.invalid' >Dodaj kategorię</button>
+  </div>
+</form>

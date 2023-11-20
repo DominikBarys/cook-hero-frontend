@@ -1,0 +1,11 @@
+<div class='d-flex justify-content-center'>
+  <div class='images-wrapper'>
+    <img [src]='activeImage' alt='Zdjęcie nowego produktu' class='img-fluid main-image mx-auto d-block'>
+    <div class='bottom-small-images mt-5'>
+      <div class='image-wrapper' *ngFor='let image of imageUrls'>
+        <img [src]='image.url' alt='Zdjęcie nowego produktu' (click)='setActiveImage(image.url)' class='img-fluid small-image'>
+        <p class='text-center delete-image' (click)='deleteImage(image.url)'>Usuń</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Category } from '../models/tutorial/tutorial.models';
+import {
+  Category,
+  PostCategory,
+  Response,
+} from '../models/tutorial/tutorial.models';
 
 @Injectable({
   providedIn: 'root',
@@ -14,5 +18,11 @@ export class CategoriesService {
 
   getCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${this.apiUrl}/all`);
+  }
+
+  addCategory(body: PostCategory): Observable<Response> {
+    return this.httpClient.post<Response>(`${this.apiUrl}`, body, {
+      withCredentials: true,
+    });
   }
 }
