@@ -4,6 +4,7 @@ import { AdministratorComponent } from './components/administrator/administrator
 import { CategoryFormComponent } from './components/administrator/category-form/category-form.component';
 import { DishFormComponent } from './components/administrator/dish-form/dish-form.component';
 import { IsAdminGuard } from '../core/guards/is-admin.guard';
+import { IngredientFormComponent } from './components/administrator/ingredient-form/ingredient-form.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: 'kategorie', component: CategoryFormComponent },
       { path: 'dania', component: DishFormComponent },
+      { path: 'skladniki', component: IngredientFormComponent },
     ],
   },
 ];

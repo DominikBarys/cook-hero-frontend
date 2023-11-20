@@ -30,6 +30,24 @@ export class FormService {
     });
   }
 
+  initAddDishForm(): FormGroup<AddCategoryForm> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initAddIngredientForm(): FormGroup<AddCategoryForm> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
+  }
+
   initAddTutorialForm(): FormGroup<PostTutorial> {
     return new FormGroup({
       name: new FormControl('', {

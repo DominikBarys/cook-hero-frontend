@@ -4,6 +4,14 @@ export interface AddCategoryForm {
   name: FormControl<string>;
 }
 
+export interface AddDishForm {
+  name: FormControl<string>;
+}
+
+export interface AddIngredientForm {
+  name: FormControl<string>;
+}
+
 export interface LoginForm {
   username: FormControl<string>;
   password: FormControl<string>;

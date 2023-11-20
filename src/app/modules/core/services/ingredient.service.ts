@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import {
-  Category,
+  Dish,
+  Ingredient,
   PostCategory,
   Response,
 } from '../models/tutorial/tutorial.models';
@@ -11,28 +12,28 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriesService {
-  private apiUrl = `${environment.apiUrl}/category`;
+export class IngredientService {
+  private apiUrl = `${environment.apiUrl}/ingredient`;
 
   constructor(private httpClient: HttpClient) {}
 
-  categories = new BehaviorSubject<Category[]>([]);
+  ingredients = new BehaviorSubject<Ingredient[]>([]);
 
-  getCategories(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(`${this.apiUrl}/all`).pipe(
-      tap((categories) => {
-        this.categories.next(categories);
+  getIngredients(): Observable<Dish[]> {
+    return this.httpClient.get<Ingredient[]>(`${this.apiUrl}/all`).pipe(
+      tap((ingredients) => {
+        this.ingredients.next(ingredients);
       }),
     );
   }
 
-  addCategory(body: PostCategory): Observable<Response> {
+  addIngredient(body: PostCategory): Observable<Response> {
     return this.httpClient.post<Response>(`${this.apiUrl}`, body, {
       withCredentials: true,
     });
   }
 
-  deleteCategory(shortId: string): Observable<Response> {
+  deleteIngredient(shortId: string): Observable<Response> {
     const params = new HttpParams().append('shortId', shortId);
     return this.httpClient.delete<Response>(`${this.apiUrl}`, {
       params,

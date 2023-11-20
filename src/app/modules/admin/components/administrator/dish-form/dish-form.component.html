@@ -1,1 +1,44 @@
-<p>dish-form works!</p>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dodaj danie
+      </mat-panel-title>
+      <mat-panel-description>
+        Wpisz nazwę dania aby dodać go do bazy danych
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form class='container login-form' [formGroup]='addDishForm' (ngSubmit)='onAddDish()'>
+      <h3>Dodawanie dania</h3>
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Nazwa dania</mat-label>
+          <input matInput [formControl]='addDishForm.controls.name'>
+        </mat-form-field>
+      </div>
+      <div class='d-flex justify-content-end'>
+        <button mat-raised-button color="primary" [disabled]='addDishForm.invalid' >Dodaj danie</button>
+      </div>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Usuń danie
+      </mat-panel-title>
+      <mat-panel-description>
+        Wybierz danie do usunięcia
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <h3 class='mt-3'>Usuwanie dania</h3>
+    <mat-form-field class='mt-4'>
+      <mat-label>Danie</mat-label>
+      <mat-select [formControl]='dishControl'>
+        <mat-option *ngFor='let dish of dishes; let i = index' [value]='dish.shortId'>{{dish.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class='d-flex justify-content-end'>
+      <button mat-raised-button color='primary' (click)='onDeleteDish()'>Usuń</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
