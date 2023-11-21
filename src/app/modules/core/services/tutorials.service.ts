@@ -33,6 +33,7 @@ export class TutorialsService {
     sortElement: string | null = null,
     order: string | null = null,
     categoryShortId: string | null = null,
+    dishShortId: string | null = null,
   ): Observable<GetTutorialResponse> {
     let params = new HttpParams()
       .append('_page', pageIndex)
@@ -56,6 +57,10 @@ export class TutorialsService {
 
     if (categoryShortId) {
       params = params.append('_category', categoryShortId);
+    }
+
+    if (dishShortId) {
+      params = params.append('_dish', dishShortId);
     }
 
     return this.httpClient

@@ -14,6 +14,7 @@
         <mat-form-field>
           <mat-label>Sortuj po</mat-label>
           <mat-select [formControl]='sortControl'>
+            <mat-option  value=''>-</mat-option>
             <mat-option value='timeToPrepare'>Czasie przygotowania</mat-option>
             <mat-option value='difficulty'>Trudności wykonania</mat-option>
             <mat-option value='creationDate'>Dacie utworzenia</mat-option>
@@ -30,9 +31,18 @@
         <mat-form-field>
           <mat-label>Kategoria</mat-label>
           <mat-select [formControl]='categoryControl'>
+            <mat-option  value=''>-</mat-option>
             <mat-option *ngFor='let category of categories; let i = index' [value]='category.shortId'>{{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>Danie</mat-label>
+          <mat-select [formControl]='dishControl'>
+            <mat-option  value=''>-</mat-option>
+            <mat-option *ngFor='let dish of dishes; let i = index' [value]='dish.shortId'>{{dish.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-slide-toggle></mat-slide-toggle>
       </div>
       <div class='d-flex justify-content-end my-2'>
         <button mat-raised-button color='primary' (click)='searchTutorials()'>
@@ -43,7 +53,7 @@
     <div class='tutorials-list'>
       <app-tutorial-card *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial-card>
     </div>
-    <mat-paginator [pageSizeOptions]='[5, 10, 15]' [length]='totalCount' showFirstLastButtons>
+    <mat-paginator [pageSizeOptions]='[6, 12, 18]' [length]='totalCount' showFirstLastButtons>
 
     </mat-paginator>
   </section>

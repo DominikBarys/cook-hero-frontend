@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
@@ -12,6 +12,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MaterialModule,
     ReactiveFormsModule,
     SpinnerComponent,
+    FormsModule,
   ],
 })
 export class SharedModule {}

@@ -8,6 +8,7 @@ import {
 import { TutorialsService } from '../../../core/services/tutorials.service';
 import {
   Category,
+  Dish,
   SimpleTutorial,
 } from '../../../core/models/tutorial/tutorial.models';
 import { MatPaginator } from '@angular/material/paginator';
@@ -25,6 +26,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { FormControl } from '@angular/forms';
 import { CategoriesService } from '../../../core/services/categories.service';
+import { DishService } from '../../../core/services/dish.service';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-tutorials',
@@ -40,9 +43,12 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   sortControl = new FormControl<string>('');
   orderControl = new FormControl<string>('');
   categoryControl = new FormControl<string>('');
+  dishControl = new FormControl<string>('');
   filteredOptions!: Observable<SimpleTutorial[]>;
+  isChecked = false;
 
   categories: Category[] = [];
+  dishes: Dish[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -52,6 +58,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private notifierService: NotifierService,
     private categoriesService: CategoriesService,
+    private dishService: DishService,
   ) {}
 
   ngOnInit(): void {
@@ -79,7 +86,16 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.categories = [...categories];
       },
       error: (err) => {
-        console.log('blad kategoryjny');
+        console.log(err);
+      },
+    });
+
+    this.dishService.getDishes().subscribe({
+      next: (dishes) => {
+        console.log(dishes);
+        this.dishes = [...dishes];
+      },
+      error: (err) => {
         console.log(err);
       },
     });
@@ -116,6 +132,8 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
             ? queryMap.get('category')
             : null;
 
+          const dish = queryMap.get('dish') ? queryMap.get('dish') : null;
+
           //todo mniej wiecej tutaj dodac spinner do ladowania produktow, tutaj zaczyna sie pobieranie
           return this.tutorialService.getTutorials(
             page,
@@ -124,6 +142,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
             sortElement,
             order,
             category,
+            dish,
           );
         }),
         map(({ tutorials, totalCount }) => {
@@ -195,6 +214,10 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.categoryControl.value) {
       queryParams['category'] = this.categoryControl.value;
+    }
+
+    if (this.dishControl.value) {
+      queryParams['dish'] = this.dishControl.value;
     }
 
     this.router.navigate([], {
