@@ -45,7 +45,11 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   categoryControl = new FormControl<string>('');
   dishControl = new FormControl<string>('');
   filteredOptions!: Observable<SimpleTutorial[]>;
-  isChecked = false;
+
+  hasMeat = false;
+  isVeganRecipe = false;
+  isSweetRecipe = false;
+  isSpicyRecipe = false;
 
   categories: Category[] = [];
   dishes: Dish[] = [];
@@ -62,6 +66,11 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.hasMeat = false;
+    this.isVeganRecipe = false;
+    this.isSweetRecipe = false;
+    this.isSpicyRecipe = false;
+
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
@@ -134,6 +143,21 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
           const dish = queryMap.get('dish') ? queryMap.get('dish') : null;
 
+          const hasMeat = queryMap.get('hasMeat')
+            ? queryMap.get('hasMeat')
+            : null;
+
+          const isVeganRecipe = queryMap.get('isVeganRecipe')
+            ? queryMap.get('isVeganRecipe')
+            : null;
+
+          const isSweetRecipe = queryMap.get('isSweetRecipe')
+            ? queryMap.get('isSweetRecipe')
+            : null;
+          const isSpicyRecipe = queryMap.get('isSpicyRecipe')
+            ? queryMap.get('isSpicyRecipe')
+            : null;
+
           //todo mniej wiecej tutaj dodac spinner do ladowania produktow, tutaj zaczyna sie pobieranie
           return this.tutorialService.getTutorials(
             page,
@@ -143,6 +167,10 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
             order,
             category,
             dish,
+            hasMeat,
+            isVeganRecipe,
+            isSweetRecipe,
+            isSpicyRecipe,
           );
         }),
         map(({ tutorials, totalCount }) => {
@@ -218,6 +246,22 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (this.dishControl.value) {
       queryParams['dish'] = this.dishControl.value;
+    }
+
+    if (this.hasMeat) {
+      queryParams['hasMeat'] = this.hasMeat.toString();
+    }
+
+    if (this.isVeganRecipe) {
+      queryParams['isVeganRecipe'] = this.isVeganRecipe.toString();
+    }
+
+    if (this.isSweetRecipe) {
+      queryParams['isSweetRecipe'] = this.isSweetRecipe.toString();
+    }
+
+    if (this.isSpicyRecipe) {
+      queryParams['isSpicyRecipe'] = this.isSpicyRecipe.toString();
     }
 
     this.router.navigate([], {

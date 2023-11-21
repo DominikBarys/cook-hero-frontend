@@ -42,7 +42,12 @@
             <mat-option *ngFor='let dish of dishes; let i = index' [value]='dish.shortId'>{{dish.name}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-slide-toggle></mat-slide-toggle>
+      </div>
+      <div class='d-flex'>
+        <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
       </div>
       <div class='d-flex justify-content-end my-2'>
         <button mat-raised-button color='primary' (click)='searchTutorials()'>

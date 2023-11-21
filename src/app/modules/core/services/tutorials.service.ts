@@ -34,6 +34,10 @@ export class TutorialsService {
     order: string | null = null,
     categoryShortId: string | null = null,
     dishShortId: string | null = null,
+    hasMeat: string | null = null,
+    isVeganRecipe: string | null = null,
+    isSweetRecipe: string | null = null,
+    isSpicyRecipe: string | null = null,
   ): Observable<GetTutorialResponse> {
     let params = new HttpParams()
       .append('_page', pageIndex)
@@ -61,6 +65,22 @@ export class TutorialsService {
 
     if (dishShortId) {
       params = params.append('_dish', dishShortId);
+    }
+
+    if (hasMeat) {
+      params = params.append('_hasMeat', hasMeat);
+    }
+
+    if (isVeganRecipe) {
+      params = params.append('_isVeganRecipe', isVeganRecipe);
+    }
+
+    if (isSweetRecipe) {
+      params = params.append('_isSweetRecipe', isSweetRecipe);
+    }
+
+    if (isSpicyRecipe) {
+      params = params.append('_isSpicyRecipe', isSpicyRecipe);
     }
 
     return this.httpClient
