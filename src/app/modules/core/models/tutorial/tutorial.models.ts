@@ -79,6 +79,10 @@ export interface AddTutorialData {
   categoryShortId: string;
 }
 
+export interface AddTutorial extends AddTutorialData {
+  authorUuid: string | null;
+}
+
 export interface PostImageResponse {
   createAt: string;
   shortId: string;

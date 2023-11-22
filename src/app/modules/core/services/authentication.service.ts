@@ -29,9 +29,21 @@ export class AuthenticationService {
   }
 
   getUser(): Observable<UserInterface> {
-    return this.httpClient.get<UserInterface>(`${this.apiUrl}/get-user`, {
-      withCredentials: true,
-    });
+    const siema = this.httpClient.get<UserInterface>(
+      `${this.apiUrl}/get-user`,
+      {
+        withCredentials: true,
+      },
+    );
+    console.log('getuser');
+    console.log(
+      siema.subscribe({
+        next: (user) => {
+          console.log(user.uuid);
+        },
+      }),
+    );
+    return siema;
   }
 
   getAllUsers(): Observable<UserInterface[]> {

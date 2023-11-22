@@ -3,20 +3,26 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import {
+  AddTutorial,
   AddTutorialData,
   GetTutorialResponse,
   Response,
   SimpleTutorial,
   Tutorial,
 } from '../models/tutorial/tutorial.models';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TutorialsService {
   apiUrl = `${environment.apiUrl}/tutorial`;
+  userUuid: string | null = null;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private httpClient: HttpClient,
+  ) {}
 
   getTutorial(shortId: string): Observable<Tutorial> {
     const params = new HttpParams().append('_shortId', shortId);
@@ -102,7 +108,25 @@ export class TutorialsService {
   }
 
   addTutorial(addTutorialData: AddTutorialData): Observable<Response> {
-    return this.httpClient.post<Response>(`${this.apiUrl}`, addTutorialData, {
+    this.authenticationService.getUser().subscribe({
+      next: (getUserResponse) => {
+        this.userUuid = getUserResponse.uuid;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
+    const tutorial: AddTutorial = {
+      name: addTutorialData.name,
+      shortDescription: addTutorialData.shortDescription,
+      imagesUuid: addTutorialData.imagesUuid,
+      parameters: addTutorialData.parameters,
+      categoryShortId: addTutorialData.categoryShortId,
+      authorUuid: this.userUuid,
+    };
+
+    return this.httpClient.post<Response>(`${this.apiUrl}`, tutorial, {
       withCredentials: true,
     });
   }
