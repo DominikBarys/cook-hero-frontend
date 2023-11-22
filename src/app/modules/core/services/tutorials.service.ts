@@ -106,4 +106,12 @@ export class TutorialsService {
       withCredentials: true,
     });
   }
+
+  deleteTutorial(tutorialShortId: string): Observable<Response> {
+    const params = new HttpParams().append('shortId', tutorialShortId);
+    return this.httpClient.delete<Response>(`${this.apiUrl}`, {
+      params,
+      withCredentials: true,
+    });
+  }
 }

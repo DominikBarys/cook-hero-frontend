@@ -33,4 +33,21 @@
   </ng-container>
   <button mat-raised-button (click)='test()' color='primary'>TEST</button>
 </div>
+<ng-container *ngIf='user$ | async as user'>
+  <ng-container *ngIf='isAdmin(user.role) || isAuthor(user.username)'>
+    <button (click)='onDeleteTutorial()' class="delete-button" mat-fab color="primary">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </ng-container>
+</ng-container>
 
+
+<!--<ng-container *ngIf='user$ | async as user'>-->
+<!--  <ng-container *ngIf='isAdmin(user.role)'>-->
+<!--    <div class="example-button-container">-->
+<!--      <button mat-fab color="primary">-->
+<!--        <mat-icon>build</mat-icon>-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </ng-container>-->
+<!--</ng-container>-->

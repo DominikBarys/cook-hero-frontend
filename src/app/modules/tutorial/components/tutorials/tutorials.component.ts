@@ -154,6 +154,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
           const isSweetRecipe = queryMap.get('isSweetRecipe')
             ? queryMap.get('isSweetRecipe')
             : null;
+
           const isSpicyRecipe = queryMap.get('isSpicyRecipe')
             ? queryMap.get('isSpicyRecipe')
             : null;

@@ -15,3 +15,10 @@
 .tutorial-parameter-key {
   font-weight: 500;
 }
+
+.delete-button {
+  position: fixed;
+  bottom: 20px;
+  right: 90px;
+  z-index: 5;
+}
