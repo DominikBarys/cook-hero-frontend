@@ -19,6 +19,30 @@
         </mat-form-field>
       </div>
 
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Krótki opis</mat-label>
+          <input matInput [formControl]='controls.shortDescription'>
+          <mat-error *ngIf='controls.shortDescription.invalid'>{{getErrorMessage(controls.shortDescription)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Czas przygotowania [w minutach]</mat-label>
+          <input type='number' matInput [formControl]='controls.timeToPrepare'>
+          <mat-error *ngIf='controls.timeToPrepare.invalid'>{{getErrorMessage(controls.timeToPrepare)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class='form-input'>
+        <mat-form-field appearance='fill'>
+          <mat-label>Poziom trudności [w skali od 1 do 5]</mat-label>
+          <input type='number' matInput [formControl]='controls.difficulty'>
+          <mat-error *ngIf='controls.difficulty.invalid'>{{getErrorMessage(controls.difficulty)}}</mat-error>
+        </mat-form-field>
+      </div>
+
       <angular-editor [formControl]='controls.shortDescription' [config]='config'></angular-editor>
 
       <div class='form-input mt-2'>
@@ -29,6 +53,17 @@
             <mat-option *ngFor='let category of categories | async' [value]='category.shortId'>{{category.name}}</mat-option>
           </mat-select>
           <mat-error *ngIf='controls.categoryShortId.invalid'>{{getErrorMessage(controls.categoryShortId)}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class='form-input mt-2'>
+        <mat-form-field>
+          <mat-label>Typ dania</mat-label>
+          <mat-select [formControl]='controls.dishShortId'>
+            <mat-option value=''>-</mat-option>
+            <mat-option *ngFor='let dish of dishes | async' [value]='dish.shortId'>{{dish.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf='controls.dishShortId.invalid'>{{getErrorMessage(controls.dishShortId)}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -57,11 +92,13 @@
           <button type='button' mat-raised-button color='primary' (click)='addParameter()'>Dodaj parametr</button>
         </div>
       </div>
-
       <div class='d-flex justify-content-end'>
         <button mat-raised-button color="primary" type='submit' [disabled]='addTutorialForm.invalid' >Dodaj poradnik</button>
       </div>
-
     </form>
+    <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
   </section>
 </div>

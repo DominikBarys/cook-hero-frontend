@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../../../core/services/image.service';
 import {
   AddTutorialData,
   Category,
+  Dish,
   Image,
+  Ingredient,
 } from '../../../core/models/tutorial/tutorial.models';
 import { NotifierService } from 'angular-notifier';
 import { PostTutorial } from '../../../core/models/forms/user.forms.models';
@@ -13,13 +15,15 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { TutorialsService } from '../../../core/services/tutorials.service';
 import { Observable } from 'rxjs';
+import { DishService } from '../../../core/services/dish.service';
+import { IngredientService } from '../../../core/services/ingredient.service';
 
 @Component({
   selector: 'app-creator',
   templateUrl: './creator.component.html',
   styleUrls: ['./creator.component.scss'],
 })
-export class CreatorComponent {
+export class CreatorComponent implements OnInit {
   config: AngularEditorConfig = this.imageService.config;
 
   selectedFile: File | null = null;
@@ -28,6 +32,16 @@ export class CreatorComponent {
   addTutorialForm: FormGroup<PostTutorial> =
     this.formService.initAddTutorialForm();
   categories: Observable<Category[]> = this.categoriesService.getCategories();
+  dishes: Observable<Dish[]> = this.dishService.getDishes();
+  ingredients: Observable<Ingredient[]> =
+    this.ingredientService.getIngredients();
+
+  mainIngredients: string[] = ['null'];
+
+  hasMeat = false;
+  isVeganRecipe = false;
+  isSweetRecipe = false;
+  isSpicyRecipe = false;
   //todo to nie dzialalo
   //categories: BehaviorSubject<Category[]> = this.categoriesService.categories;
 
@@ -37,7 +51,16 @@ export class CreatorComponent {
     private formService: FormService,
     private categoriesService: CategoriesService,
     private tutorialService: TutorialsService,
+    private dishService: DishService,
+    private ingredientService: IngredientService,
   ) {}
+
+  ngOnInit(): void {
+    this.hasMeat = false;
+    this.isVeganRecipe = false;
+    this.isSweetRecipe = false;
+    this.isSpicyRecipe = false;
+  }
 
   get controls() {
     return this.addTutorialForm.controls;
@@ -84,6 +107,13 @@ export class CreatorComponent {
     const formValue = this.addTutorialForm.getRawValue();
     const parametersObject: { [key: string]: string } = {};
 
+    const name = formValue.name;
+    const timeToPrepare = Number(formValue.timeToPrepare);
+    const difficulty = Number(formValue.difficulty);
+    const shortDescription = formValue.shortDescription;
+    const dishShortId = formValue.dishShortId;
+    const categoryShortId = formValue.categoryShortId;
+
     formValue.parameters.forEach((item) => {
       parametersObject[item.key] = item.value;
     });
@@ -96,7 +126,16 @@ export class CreatorComponent {
     });
 
     const addTutorialData: AddTutorialData = {
-      ...formValue,
+      name,
+      timeToPrepare,
+      difficulty,
+      shortDescription,
+      dishShortId,
+      categoryShortId,
+      hasMeat: this.hasMeat,
+      sweetRecipe: this.isSweetRecipe,
+      spicyRecipe: this.isSpicyRecipe,
+      veganRecipe: this.isVeganRecipe,
       parameters,
       imagesUuid,
     };
@@ -136,4 +175,6 @@ export class CreatorComponent {
 
     this.parameters.push(newFormGroup);
   }
+
+  addIngredient(control: FormControl<string>) {}
 }

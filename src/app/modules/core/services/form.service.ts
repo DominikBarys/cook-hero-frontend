@@ -66,6 +66,18 @@ export class FormService {
         validators: [Validators.required],
         nonNullable: true,
       }),
+      timeToPrepare: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      difficulty: new FormControl('', {
+        validators: [Validators.required, Validators.min(1), Validators.max(5)],
+        nonNullable: true,
+      }),
+      dishShortId: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
       shortDescription: new FormControl('', {
         validators: [Validators.required],
         nonNullable: true,
@@ -207,6 +219,12 @@ export class FormService {
     }
     if (formControl.hasError('passwordsNotEqual')) {
       return 'Hasła nie są takie same';
+    }
+    if (formControl.hasError('min')) {
+      return `Minimalna wartość to ${formControl.errors?.['min'].min}`;
+    }
+    if (formControl.hasError('max')) {
+      return `Maksymalna war wartość to ${formControl.errors?.['max'].max}`;
     }
     return '';
   }

@@ -119,10 +119,17 @@ export class TutorialsService {
 
     const tutorial: AddTutorial = {
       name: addTutorialData.name,
+      timeToPrepare: addTutorialData.timeToPrepare,
+      difficulty: addTutorialData.difficulty,
       shortDescription: addTutorialData.shortDescription,
-      imagesUuid: addTutorialData.imagesUuid,
-      parameters: addTutorialData.parameters,
+      dishShortId: addTutorialData.dishShortId,
       categoryShortId: addTutorialData.categoryShortId,
+      hasMeat: addTutorialData.hasMeat,
+      sweetRecipe: addTutorialData.sweetRecipe,
+      spicyRecipe: addTutorialData.spicyRecipe,
+      veganRecipe: addTutorialData.veganRecipe,
+      parameters: addTutorialData.parameters,
+      imagesUuid: addTutorialData.imagesUuid,
       authorUuid: this.userUuid,
     };
 

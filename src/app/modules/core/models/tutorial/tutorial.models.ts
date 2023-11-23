@@ -73,7 +73,14 @@ export interface Image {
 
 export interface AddTutorialData {
   name: string;
+  timeToPrepare: number;
+  difficulty: number;
   shortDescription: string;
+  dishShortId: string;
+  hasMeat: boolean;
+  veganRecipe: boolean;
+  sweetRecipe: boolean;
+  spicyRecipe: boolean;
   imagesUuid: string[];
   parameters: string;
   categoryShortId: string;

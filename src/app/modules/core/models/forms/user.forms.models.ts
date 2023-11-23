@@ -41,8 +41,11 @@ export interface ChangeUsernameForm {
 
 export interface PostTutorial {
   name: FormControl<string>;
+  timeToPrepare: FormControl<string>;
+  difficulty: FormControl<string>;
   shortDescription: FormControl<string>;
   categoryShortId: FormControl<string>;
+  dishShortId: FormControl<string>;
   parameters: FormArray<
     FormGroup<{ value: FormControl<string>; key: FormControl<string> }>
   >;
