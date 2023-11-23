@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../../../core/services/image.service';
 import {
+  AddPageData,
   AddTutorialData,
   Category,
   Dish,
   Image,
   Ingredient,
+  Page,
 } from '../../../core/models/tutorial/tutorial.models';
 import { NotifierService } from 'angular-notifier';
 import { PostTutorial } from '../../../core/models/forms/user.forms.models';
@@ -14,9 +16,10 @@ import { FormService } from '../../../core/services/form.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { TutorialsService } from '../../../core/services/tutorials.service';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, switchMap } from 'rxjs';
 import { DishService } from '../../../core/services/dish.service';
 import { IngredientService } from '../../../core/services/ingredient.service';
+import { PageService } from '../../../core/services/page.service';
 
 @Component({
   selector: 'app-creator',
@@ -36,12 +39,17 @@ export class CreatorComponent implements OnInit {
   ingredients: Observable<Ingredient[]> =
     this.ingredientService.getIngredients();
 
-  mainIngredients: string[] = ['null'];
+  selectedIngredient: Ingredient | null = null;
+  mainIngredients: Ingredient[] = [];
 
   hasMeat = false;
   isVeganRecipe = false;
   isSweetRecipe = false;
   isSpicyRecipe = false;
+
+  pages: AddPageData[] = [];
+  pageContentHtml: string | null = null;
+  pageCount = 1;
   //todo to nie dzialalo
   //categories: BehaviorSubject<Category[]> = this.categoriesService.categories;
 
@@ -53,13 +61,11 @@ export class CreatorComponent implements OnInit {
     private tutorialService: TutorialsService,
     private dishService: DishService,
     private ingredientService: IngredientService,
+    private pageService: PageService,
   ) {}
 
   ngOnInit(): void {
-    this.hasMeat = false;
-    this.isVeganRecipe = false;
-    this.isSweetRecipe = false;
-    this.isSpicyRecipe = false;
+    this.resetCreator();
   }
 
   get controls() {
@@ -104,6 +110,7 @@ export class CreatorComponent implements OnInit {
   }
 
   onAddTutorial() {
+    console.log('WBIJAM DO ON ADD TUTORIAL');
     const formValue = this.addTutorialForm.getRawValue();
     const parametersObject: { [key: string]: string } = {};
 
@@ -113,6 +120,9 @@ export class CreatorComponent implements OnInit {
     const shortDescription = formValue.shortDescription;
     const dishShortId = formValue.dishShortId;
     const categoryShortId = formValue.categoryShortId;
+    const mainIngredientsShortIds = this.mainIngredients.map(
+      (ingredient) => ingredient.shortId,
+    );
 
     formValue.parameters.forEach((item) => {
       parametersObject[item.key] = item.value;
@@ -138,23 +148,42 @@ export class CreatorComponent implements OnInit {
       veganRecipe: this.isVeganRecipe,
       parameters,
       imagesUuid,
+      mainIngredientsShortIds,
     };
 
-    console.log(addTutorialData);
+    let postPages: Page[] = [];
 
-    this.tutorialService.addTutorial(addTutorialData).subscribe({
-      next: () => {
-        this.addTutorialForm.reset();
-        this.imageUrls = [];
-        this.notifierService.notify(
-          'success',
-          'Poradnik został utworzony pomyślnie',
-        );
-      },
-      error: (err) => {
-        this.notifierService.notify('error', err);
-      },
-    });
+    this.tutorialService
+      .addTutorial(addTutorialData)
+      .pipe(
+        switchMap((resp) => {
+          // Zastosuj switchMap, aby przełączyć się do dodawania stron
+          postPages = this.pages.map((page, index) => ({
+            ...page,
+            tutorialShortId: resp.tutorialShortId,
+            pageNumber: index + 1,
+          }));
+
+          const addPageRequests = postPages.map((page) =>
+            this.pageService.addPage(page),
+          );
+
+          // Zastosuj forkJoin, aby poczekać na zakończenie wszystkich żądań dodawania stron
+          return forkJoin(addPageRequests);
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.resetCreator();
+          this.notifierService.notify(
+            'success',
+            'Poradnik został utworzony pomyślnie',
+          );
+        },
+        error: (err) => {
+          this.notifierService.notify('error', err);
+        },
+      });
   }
 
   deleteParameter(i: number) {
@@ -176,5 +205,60 @@ export class CreatorComponent implements OnInit {
     this.parameters.push(newFormGroup);
   }
 
-  addIngredient(control: FormControl<string>) {}
+  addIngredient() {
+    if (
+      this.selectedIngredient &&
+      !this.mainIngredients.includes(this.selectedIngredient)
+    ) {
+      this.mainIngredients.push(this.selectedIngredient);
+      //  console.log(this.mainIngredients);
+    } else {
+      this.notifierService.notify(
+        'warning',
+        'Ten składnik już istnieje na liście.',
+      );
+    }
+  }
+
+  onDeleteMainIngredient(mainIngredient: Ingredient) {
+    const index = this.mainIngredients.indexOf(mainIngredient);
+
+    if (index !== -1) {
+      this.mainIngredients.splice(index, 1);
+    }
+  }
+
+  onAddPage() {
+    const page: AddPageData = {
+      pageNumber: this.pageCount,
+      htmlContent: this.pageContentHtml!,
+    };
+
+    this.pages.push(page);
+    this.pageCount++;
+    this.pageContentHtml = '';
+
+    // console.log(this.pages);
+  }
+
+  onDeletePage(page: AddPageData) {
+    const index = this.pages.indexOf(page);
+
+    if (index !== -1) {
+      this.pages.splice(index, 1);
+      this.pageCount--;
+    }
+  }
+
+  resetCreator() {
+    this.addTutorialForm.reset();
+    this.imageUrls = [];
+    this.hasMeat = false;
+    this.isVeganRecipe = false;
+    this.isSpicyRecipe = false;
+    this.isSweetRecipe = false;
+    this.pageCount = 1;
+    this.pages = [];
+    this.mainIngredients = [];
+  }
 }

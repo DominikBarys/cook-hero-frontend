@@ -62,6 +62,12 @@ export interface Response {
   message: string;
 }
 
+export interface CreateTutorialResponse {
+  timestamp: string;
+  message: string;
+  tutorialShortId: string;
+}
+
 export interface ImageResponse {
   createdAt: string;
   shortId: string;
@@ -84,6 +90,7 @@ export interface AddTutorialData {
   imagesUuid: string[];
   parameters: string;
   categoryShortId: string;
+  mainIngredientsShortIds: string[];
 }
 
 export interface AddTutorial extends AddTutorialData {
@@ -93,4 +100,13 @@ export interface AddTutorial extends AddTutorialData {
 export interface PostImageResponse {
   createAt: string;
   shortId: string;
+}
+
+export interface AddPageData {
+  pageNumber: number;
+  htmlContent: string;
+}
+
+export interface Page extends AddPageData {
+  tutorialShortId: string | null;
 }

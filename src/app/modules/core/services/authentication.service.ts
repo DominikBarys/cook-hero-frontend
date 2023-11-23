@@ -35,14 +35,14 @@ export class AuthenticationService {
         withCredentials: true,
       },
     );
-    console.log('getuser');
-    console.log(
-      siema.subscribe({
-        next: (user) => {
-          console.log(user.uuid);
-        },
-      }),
-    );
+    // console.log('getuser');
+    // console.log(
+    //   siema.subscribe({
+    //     next: (user) => {
+    //       console.log(user.uuid);
+    //     },
+    //   }),
+    // );
     return siema;
   }
 

@@ -79,7 +79,7 @@ export class UserFormComponent implements OnInit {
     this.authenticationService.getAllUsers().subscribe({
       next: (users) => {
         this.users = [...users];
-        console.log(users);
+        // console.log(users);
       },
       error: (err) => {
         this.notifierService.notify('error', err);

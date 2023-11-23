@@ -18,7 +18,7 @@ export class User implements UserInterface {
     public joinedAt: string,
     public amountOfCreatedTutorials: number,
   ) {
-    console.log(uuid);
+    // console.log(uuid);
   }
 }
 

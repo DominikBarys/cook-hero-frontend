@@ -87,11 +87,11 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       }),
     );
 
-    console.log('siema');
+    //   console.log('siema');
 
     this.categoriesService.getCategories().subscribe({
       next: (categories) => {
-        console.log(categories);
+        //    console.log(categories);
         this.categories = [...categories];
       },
       error: (err) => {
@@ -101,7 +101,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dishService.getDishes().subscribe({
       next: (dishes) => {
-        console.log(dishes);
+        //   console.log(dishes);
         this.dishes = [...dishes];
       },
       error: (err) => {

@@ -3,14 +3,18 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import {
+  AddPageData,
   AddTutorial,
   AddTutorialData,
+  CreateTutorialResponse,
   GetTutorialResponse,
+  Page,
   Response,
   SimpleTutorial,
   Tutorial,
 } from '../models/tutorial/tutorial.models';
 import { AuthenticationService } from './authentication.service';
+import { PageService } from './page.service';
 
 @Injectable({
   providedIn: 'root',
@@ -107,7 +111,10 @@ export class TutorialsService {
       );
   }
 
-  addTutorial(addTutorialData: AddTutorialData): Observable<Response> {
+  addTutorial(
+    addTutorialData: AddTutorialData,
+  ): Observable<CreateTutorialResponse> {
+    console.log('WBIŁEM DO SERWISU ADD TUTORIAL');
     this.authenticationService.getUser().subscribe({
       next: (getUserResponse) => {
         this.userUuid = getUserResponse.uuid;
@@ -131,11 +138,16 @@ export class TutorialsService {
       parameters: addTutorialData.parameters,
       imagesUuid: addTutorialData.imagesUuid,
       authorUuid: this.userUuid,
+      mainIngredientsShortIds: addTutorialData.mainIngredientsShortIds,
     };
 
-    return this.httpClient.post<Response>(`${this.apiUrl}`, tutorial, {
-      withCredentials: true,
-    });
+    return this.httpClient.post<CreateTutorialResponse>(
+      `${this.apiUrl}`,
+      tutorial,
+      {
+        withCredentials: true,
+      },
+    );
   }
 
   deleteTutorial(tutorialShortId: string): Observable<Response> {

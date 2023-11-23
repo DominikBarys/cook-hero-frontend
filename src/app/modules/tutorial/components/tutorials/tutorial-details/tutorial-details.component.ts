@@ -51,7 +51,7 @@ export class TutorialDetailsComponent implements OnInit {
           } catch (err) {
             this.parameters = null;
           }
-          console.log(this.parameters);
+          //       console.log(this.parameters);
         },
       });
   }
@@ -80,7 +80,7 @@ export class TutorialDetailsComponent implements OnInit {
   }
 
   test() {
-    console.log('siema');
-    console.log(this.tutorial);
+    //  console.log('siema');
+    //  console.log(this.tutorial);
   }
 }
