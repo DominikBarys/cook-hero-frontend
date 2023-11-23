@@ -7,16 +7,71 @@
         <div class='col-md-6 col-12 d-flex align-items-center justify-content-center'>
           <div class='text-center'>
             <p class='tutorial-name'>{{tutorial.name}}</p>
-            <p>{{tutorial.authorDTO ? tutorial.authorDTO.username : 'Null username'}}</p>
+            <p>{{tutorial.authorDTO ? tutorial.authorDTO.username : 'Anonimowy'}}</p>
           </div>
         </div>
     </div>
     <div class='row'>
       <div class='col-md-12 mt-3'>
-        <p class='tutorial-description'>Opis poradnika:</p>
-        <div *ngIf='htmlContent' [innerHTML]='htmlContent'></div>
+        <p class='tutorial-description'>Główne składniki:</p>
+        <li *ngFor='let mainIngredient of tutorial.mainIngredientsDTOS'>
+          <span>
+              {{mainIngredient.name}}
+          </span>
+        </li>
       </div>
     </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Opis poradnika:</p>
+        <div>{{tutorial.shortDescription}}</div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Kategoria: {{tutorial.categoryDTO.name}}</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Typ dania: {{tutorial.dishDTO.name}}</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Czas przygotowania: {{tutorial.timeToPrepare}} min.</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Trudność przygotowania: {{tutorial.difficulty}}/5</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Data utworzenia poradnika: {{tutorial.creationDate}}</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-12 mt-3'>
+        <p class='tutorial-description'>Dodatkowe informacje:</p>
+        <ng-container *ngIf='tutorial.hasMeat || tutorial.isSpicyRecipe || tutorial.isSweetRecipe || tutorial.isVeganRecipe; else noInformation'>
+          <li *ngIf='tutorial.hasMeat'>Danie mięsne</li>
+          <li *ngIf='tutorial.isVeganRecipe'>Danie wegańskie</li>
+          <li *ngIf='tutorial.isSweetRecipe'>Danie na słodko</li>
+          <li *ngIf='tutorial.isSpicyRecipe'>Danie na ostro</li>
+        </ng-container>
+        <ng-template #noInformation>
+          <li>Brak informacji...</li>
+        </ng-template>
+      </div>
+    </div>
+<!--    <div class='row'>-->
+<!--      <div class='col-md-12 mt-3'>-->
+<!--        <p class='tutorial-description'>Opis poradnika:</p>-->
+<!--        <div *ngIf='htmlContent' [innerHTML]='htmlContent'></div>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class='row' *ngIf='parameters'>
       <div class='col-md-12 mt-3'>
         <p class='tutorial-description'>Składniki:</p>
@@ -31,7 +86,10 @@
       </div>
     </div>
   </ng-container>
-  <button mat-raised-button (click)='test()' color='primary'>TEST</button>
+
+  <div [innerHTML]='htmlContent'></div>
+  <button mat-raised-button color='primary' (click)='previousPage()'>POPRZEDNIA STRONA</button>
+  <button mat-raised-button color='primary' (click)='nextPage()'>NASTĘPNA STRONA</button>
 </div>
 <ng-container *ngIf='user$ | async as user'>
   <ng-container *ngIf='isAdmin(user.role) || isAuthor(user.username)'>

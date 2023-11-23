@@ -14,12 +14,19 @@ export class PageService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getPages(): Observable<Page[]> {
-    return this.httpClient.get<Page[]>(`${this.apiUrl}/all`).pipe(
-      tap((pages) => {
-        this.pages.next(pages);
-      }),
-    );
+  getPages(body: string): Observable<Page[]> {
+    const params = new HttpParams().append('tutorialShortId', body);
+
+    return this.httpClient
+      .get<Page[]>(`${this.apiUrl}/all`, {
+        withCredentials: true,
+        params,
+      })
+      .pipe(
+        tap((pages) => {
+          this.pages.next(pages);
+        }),
+      );
   }
 
   addPage(body: Page): Observable<Response> {

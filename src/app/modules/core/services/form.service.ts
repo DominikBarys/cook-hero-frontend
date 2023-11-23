@@ -89,11 +89,9 @@ export class FormService {
       parameters: new FormArray([
         new FormGroup({
           key: new FormControl('', {
-            validators: [Validators.required],
             nonNullable: true,
           }),
           value: new FormControl('', {
-            validators: [Validators.required],
             nonNullable: true,
           }),
         }),

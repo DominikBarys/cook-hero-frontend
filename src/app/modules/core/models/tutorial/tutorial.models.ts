@@ -21,22 +21,22 @@ export interface Author {
 }
 
 export interface Tutorial {
-  name: string;
-  shortId: string;
-  timeToPrepare: number;
-  difficulty: number;
-  creationDate: string;
-  imageUrls: string[];
-  shortDescription: string;
-  parameters: string;
-  dishDTO: Dish;
-  mainIngredientsDTOS: Ingredient[];
-  categoryDTO: Category;
-  authorDTO: Author;
-  hasMeat: boolean;
-  isVeganRecipe: boolean;
-  isSweetRecipe: boolean;
-  isSpicyRecipe: boolean;
+  name: string; //
+  shortId: string; //
+  timeToPrepare: number; //
+  difficulty: number; //
+  creationDate: string; //
+  imageUrls: string[]; //
+  shortDescription: string; //
+  parameters: string; //
+  dishDTO: Dish; //
+  mainIngredientsDTOS: Ingredient[]; //
+  categoryDTO: Category; //
+  authorDTO: Author; //
+  hasMeat: boolean; //
+  isVeganRecipe: boolean; //
+  isSweetRecipe: boolean; //
+  isSpicyRecipe: boolean; //
 }
 
 export interface SimpleTutorial {
