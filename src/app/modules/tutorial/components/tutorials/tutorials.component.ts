@@ -4,6 +4,7 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { TutorialsService } from '../../../core/services/tutorials.service';
 import {
@@ -27,12 +28,12 @@ import { NotifierService } from 'angular-notifier';
 import { FormControl } from '@angular/forms';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { DishService } from '../../../core/services/dish.service';
-import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-tutorials',
   templateUrl: './tutorials.component.html',
   styleUrls: ['./tutorials.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   //after view init zeby pobrac z szablonu html mat paginator
@@ -116,6 +117,7 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         //console.log(tutorials);
         this.simpleTutorials = [...tutorials];
         this.totalCount = totalCount;
+        console.log(this.simpleTutorials);
       },
     });
 
@@ -269,5 +271,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams,
     });
+    console.log(this.simpleTutorials);
   }
 }

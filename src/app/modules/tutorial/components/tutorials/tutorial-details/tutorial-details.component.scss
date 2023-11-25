@@ -1,24 +1,88 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.background-container {
+  background-color: #eeeeee;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.info-line {
+  display: flex;
+  align-items: center;
+}
+
+.inline-heading {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.inline-description {
+  position: relative;
+  bottom: 4px;
+  margin-bottom: 0;
+  color: #777;
+}
+
+.expanded-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
 .tutorial-name {
-  font-size: 1.3rem;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.author {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-size: 1.5rem;
   font-weight: 600;
+  margin-bottom: 10px;
+  color: #555;
 }
 
-.tutorial-description {
-  font-size: 1.2rem;
-  font-weight: 500;
+.ingredient-list,
+.additional-info-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.table-cell {
-  width: 50%;
-}
-
+.ingredient,
+.tutorial-description,
 .tutorial-parameter-key {
-  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+
+.action-button {
+  margin-right: 10px;
 }
 
 .delete-button {
   position: fixed;
   bottom: 20px;
-  right: 90px;
+  right: 20px;
   z-index: 5;
+  background-color: #333;
+}
+
+.delete-button mat-icon {
+  color: #fff;
 }

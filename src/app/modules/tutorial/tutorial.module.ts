@@ -9,6 +9,9 @@ import { ImageCarouselComponent } from './components/tutorials/tutorial-details/
 import { CreatorComponent } from './components/creator/creator.component';
 import { UploadedImagesComponent } from './components/creator/uploaded-images/uploaded-images.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NotificationComponent } from './components/notification/notification.component';
+import { FridgeComponent } from './components/fridge/fridge.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,14 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ImageCarouselComponent,
     CreatorComponent,
     UploadedImagesComponent,
+    NotificationComponent,
+    FridgeComponent,
   ],
-  imports: [SharedModule, TutorialRoutingModule, AngularEditorModule],
+  imports: [
+    SharedModule,
+    TutorialRoutingModule,
+    AngularEditorModule,
+    MatIconModule,
+  ],
 })
 export class TutorialModule {}

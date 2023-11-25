@@ -131,8 +131,18 @@ export class CreatorComponent implements OnInit {
     const parameters = `${JSON.stringify(parametersObject)}`;
 
     const imagesUuid = this.imageUrls.map((url) => {
-      const [uuid] = url.url.split('shortId=');
-      return uuid;
+      // console.log('DODAWANE ZDJECIE URL');
+      // console.log(url);
+      // const [uuid] = url.url.split('shortId=');
+      // return uuid;
+      const parsedUrl = new URL(url.url);
+      const shortId = parsedUrl.searchParams.get('shortId')!;
+
+      console.log('DODAWANE ZDJECIE URL');
+      console.log(url);
+      console.log('shortId:', shortId);
+
+      return shortId;
     });
 
     const addTutorialData: AddTutorialData = {

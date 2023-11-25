@@ -1,16 +1,15 @@
-<div class='container'>
-  <section>
-    <div class='autocomplete-search'>
-      <mat-form-field>
-        <mat-label>Wyszukaj poradniki</mat-label>
-        <input type='text' matInput [formControl]='searchControl' [matAutocomplete]='auto'>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name'>
-            {{option.name}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <div class='searched-params'>
+<div class='mt-3 container'>
+  <mat-form-field>
+    <mat-label>Wyszukaj poradniki</mat-label>
+    <input type='text' matInput [formControl]='searchControl' [matAutocomplete]='auto'>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor='let option of filteredOptions | async' [value]='option.name'>
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class='width-change'>
+    <div class='search'>
         <mat-form-field>
           <mat-label>Sortuj po</mat-label>
           <mat-select [formControl]='sortControl'>
@@ -42,25 +41,23 @@
             <mat-option *ngFor='let dish of dishes; let i = index' [value]='dish.shortId'>{{dish.name}}</mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
-      <div class='d-flex'>
-        <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
-        <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
-        <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
-        <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
-      </div>
+        <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'><b>Z mięsem</b><img style='margin-left: 10px' width='20px' height='20px' src='assets/meat-icon.svg'></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'><b>Wegańskie</b><img style='margin-left: 10px' width='20px' height='20px' src='assets/vegan-icon.svg'></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'><b>Na ostro</b><img style='margin-left: 10px' width='20px' height='20px' src='assets/hot-icon.svg'></mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'><b>Na słodko</b><img style='margin-left: 10px' width='20px' height='20px' src='assets/sweet-icon.svg'></mat-slide-toggle>
       <div class='d-flex justify-content-end my-2'>
         <button mat-raised-button color='primary' (click)='searchTutorials()'>
           Wyszukaj poradnik
         </button>
       </div>
+      <mat-paginator [pageSizeOptions]='[3, 6, 12, 18]' [length]='totalCount' showFirstLastButtons>
+
+      </mat-paginator>
     </div>
     <div class='tutorials-list'>
       <app-tutorial-card *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial-card>
     </div>
-    <mat-paginator [pageSizeOptions]='[6, 12, 18]' [length]='totalCount' showFirstLastButtons>
+  </div>
 
-    </mat-paginator>
-  </section>
 </div>
 

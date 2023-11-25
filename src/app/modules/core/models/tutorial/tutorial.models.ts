@@ -47,9 +47,9 @@ export interface SimpleTutorial {
   imageUrl: string;
   shortDescription: string;
   hasMeat: boolean;
-  isVeganRecipe: boolean;
-  isSweetRecipe: boolean;
-  isSpicyRecipe: boolean;
+  veganRecipe: boolean;
+  sweetRecipe: boolean;
+  spicyRecipe: boolean;
 }
 
 export interface GetTutorialResponse {
@@ -110,3 +110,5 @@ export interface AddPageData {
 export interface Page extends AddPageData {
   tutorialShortId: string | null;
 }
+
+export interface Notification {}

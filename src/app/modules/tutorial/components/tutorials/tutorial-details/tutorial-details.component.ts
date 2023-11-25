@@ -52,25 +52,21 @@ export class TutorialDetailsComponent implements OnInit {
       .subscribe({
         next: (tutorial) => {
           this.tutorial = { ...tutorial };
-          this.htmlContent = this.domSanitizer.bypassSecurityTrustHtml(
-            tutorial.shortDescription,
-          );
           try {
             this.parameters = JSON.parse(tutorial.parameters);
           } catch (err) {
             this.parameters = null;
           }
-
           // Call getPages() only after the tutorial is loaded
           this.pageService.getPages(this.tutorial!.shortId).subscribe({
             next: (pages) => {
               this.pages = [...pages];
+              this.getPageContent(this.pageIterator);
             },
             error: (err) => {
               console.log(err);
             },
           });
-
           // More code if needed within this subscribe block
         },
       });

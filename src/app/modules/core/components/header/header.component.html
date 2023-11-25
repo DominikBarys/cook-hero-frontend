@@ -9,10 +9,10 @@
         </ng-template>
         <ng-container *ngIf='user$ | async; else notLoggedIn'>
           <li class='custom-li'><a class='custom-a' routerLink='/' (click)='logout()'>Wyloguj się</a></li>
-          <li class='custom-li'><a class='custom-a' routerLink=''>Wirtualna lodówka</a></li>
+          <li class='custom-li'><a class='custom-a' routerLink='poradniki/lodowka'>Wirtualna lodówka</a></li>
         </ng-container>
       </ul>
-      <img src="assets/notification-bell.png" class="notification-bell-icon" (click)='isLoggedIn("odzyskaj-haslo")'>
+      <img src="assets/notification-bell.png" class="notification-bell-icon" (click)='isLoggedIn("poradniki/powiadomienia")'>
       <img style='margin-left: 50px' src="assets/profile-icon.png" class="notification-bell-icon" (click)='isLoggedIn("profil")'>
     </nav>
   </div>

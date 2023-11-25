@@ -22,7 +22,6 @@ import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggl
     MatTooltipModule,
     MatExpansionModule,
     MatLegacySlideToggleModule,
-    MatLegacySlideToggleModule,
   ],
 })
 export class MaterialModule {}

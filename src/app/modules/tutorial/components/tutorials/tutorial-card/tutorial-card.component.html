@@ -1,15 +1,30 @@
-<div class='tutorial-card'>
-  <div [routerLink]='getTutorialDetailsUrl()'>
-    <img src='https://i.imgur.com/kHeKKij.jpg' [alt]='simpleTutorial.name' class='card-img-top'>
-    <div class='card-body'>
-      <h5 class='card-title'><b>{{simpleTutorial.name}}</b></h5>
-      <p class='card-text'>Czas do przygotowania: {{simpleTutorial.timeToPrepare}} minut</p>
-      <p class='card-text'>Stopień trudności: {{simpleTutorial.difficulty}}/5</p>
-      <p class='card-text'>Przepis mięsny: {{simpleTutorial.hasMeat}}</p>
-      <p class='card-text'>Przepis wegański: {{simpleTutorial.isVeganRecipe}}</p>
-      <p class='card-text'>Przepis na słodko: {{simpleTutorial.isSweetRecipe}}</p>
-      <p class='card-text'>Przepis na ostro: {{simpleTutorial.isSpicyRecipe}}</p>
-      <p class='card-text'>Opis: {{simpleTutorial.shortDescription}}</p>
+<div class='tutorial-card' [routerLink]='getTutorialDetailsUrl()'>
+  <img [src]='simpleTutorial.imageUrl' [alt]='simpleTutorial.name' class='card-img'>
+  <div class='box'>
+    <h5 class='card-title'><b>{{simpleTutorial.name}}</b></h5>
+    <div class='my-body'>
+      <p class='card-text'><mat-icon class='material-icons-outlined'>timer</mat-icon> {{simpleTutorial.timeToPrepare}} minut</p>
+      <p class='card-text' style='margin-left: 15px'>Stopień trudności: {{simpleTutorial.difficulty}}/5</p>
+      <p class='card-text' style='margin-left: 15px'>
+        <img *ngIf='meat' width='20px' height='20px'  src='assets/meat-icon.svg'>
+        <img *ngIf='!meat' width='20px' height='20px' src='assets/not-meat-icon.svg'>
+      </p>
+      <p class='card-text'>
+        <img *ngIf='vegan' width='20px' height='20px' src='assets/vegan-icon.svg'>
+        <img *ngIf='!vegan' width='20px' height='20px' src='assets/not-vegan-icon.svg'>
+      </p>
+      <p class='card-text'>
+        <img *ngIf='spicy' width='20px' height='20px' src='assets/hot-icon.svg'>
+        <img *ngIf='!spicy' width='20px' height='20px' src='assets/not-hot-icon.svg'>
+      </p>
+      <p class='card-text'>
+        <img *ngIf='sweet' width='20px' height='20px' src='assets/sweet-icon.svg'>
+        <img *ngIf='!sweet' width='20px' height='20px' src='assets/not-sweet-icon.svg'>
+      </p>
+      <p class='card-text'>
+      </p>
     </div>
+    <p style='width: 600px' class='card-tex description'>Opis: {{simpleTutorial.shortDescription}}</p>
   </div>
 </div>
+<!--src='https://i.imgur.com/kHeKKij.jpg'-->

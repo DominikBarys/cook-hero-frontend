@@ -1,6 +1,20 @@
 .tutorial-card {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  border-radius: 100px;
+  display: flex;
+}
+
+.my-body {
+  display: flex;
+  gap: 10px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 12px;
 }
 
 .tutorial-card:hover {
@@ -13,4 +27,11 @@
 
 .card-text {
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-img {
+  width: 280px;
 }

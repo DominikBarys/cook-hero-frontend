@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+.calcheight {
+  height: calc(100vh - 70px);
+}
+
 .spacer {
   height: 90vh;
   width: 100%;

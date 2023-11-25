@@ -9,6 +9,12 @@
   font-family: 'poppins', sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
 
 
 //html, body { height: 100%; }
