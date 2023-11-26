@@ -19,14 +19,13 @@ const initialState: AuthenticationState = {
 
 const _authenticationReducer = createReducer(
   initialState,
-  on(AuthenticationActions.login, (state, action) => ({
-    ...state, // tutaj te ... sie robi po to aby przekopiowac caly state, bez tego przekopiowany zostaloby tylko loading
+  on(AuthenticationActions.login, (state) => ({
+    ...state,
     loading: true,
   })),
   on(AuthenticationActions.loginSuccess, (state, action) => ({
     ...state,
     loading: false,
-    //user: new User(action.user.username, action.user.email, action.user.role),
     user: new User(
       action.user.uuid,
       action.user.username,
@@ -43,11 +42,11 @@ const _authenticationReducer = createReducer(
     loading: false,
     error: action.error,
   })),
-  on(AuthenticationActions.register, (state, action) => ({
+  on(AuthenticationActions.register, (state) => ({
     ...state,
     loading: true,
   })),
-  on(AuthenticationActions.registerSuccess, (state, action) => ({
+  on(AuthenticationActions.registerSuccess, (state) => ({
     ...state,
     loading: false,
     error: null,
@@ -57,23 +56,23 @@ const _authenticationReducer = createReducer(
     loading: false,
     error: action.error,
   })),
-  on(AuthenticationActions.clearError, (state, action) => ({
+  on(AuthenticationActions.clearError, (state) => ({
     ...state,
     error: null,
   })),
-  on(AuthenticationActions.logout, (state, action) => ({
-    ...state, // tutaj te ... sie robi po to aby przekopiowac caly state, bez tego przekopiowany zostaloby tylko loading
+  on(AuthenticationActions.logout, (state) => ({
+    ...state,
   })),
-  on(AuthenticationActions.logoutSuccess, (state, action) => ({
+  on(AuthenticationActions.logoutSuccess, (state) => ({
     ...state,
     user: null,
     error: null,
   })),
-  on(AuthenticationActions.logoutFailure, (state, action) => ({
+  on(AuthenticationActions.logoutFailure, (state) => ({
     ...state,
   })),
-  on(AuthenticationActions.autoLogin, (state, action) => ({
-    ...state, // tutaj te ... sie robi po to aby przekopiowac caly state, bez tego przekopiowany zostaloby tylko loading
+  on(AuthenticationActions.autoLogin, (state) => ({
+    ...state,
   })),
   on(AuthenticationActions.autoLoginSuccess, (state, action) => ({
     ...state,
@@ -87,7 +86,7 @@ const _authenticationReducer = createReducer(
       action.user.amountOfCreatedTutorials,
     ),
   })),
-  on(AuthenticationActions.autoLoginFailure, (state, action) => ({
+  on(AuthenticationActions.autoLoginFailure, (state) => ({
     ...state,
   })),
 );

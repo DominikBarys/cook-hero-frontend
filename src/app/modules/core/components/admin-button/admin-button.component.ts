@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/app.reducer';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, of, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../../models/authentication/authentication.models';
 import { selectAuthenticationUser } from '../../../authentication/store/authentication.selectors';
 
@@ -13,11 +13,7 @@ import { selectAuthenticationUser } from '../../../authentication/store/authenti
   styleUrls: ['./admin-button.component.scss'],
 })
 export class AdminButtonComponent {
-  constructor(
-    private store: Store<AppState>,
-    private authenticationService: AuthenticationService,
-    private router: Router,
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   user$: Observable<User | null> = this.store.select(selectAuthenticationUser);
 

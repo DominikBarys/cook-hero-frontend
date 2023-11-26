@@ -5,14 +5,12 @@ import {
   AuthenticationResponse,
   PasswordRecovery,
   PasswordReset,
-  User,
   UserInterface,
   UserLoggedInResponse,
   UserLogin,
   UserRegister,
 } from '../models/authentication/authentication.models';
 import { Observable } from 'rxjs';
-import { Response } from '../models/tutorial/tutorial.models';
 
 @Injectable({
   providedIn: 'root',
@@ -29,21 +27,9 @@ export class AuthenticationService {
   }
 
   getUser(): Observable<UserInterface> {
-    const siema = this.httpClient.get<UserInterface>(
-      `${this.apiUrl}/get-user`,
-      {
-        withCredentials: true,
-      },
-    );
-    // console.log('getuser');
-    // console.log(
-    //   siema.subscribe({
-    //     next: (user) => {
-    //       console.log(user.uuid);
-    //     },
-    //   }),
-    // );
-    return siema;
+    return this.httpClient.get<UserInterface>(`${this.apiUrl}/get-user`, {
+      withCredentials: true,
+    });
   }
 
   getAllUsers(): Observable<UserInterface[]> {

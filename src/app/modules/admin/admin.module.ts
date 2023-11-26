@@ -11,7 +11,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { IngredientFormComponent } from './components/administrator/ingredient-form/ingredient-form.component';
 import { UserFormComponent } from './components/administrator/user-form/user-form.component';
-import { TutorialFormComponent } from './components/administrator/tutorial-form/tutorial-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { TutorialFormComponent } from './components/administrator/tutorial-form/
     DishFormComponent,
     IngredientFormComponent,
     UserFormComponent,
-    TutorialFormComponent,
   ],
   imports: [
     SharedModule,

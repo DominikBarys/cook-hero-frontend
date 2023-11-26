@@ -17,9 +17,7 @@ export class User implements UserInterface {
     public rank: string,
     public joinedAt: string,
     public amountOfCreatedTutorials: number,
-  ) {
-    // console.log(uuid);
-  }
+  ) {}
 }
 
 export interface UserLogin {

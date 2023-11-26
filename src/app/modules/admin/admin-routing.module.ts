@@ -5,7 +5,6 @@ import { CategoryFormComponent } from './components/administrator/category-form/
 import { DishFormComponent } from './components/administrator/dish-form/dish-form.component';
 import { IsAdminGuard } from '../core/guards/is-admin.guard';
 import { IngredientFormComponent } from './components/administrator/ingredient-form/ingredient-form.component';
-import { TutorialFormComponent } from './components/administrator/tutorial-form/tutorial-form.component';
 import { UserFormComponent } from './components/administrator/user-form/user-form.component';
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
       { path: 'kategorie', component: CategoryFormComponent },
       { path: 'dania', component: DishFormComponent },
       { path: 'skladniki', component: IngredientFormComponent },
-      { path: 'poradniki', component: TutorialFormComponent },
       { path: 'uzytkownicy', component: UserFormComponent },
     ],
   },

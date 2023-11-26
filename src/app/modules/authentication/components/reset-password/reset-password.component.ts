@@ -5,9 +5,6 @@ import { ResetPasswordForm } from '../../../core/models/forms/user.forms.models'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import { NotifierService } from 'angular-notifier';
-import { AppState } from '../../../../store/app.reducer';
-import { Store } from '@ngrx/store';
-import { UserInterface } from '../../../core/models/authentication/authentication.models';
 
 @Component({
   selector: 'app-recovery-password-form',
@@ -45,7 +42,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onResetPassword() {
-    const { password, repeatPassword } = this.resetPasswordForm.getRawValue();
+    const { password } = this.resetPasswordForm.getRawValue();
 
     this.authenticationService
       .passwordReset({ password, uuid: this.uuid })

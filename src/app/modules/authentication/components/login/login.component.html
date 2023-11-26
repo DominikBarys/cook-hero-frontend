@@ -15,7 +15,6 @@
             <mat-error *ngIf='controls.password.invalid'>{{getErrorMessage(controls.password)}}</mat-error>
           </mat-form-field>
         </div>
-        <!--    todo wydzielic np ten error do osobnego komponentu. DRY-->
         <div class='alert alert-warning alert-dismissible fade show mt-2' role='alert' *ngIf='errorMessage$ | async as error'>
           {{error}}
         </div>
@@ -38,6 +37,4 @@
   <section class='grey-background'>
     <p class="text-center footer">&copy; Cook Hero 2023. Prawa zastrzeżone</p>
   </section>
-
-
 </div>

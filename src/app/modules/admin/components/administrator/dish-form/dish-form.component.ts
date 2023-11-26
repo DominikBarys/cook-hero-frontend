@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {
-  AddCategoryForm,
-  AddDishForm,
-} from '../../../../core/models/forms/user.forms.models';
-import {
-  Category,
-  Dish,
-} from '../../../../core/models/tutorial/tutorial.models';
+import { AddDishForm } from '../../../../core/models/forms/user.forms.models';
+import { Dish } from '../../../../core/models/tutorial/tutorial.models';
 import { FormService } from '../../../../core/services/form.service';
-import { CategoriesService } from '../../../../core/services/categories.service';
 import { NotifierService } from 'angular-notifier';
 import { DishService } from '../../../../core/services/dish.service';
 

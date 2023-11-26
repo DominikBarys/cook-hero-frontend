@@ -3,18 +3,15 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import {
-  AddPageData,
   AddTutorial,
   AddTutorialData,
   CreateTutorialResponse,
   GetTutorialResponse,
-  Page,
   Response,
   SimpleTutorial,
   Tutorial,
 } from '../models/tutorial/tutorial.models';
 import { AuthenticationService } from './authentication.service';
-import { PageService } from './page.service';
 
 @Injectable({
   providedIn: 'root',
@@ -100,9 +97,6 @@ export class TutorialsService {
       })
       .pipe(
         map((response) => {
-          // if (name === '') {
-          //   return { tutorials: [], totalCount: 0 };
-          // }
           if (!response.body) return { tutorials: [], totalCount: 0 };
           const totalCount = Number(response.headers.get('X-Total-Count'));
 

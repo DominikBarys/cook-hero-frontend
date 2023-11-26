@@ -79,8 +79,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onResetPassword() {
-    const { password, repeatPassword } = this.resetPasswordForm.getRawValue();
-    const newPassword: string = password;
+    const { password } = this.resetPasswordForm.getRawValue();
     this.authenticationService.passwordResetNoEmail(password).subscribe({
       next: () => {
         this.notifierService.notify('success', 'Hasło zostało zmienione');

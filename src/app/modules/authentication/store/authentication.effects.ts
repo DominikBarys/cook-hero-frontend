@@ -85,7 +85,7 @@ export class AuthenticationEffects {
               user: { ...user },
             });
           }),
-          catchError((err) => of(AuthenticationActions.autoLoginFailure())),
+          catchError(() => of(AuthenticationActions.autoLoginFailure())),
         );
       }),
     ),

@@ -13,7 +13,6 @@ import { NotifierService } from 'angular-notifier';
 export class RecoveryPasswordComponent {
   recoveryPasswordForm: FormGroup<RecoveryPasswordForm> =
     this.formService.initRecoveryPasswordForm();
-  recoveryPasswordErrorMessage: string | null = null;
 
   get controls() {
     return this.recoveryPasswordForm.controls;

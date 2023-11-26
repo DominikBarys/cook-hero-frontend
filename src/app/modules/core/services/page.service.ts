@@ -30,17 +30,7 @@ export class PageService {
   }
 
   addPage(body: Page): Observable<Response> {
-    // console.log('jestem w add page');
-    // console.log(body);
     return this.httpClient.post<Response>(`${this.apiUrl}`, body, {
-      withCredentials: true,
-    });
-  }
-
-  deletePage(shortId: string): Observable<Response> {
-    const params = new HttpParams().append('shortId', shortId);
-    return this.httpClient.delete<Response>(`${this.apiUrl}`, {
-      params,
       withCredentials: true,
     });
   }
