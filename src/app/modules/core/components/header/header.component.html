@@ -13,6 +13,7 @@
         </ng-container>
       </ul>
       <img src="assets/notification-bell.png" class="notification-bell-icon" (click)='isLoggedIn("poradniki/powiadomienia")'>
+      <mat-icon *ngIf='user$ | async;' class='siema' [matBadge]="notificationCount" (click)='isLoggedIn("poradniki/powiadomienia")' matBadgeColor="primary">bell</mat-icon>
       <img style='margin-left: 50px' src="assets/profile-icon.png" class="notification-bell-icon" (click)='isLoggedIn("profil")'>
     </nav>
   </div>

@@ -1,5 +1,5 @@
-<p class='text-center'>
-  <b>Witaj w kreatorze poradników!</b>
+<p class='title'>
+  Witaj w kreatorze poradników!
 </p>
 <div class='container'>
   <section class='mt-3'>
@@ -8,8 +8,8 @@
       <mat-icon matSuffix>attach_file</mat-icon>
     </mat-form-field>
     <input type='file' #fileInput (change)='onFileSelected($event)'>
-    <div class='d-flex justify-content-end'>
-      <button type='button' mat-raised-button color='primary' (click)='uploadFile()'>Dodaj zdjęcie</button>
+    <div style='padding-bottom: 15px' class='d-flex justify-content-end'>
+      <button  type='button' mat-raised-button color='primary' (click)='uploadFile()'>Dodaj zdjęcie</button>
     </div>
     <app-uploaded-images *ngIf='imageUrls.length > 0' [imageUrls]='imageUrls' (deleteImageUrl)='setActiveImagesUrls($event)'></app-uploaded-images>
 
@@ -107,12 +107,12 @@
     </div>
 
     <p>Lista głównych składników:</p>
-    <li *ngFor='let mainIngredient of mainIngredients'>
-      <span>
+    <li class='main-ing' *ngFor='let mainIngredient of mainIngredients'>
+      <span >
         {{mainIngredient.name}}
       </span>
-      <button (click)='onDeleteMainIngredient(mainIngredient)' type='button' class="delete-button" mat-fab color="primary">
-        <mat-icon>delete</mat-icon>
+      <button class='bot-trans main-ing' (click)='onDeleteMainIngredient(mainIngredient)' type='button' class="delete-button" mat-fab color="primary">
+        <mat-icon class="icon-display">delete</mat-icon>
       </button>
     </li>
 
@@ -131,13 +131,13 @@
       <span>
         Strona {{i + 1}}
       </span>
-      <button (click)='onDeletePage(page)' type='button' class="delete-button" mat-fab color="primary">
-        <mat-icon>delete</mat-icon>
+      <button (click)='onDeletePage(page)' type='button' class="bot-trans delete-button" mat-fab color="primary">
+        <mat-icon class="icon-display">delete</mat-icon>
       </button>
     </li>
-    <div style='height: 20vh;'></div>
+    <div style='height: 10px;'></div>
   </section>
   <div class='my-3 d-flex justify-content-end' (click)='onAddTutorial()'>
-    <button mat-raised-button color="primary" type='button' [disabled]='addTutorialForm.invalid' >Dodaj poradnik</button>
+    <button  mat-raised-button color="primary" type='button' [disabled]='addTutorialForm.invalid' >Dodaj poradnik</button>
   </div>
 </div>

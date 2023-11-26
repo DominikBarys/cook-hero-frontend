@@ -1,0 +1,86 @@
+.notification-container {
+  max-width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.title {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.crossed-out {
+  text-decoration: line-through;
+}
+
+.ingredient {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.creation-date {
+  min-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ingredient:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.warning {
+  background-color: #ffeaa7;
+  color: #e74c3c;
+}
+
+.critical {
+  background-color: #fab1a0;
+  color: #e74c3c;
+}
+
+.horizontal-gap {
+  margin-left: 50px;
+}
+
+.example-margin {
+  position: relative;
+  top: 5px;
+}
+
+.notification-icon {
+  position: relative;
+  top: 5px;
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+button {
+  margin-top: 20px;
+}

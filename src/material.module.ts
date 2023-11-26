@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggle';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   exports: [
@@ -22,6 +24,8 @@ import { MatLegacySlideToggleModule } from '@angular/material/legacy-slide-toggl
     MatTooltipModule,
     MatExpansionModule,
     MatLegacySlideToggleModule,
+    MatCheckboxModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

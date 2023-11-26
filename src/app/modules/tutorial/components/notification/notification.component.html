@@ -1,1 +1,17 @@
-<p>notification works!</p>
+<div class="notification-container">
+  <p class='title'>Panel powiadomień</p>
+  <div class="notification-list">
+    <div *ngFor='let notification of notifications'>
+      <span class='ingredient' [ngClass]="getNotificationClass(notification)">
+        <strong class='creation-date'>
+          <mat-icon class="notification-icon">notification_important</mat-icon>
+          {{ notification.creationDate }}
+        </strong>
+        <span class="horizontal-gap"></span>
+        <span [ngClass]="{'crossed-out': notification.isChecked}">{{ notification.message }}</span>
+        <mat-checkbox class="example-margin" [(ngModel)]="notification.isChecked" (change)="handleCheckboxChange(notification)"></mat-checkbox>
+        <mat-icon style='display: flex; align-items: center' class="mx-2 notification-icon" (click)="deleteNotification(notification)">delete</mat-icon>
+      </span>
+    </div>
+  </div>
+</div>

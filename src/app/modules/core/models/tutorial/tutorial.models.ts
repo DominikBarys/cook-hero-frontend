@@ -111,4 +111,11 @@ export interface Page extends AddPageData {
   tutorialShortId: string | null;
 }
 
-export interface Notification {}
+export interface Notification {
+  shortId: string;
+  creationDate: string;
+  message: string;
+  type: string;
+  isChecked: boolean;
+  receiverUuid: string;
+}
