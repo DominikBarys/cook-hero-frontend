@@ -119,3 +119,11 @@ export interface Notification {
   isChecked: boolean;
   receiverUuid: string;
 }
+
+export interface UserIngredient {
+  shortId: string;
+  ingredientDTO: Ingredient;
+  expirationDate: string;
+  quantity: number;
+  userUuid: string;
+}

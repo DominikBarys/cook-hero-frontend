@@ -1,1 +1,22 @@
-<p>fridge works!</p>
+<div class="notification-container">
+  <p class="title">Wirtualna lodówka</p>
+  <div class="notification-list">
+    <div class="ingredient" *ngFor="let userIngredient of userIngredients">
+      <div class="ingredient-details">
+        <span class="horizontal-gap"></span>
+        <span>Nazwa składnika: {{ userIngredient.ingredientDTO.name }}</span>
+        <span class="horizontal-gap"></span>
+        <span>Ilość: {{ userIngredient.quantity }}</span>
+        <span class="horizontal-gap"></span>
+        <span>Data ważności: {{ userIngredient.expirationDate }}</span>
+      </div>
+      <div class="ingredient-icons">
+        <mat-icon color="accent" class="mx-2 notification-icon">build</mat-icon>
+        <mat-icon color="accent" class="mx-2 notification-icon" (click)='onDeleteUserIngredient(userIngredient)'>delete</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class='mt-2 add-button-container'>
+    <button mat-raised-button color='primary'>Dodaj składnik</button>
+  </div>
+</div>

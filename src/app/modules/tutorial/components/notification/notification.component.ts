@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../../core/services/notification.service';
 import { Notification } from '../../../core/models/tutorial/tutorial.models';
 import { switchMap } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-notification',
@@ -9,7 +10,10 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./notification.component.scss'],
 })
 export class NotificationComponent implements OnInit {
-  constructor(private notificationService: NotificationService) {}
+  constructor(
+    private notificationService: NotificationService,
+    private notifierService: NotifierService,
+  ) {}
   notifications: Notification[] = [];
 
   ngOnInit(): void {
@@ -51,7 +55,10 @@ export class NotificationComponent implements OnInit {
       .subscribe({
         next: (notifications) => {
           this.notifications = [...notifications];
-          console.log('Notification deleted');
+          this.notifierService.notify(
+            'success',
+            'Powiadomienie usunięto pomyślnie',
+          );
         },
         error: (err) => {
           console.log(err);
