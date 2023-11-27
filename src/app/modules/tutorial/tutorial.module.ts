@@ -12,6 +12,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NotificationComponent } from './components/notification/notification.component';
 import { FridgeComponent } from './components/fridge/fridge.component';
 import { MatIconModule } from '@angular/material/icon';
+import { EditDialogComponent } from './components/fridge/edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './components/fridge/add-dialog/add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     UploadedImagesComponent,
     NotificationComponent,
     FridgeComponent,
+    EditDialogComponent,
+    AddDialogComponent,
   ],
   imports: [
     SharedModule,

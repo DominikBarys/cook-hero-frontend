@@ -30,8 +30,9 @@ export class HeaderComponent implements OnInit {
   notificationCount = 0;
 
   ngOnInit(): void {
-    this.notifications$ = this.notificationService.notifications;
-    this.notificationService.getNotifications().subscribe({
+    this.notifications$.next(this.notificationService.notifications.value);
+
+    this.notificationService.notifications.subscribe({
       next: (notifications) => {
         this.notificationCount = notifications.filter(
           (notification) => !notification.isChecked,

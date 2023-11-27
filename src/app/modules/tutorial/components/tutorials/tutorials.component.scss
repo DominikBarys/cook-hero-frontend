@@ -12,6 +12,9 @@ app-tutorials {
     border: 1px solid #FE8C2A;
     padding: 8px;
     border-radius: 10px;
+    max-height: 665px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .search {

@@ -3,6 +3,8 @@ import { UserIngredientService } from '../../../core/services/user-ingredient.se
 import { UserIngredient } from '../../../core/models/tutorial/tutorial.models';
 import { NotifierService } from 'angular-notifier';
 import { switchMap } from 'rxjs';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-fridge',
@@ -13,6 +15,7 @@ export class FridgeComponent implements OnInit {
   constructor(
     private userIngredientService: UserIngredientService,
     private notifierService: NotifierService,
+    public dialog: MatDialog,
   ) {}
   userIngredients: UserIngredient[] = [];
 
@@ -44,5 +47,18 @@ export class FridgeComponent implements OnInit {
 
   test() {
     console.log(this.userIngredients);
+  }
+
+  onEditIngredient(userIngredient: UserIngredient) {
+    this.dialog.open(EditDialogComponent, {
+      width: '250px',
+      data: { userIngredient },
+    });
+  }
+
+  onAddIngredient() {
+    this.dialog.open(EditDialogComponent, {
+      width: '250px',
+    });
   }
 }

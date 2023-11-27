@@ -88,8 +88,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       }),
     );
 
-    //   console.log('siema');
-
     this.categoriesService.getCategories().subscribe({
       next: (categories) => {
         //    console.log(categories);

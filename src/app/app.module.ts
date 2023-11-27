@@ -28,6 +28,7 @@ const notifierOptions: NotifierOptions = {
   theme: 'material',
   behaviour: {
     autoHide: 2500,
+    stacking: 3,
   },
 };
 
