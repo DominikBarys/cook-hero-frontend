@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserIngredientService } from '../../../core/services/user-ingredient.service';
 import { UserIngredient } from '../../../core/models/tutorial/tutorial.models';
 import { NotifierService } from 'angular-notifier';
-import { switchMap } from 'rxjs';
+import { BehaviorSubject, switchMap } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
@@ -17,7 +17,9 @@ export class FridgeComponent implements OnInit {
     private notifierService: NotifierService,
     public dialog: MatDialog,
   ) {}
-  userIngredients: UserIngredient[] = [];
+  //userIngredients: UserIngredient[] = [];
+  userIngredients$ = new BehaviorSubject<UserIngredient[]>([]);
+  userIngredients: UserIngredient[] | null = null;
 
   ngOnInit(): void {
     this.userIngredientService.getUserIngredients().subscribe({
@@ -28,6 +30,11 @@ export class FridgeComponent implements OnInit {
         console.log(err);
       },
     });
+    this.userIngredients$.subscribe({
+      next: (resp) => {
+        this.userIngredients = [...resp];
+      },
+    });
   }
 
   onDeleteUserIngredient(userIngredient: UserIngredient) {
@@ -36,7 +43,7 @@ export class FridgeComponent implements OnInit {
       .pipe(switchMap(() => this.userIngredientService.getUserIngredients()))
       .subscribe({
         next: (userIngredients) => {
-          this.userIngredients = [...userIngredients];
+          //this.userIngredients = [...userIngredients];
           this.notifierService.notify('success', 'Składnik usunięto pomyślnie');
         },
         error: (err) => {
@@ -46,12 +53,13 @@ export class FridgeComponent implements OnInit {
   }
 
   test() {
-    console.log(this.userIngredients);
+    //console.log(this.userIngredients);
   }
 
   onEditIngredient(userIngredient: UserIngredient) {
     this.dialog.open(EditDialogComponent, {
-      width: '250px',
+      width: '600px',
+      height: '350px',
       data: { userIngredient },
     });
   }

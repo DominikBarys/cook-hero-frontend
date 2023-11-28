@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, tap } from 'rxjs';
-import { Response, UserIngredient } from '../models/tutorial/tutorial.models';
+import {
+  ChangeUserIngredient,
+  Response,
+  UserIngredient,
+} from '../models/tutorial/tutorial.models';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.reducer';
 import { AuthenticationService } from './authentication.service';
@@ -49,11 +53,23 @@ export class UserIngredientService {
             withCredentials: true,
           })
           .pipe(
-            tap((notifications) => {
-              this.userIngredients.next(notifications);
+            tap((userIngredients) => {
+              this.userIngredients.next(userIngredients);
             }),
           );
       }),
+    );
+  }
+
+  changeUserIngredient(
+    changedIngredient: ChangeUserIngredient,
+  ): Observable<Response> {
+    return this.httpClient.patch<Response>(
+      `${this.apiUrl}`,
+      changedIngredient,
+      {
+        withCredentials: true,
+      },
     );
   }
 

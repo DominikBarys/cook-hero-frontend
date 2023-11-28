@@ -50,3 +50,8 @@ export interface PostTutorial {
     FormGroup<{ value: FormControl<string>; key: FormControl<string> }>
   >;
 }
+
+export interface ChangeUserIngredientForm {
+  expirationDate: FormControl<string>;
+  quantity: FormControl<string>;
+}

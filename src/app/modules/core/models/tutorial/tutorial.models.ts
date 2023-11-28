@@ -127,3 +127,9 @@ export interface UserIngredient {
   quantity: number;
   userUuid: string;
 }
+
+export interface ChangeUserIngredient {
+  shortId: string;
+  expirationDate: string;
+  quantity: number;
+}

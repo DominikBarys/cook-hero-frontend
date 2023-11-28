@@ -17,8 +17,11 @@ import {
   AddIngredientForm,
   AddDishForm,
   ManageUserForm,
+  ChangeUserIngredientForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
+import { F } from '@angular/cdk/keycodes';
+import { dateValidator } from '../../shared/validators/date.validator';
 
 @Injectable({
   providedIn: 'root',
@@ -202,6 +205,19 @@ export class FormService {
     });
   }
 
+  initChangeUserIngredientForm(): FormGroup<ChangeUserIngredientForm> {
+    return new FormGroup({
+      expirationDate: new FormControl('', {
+        validators: [Validators.required, dateValidator()],
+        nonNullable: true,
+      }),
+      quantity: new FormControl('', {
+        validators: [Validators.required, Validators.min(0)],
+        nonNullable: true,
+      }),
+    });
+  }
+
   getErrorMessage(formControl: FormControl): string {
     if (formControl.hasError('required')) {
       return 'To pole jest wymagane';
@@ -224,6 +240,12 @@ export class FormService {
     if (formControl.hasError('max')) {
       return `Maksymalna war wartość to ${formControl.errors?.['max'].max}`;
     }
-    return '';
+    if (formControl.hasError('invalidDate')) {
+      return 'Data powinna być w formacie yyyy-mm-dd';
+    }
+    if (formControl.hasError('noExistingDate')) {
+      return 'Taka data nie istnieje';
+    }
+    return 'f';
   }
 }
