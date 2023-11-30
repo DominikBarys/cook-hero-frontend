@@ -3,7 +3,9 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, tap } from 'rxjs';
 import {
+  AddUserIngredient,
   ChangeUserIngredient,
+  IngredientDTO,
   Response,
   UserIngredient,
 } from '../models/tutorial/tutorial.models';
@@ -57,6 +59,36 @@ export class UserIngredientService {
               this.userIngredients.next(userIngredients);
             }),
           );
+      }),
+    );
+  }
+
+  addUserIngredient(
+    ingredientShortId: string,
+    quantity: number,
+    expirationDate: string,
+  ): Observable<Response> {
+    return this.initializeUuid().pipe(
+      switchMap(() => {
+        if (!this.uuid) {
+          console.error('UUID użytkownika nie zostało ustawione.');
+          return EMPTY;
+        }
+
+        const userIngredient: AddUserIngredient = {
+          ingredientDTO: { shortId: ingredientShortId },
+          expirationDate,
+          quantity,
+          userUuid: this.uuid,
+        };
+
+        return this.httpClient.post<Response>(
+          `${this.apiUrl}`,
+          userIngredient,
+          {
+            withCredentials: true,
+          },
+        );
       }),
     );
   }

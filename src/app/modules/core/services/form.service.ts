@@ -18,6 +18,7 @@ import {
   AddDishForm,
   ManageUserForm,
   ChangeUserIngredientForm,
+  AddUserIngredientForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
 import { F } from '@angular/cdk/keycodes';
@@ -207,6 +208,23 @@ export class FormService {
 
   initChangeUserIngredientForm(): FormGroup<ChangeUserIngredientForm> {
     return new FormGroup({
+      expirationDate: new FormControl('', {
+        validators: [Validators.required, dateValidator()],
+        nonNullable: true,
+      }),
+      quantity: new FormControl('', {
+        validators: [Validators.required, Validators.min(0)],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initAddUserIngredientForm(): FormGroup<AddUserIngredientForm> {
+    return new FormGroup({
+      ingredientShortId: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
       expirationDate: new FormControl('', {
         validators: [Validators.required, dateValidator()],
         nonNullable: true,

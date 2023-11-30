@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserInterface } from './modules/core/models/authentication/authentication.models';
 import { AuthenticationService } from './modules/core/services/authentication.service';
 import { map, Observable, take } from 'rxjs';
+import { NotificationService } from './modules/core/services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
     private store: Store<AppState>,
     private router: Router,
     private authenticationService: AuthenticationService,
+    private notificationService: NotificationService,
   ) {}
 
   isHomePage() {
@@ -36,5 +38,6 @@ export class AppComponent implements OnInit {
           console.log(resp.uuid);
         },
       });
+    this.notificationService.getNotifications().subscribe();
   }
 }

@@ -55,3 +55,9 @@ export interface ChangeUserIngredientForm {
   expirationDate: FormControl<string>;
   quantity: FormControl<string>;
 }
+
+export interface AddUserIngredientForm {
+  ingredientShortId: FormControl<string>;
+  expirationDate: FormControl<string>;
+  quantity: FormControl<string>;
+}

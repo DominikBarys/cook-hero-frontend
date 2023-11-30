@@ -1,1 +1,33 @@
-<p>add-dialog works!</p>
+<div class="container">
+  <h2 class="page-title">Dodaj składnik</h2>
+  <form [formGroup]="addUserIngredientForm" (ngSubmit)="onAddUserIngredient()">
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Składnik</mat-label>
+        <mat-select [formControl]="controls.ingredientShortId">
+          <mat-option value="">-</mat-option>
+          <mat-option *ngFor="let ingredient of ingredients; let i = index" [value]="ingredient.shortId">
+            {{ingredient.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Ilość</mat-label>
+        <input type="number" matInput [formControl]="controls.quantity">
+        <mat-error *ngIf="controls.quantity.invalid">{{getErrorMessage(controls.quantity)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="fill">
+        <mat-label>Data ważności</mat-label>
+        <input matInput [formControl]="controls.expirationDate">
+        <mat-error *ngIf="controls.expirationDate.invalid">{{getErrorMessage(controls.expirationDate)}}</mat-error>
+      </mat-form-field>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="addUserIngredientForm.invalid">
+      Dodaj składnik
+    </button>
+  </form>
+</div>

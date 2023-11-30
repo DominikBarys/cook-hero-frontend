@@ -7,6 +7,7 @@ import {
   Dish,
   Notification,
   Response,
+  UserIngredient,
 } from '../models/tutorial/tutorial.models';
 import { User } from '../models/authentication/authentication.models';
 import { selectAuthenticationUser } from '../../authentication/store/authentication.selectors';

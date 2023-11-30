@@ -133,3 +133,14 @@ export interface ChangeUserIngredient {
   expirationDate: string;
   quantity: number;
 }
+
+export interface IngredientDTO {
+  shortId: string;
+}
+
+export interface AddUserIngredient {
+  ingredientDTO: IngredientDTO;
+  expirationDate: string;
+  quantity: number;
+  userUuid: string;
+}

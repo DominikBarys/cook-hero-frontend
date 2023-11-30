@@ -5,6 +5,7 @@ import { NotifierService } from 'angular-notifier';
 import { BehaviorSubject, switchMap } from 'rxjs';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
 @Component({
   selector: 'app-fridge',
@@ -43,7 +44,7 @@ export class FridgeComponent implements OnInit {
       .pipe(switchMap(() => this.userIngredientService.getUserIngredients()))
       .subscribe({
         next: (userIngredients) => {
-          //this.userIngredients = [...userIngredients];
+          this.userIngredients = [...userIngredients];
           this.notifierService.notify('success', 'Składnik usunięto pomyślnie');
         },
         error: (err) => {
@@ -65,8 +66,9 @@ export class FridgeComponent implements OnInit {
   }
 
   onAddIngredient() {
-    this.dialog.open(EditDialogComponent, {
-      width: '250px',
+    this.dialog.open(AddDialogComponent, {
+      width: '600px',
+      height: '350px',
     });
   }
 }

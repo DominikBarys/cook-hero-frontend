@@ -1,20 +1,25 @@
 <div class="notification-container">
   <p class="title">Wirtualna lodówka</p>
   <div class="notification-list">
-    <div class="ingredient" *ngFor="let userIngredient of userIngredients">
-      <div class="ingredient-details">
-        <span class="horizontal-gap"></span>
-        <span>Nazwa składnika: {{ userIngredient.ingredientDTO.name }}</span>
-        <span class="horizontal-gap"></span>
-        <span>Ilość: {{ userIngredient.quantity }}</span>
-        <span class="horizontal-gap"></span>
-        <span>Data ważności: {{ userIngredient.expirationDate }}</span>
+    <ng-container *ngIf='userIngredients!.length > 0; else noIngredients'>
+      <div class="ingredient" *ngFor="let userIngredient of userIngredients">
+        <div class="ingredient-details">
+          <span class="horizontal-gap"></span>
+          <span>Nazwa składnika: {{ userIngredient.ingredientDTO.name }}</span>
+          <span class="horizontal-gap"></span>
+          <span>Ilość: {{ userIngredient.quantity }}</span>
+          <span class="horizontal-gap"></span>
+          <span>Data ważności: {{ userIngredient.expirationDate }}</span>
+        </div>
+        <div class="ingredient-icons">
+          <mat-icon color="accent" class="mx-2 notification-icon" (click)='onEditIngredient(userIngredient)' >build</mat-icon>
+          <mat-icon color="accent" class="mx-2 notification-icon" (click)='onDeleteUserIngredient(userIngredient)'>delete</mat-icon>
+        </div>
       </div>
-      <div class="ingredient-icons">
-        <mat-icon color="accent" class="mx-2 notification-icon" (click)='onEditIngredient(userIngredient)' >build</mat-icon>
-        <mat-icon color="accent" class="mx-2 notification-icon" (click)='onDeleteUserIngredient(userIngredient)'>delete</mat-icon>
-      </div>
-    </div>
+    </ng-container>
+    <ng-template #noIngredients>
+      <h5 style='text-align: center'>Aktualnie brak składników w lodówce...</h5>
+    </ng-template>
   </div>
   <div class='mt-2 add-button-container'>
     <button mat-raised-button color='primary' (click)='onAddIngredient()'>Dodaj składnik</button>

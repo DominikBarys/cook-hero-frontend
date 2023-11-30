@@ -19,7 +19,7 @@ export class IngredientService {
 
   ingredients = new BehaviorSubject<Ingredient[]>([]);
 
-  getIngredients(): Observable<Dish[]> {
+  getIngredients(): Observable<Ingredient[]> {
     return this.httpClient.get<Ingredient[]>(`${this.apiUrl}/all`).pipe(
       tap((ingredients) => {
         this.ingredients.next(ingredients);
