@@ -108,7 +108,7 @@
 
     <p>Lista głównych składników:</p>
     <li class='main-ing' *ngFor='let mainIngredient of mainIngredients'>
-      <span >
+      <span>
         {{mainIngredient.name}}
       </span>
       <button class='bot-trans main-ing' (click)='onDeleteMainIngredient(mainIngredient)' type='button' class="delete-button" mat-fab color="primary">
@@ -116,14 +116,16 @@
       </button>
     </li>
 
-    <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
+    <div class='mt-5'>
+      <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
+    </div>
 
-    <p class='mt-5'>Dodaj stronę {{pageCount}}:</p>
+    <p class='mt-5 '>Dodaj stronę {{pageCount}}:</p>
     <angular-editor [(ngModel)]='pageContentHtml' [config]='config'></angular-editor>
-    <div class='d-flex justify-content-end'>
+    <div class='mt-2 d-flex justify-content-end'>
       <button mat-raised-button color="primary" type='button' (click)='onAddPage()'>Dodaj stronę {{ pageCount }}</button>
     </div>
     <p>Strony:</p>

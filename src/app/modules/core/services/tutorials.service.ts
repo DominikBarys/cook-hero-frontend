@@ -156,39 +156,33 @@ export class TutorialsService {
   addTutorial(
     addTutorialData: AddTutorialData,
   ): Observable<CreateTutorialResponse> {
-    console.log('WBIŁEM DO SERWISU ADD TUTORIAL');
-    this.authenticationService.getUser().subscribe({
-      next: (getUserResponse) => {
-        this.userUuid = getUserResponse.uuid;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    return this.initializeUuid().pipe(
+      switchMap(() => {
+        const tutorial: AddTutorial = {
+          name: addTutorialData.name,
+          timeToPrepare: addTutorialData.timeToPrepare,
+          difficulty: addTutorialData.difficulty,
+          shortDescription: addTutorialData.shortDescription,
+          dishShortId: addTutorialData.dishShortId,
+          categoryShortId: addTutorialData.categoryShortId,
+          hasMeat: addTutorialData.hasMeat,
+          sweetRecipe: addTutorialData.sweetRecipe,
+          spicyRecipe: addTutorialData.spicyRecipe,
+          veganRecipe: addTutorialData.veganRecipe,
+          parameters: addTutorialData.parameters,
+          imagesUuid: addTutorialData.imagesUuid,
+          authorUuid: this.uuid,
+          mainIngredientsShortIds: addTutorialData.mainIngredientsShortIds,
+        };
 
-    const tutorial: AddTutorial = {
-      name: addTutorialData.name,
-      timeToPrepare: addTutorialData.timeToPrepare,
-      difficulty: addTutorialData.difficulty,
-      shortDescription: addTutorialData.shortDescription,
-      dishShortId: addTutorialData.dishShortId,
-      categoryShortId: addTutorialData.categoryShortId,
-      hasMeat: addTutorialData.hasMeat,
-      sweetRecipe: addTutorialData.sweetRecipe,
-      spicyRecipe: addTutorialData.spicyRecipe,
-      veganRecipe: addTutorialData.veganRecipe,
-      parameters: addTutorialData.parameters,
-      imagesUuid: addTutorialData.imagesUuid,
-      authorUuid: this.userUuid,
-      mainIngredientsShortIds: addTutorialData.mainIngredientsShortIds,
-    };
-
-    return this.httpClient.post<CreateTutorialResponse>(
-      `${this.apiUrl}`,
-      tutorial,
-      {
-        withCredentials: true,
-      },
+        return this.httpClient.post<CreateTutorialResponse>(
+          `${this.apiUrl}`,
+          tutorial,
+          {
+            withCredentials: true,
+          },
+        );
+      }),
     );
   }
 
