@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import {
   AddTutorial,
   AddTutorialData,
@@ -12,18 +12,31 @@ import {
   Tutorial,
 } from '../models/tutorial/tutorial.models';
 import { AuthenticationService } from './authentication.service';
+import { User } from '../models/authentication/authentication.models';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TutorialsService {
   apiUrl = `${environment.apiUrl}/tutorial`;
+  apiUrlAssistant = `${environment.apiUrl}/assistant`;
   userUuid: string | null = null;
+  uuid: string | null = null;
 
   constructor(
     private authenticationService: AuthenticationService,
     private httpClient: HttpClient,
   ) {}
+
+  initializeUuid(): Observable<User | null> {
+    return this.authenticationService.getUser().pipe(
+      tap((resp) => {
+        this.uuid = resp?.uuid || null;
+        console.log(resp?.uuid);
+      }),
+    );
+  }
 
   getTutorial(shortId: string): Observable<Tutorial> {
     const params = new HttpParams().append('_shortId', shortId);
@@ -32,6 +45,41 @@ export class TutorialsService {
       params,
     });
   }
+
+  getAssistantTutorials() {
+    return this.initializeUuid().pipe(
+      switchMap(() => {
+        const params = new HttpParams().append('userUuid', this.uuid!);
+        return this.httpClient
+          .get<SimpleTutorial[]>(`${this.apiUrlAssistant}`, {
+            observe: 'response',
+            params,
+          })
+          .pipe(
+            map((response) => {
+              if (!response.body) return { tutorials: [], totalCount: 0 };
+              const totalCount = Number(response.headers.get('X-Total-Count'));
+
+              return { tutorials: [...response.body], totalCount };
+            }),
+          );
+      }),
+    );
+  }
+
+  //   return this.httpClient
+  // .get<SimpleTutorial[]>(`${this.apiUrl}`, {
+  // observe: 'response',
+  // params,
+  // })
+  // .pipe(
+  // map((response) => {
+  // if (!response.body) return { tutorials: [], totalCount: 0 };
+  // const totalCount = Number(response.headers.get('X-Total-Count'));
+  //
+  // return { tutorials: [...response.body], totalCount };
+  // }),
+  // );
 
   getTutorials(
     pageIndex = 1,

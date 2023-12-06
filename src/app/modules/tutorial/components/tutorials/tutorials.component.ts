@@ -271,4 +271,20 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     console.log(this.simpleTutorials);
   }
+
+  assistantSearch() {
+    return this.tutorialService.getAssistantTutorials().subscribe({
+      next: (resp) => {
+        this.totalCount = resp.totalCount;
+        this.simpleTutorials = resp.tutorials;
+        this.notifierService.notify(
+          'success',
+          'Poradniki na podstawie twoich produktów w lodówce',
+        );
+      },
+      error: (err) => {
+        this.notifierService.notify('error', err);
+      },
+    });
+  }
 }

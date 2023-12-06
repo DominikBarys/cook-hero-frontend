@@ -7,7 +7,7 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item" [ngClass]='{"active": first}' *ngFor='let image of imageUrls; let first = first'>
-      <img src='https://i.imgur.com/kHeKKij.jpg' class="d-block w-100" [alt]='tutorialName'>
+      <img [src]='image' class="d-block w-100" [alt]='tutorialName'>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -60,7 +60,7 @@ export class FridgeComponent implements OnInit {
   onEditIngredient(userIngredient: UserIngredient) {
     this.dialog.open(EditDialogComponent, {
       width: '600px',
-      height: '350px',
+      height: '500px',
       data: { userIngredient },
     });
   }
@@ -68,7 +68,7 @@ export class FridgeComponent implements OnInit {
   onAddIngredient() {
     this.dialog.open(AddDialogComponent, {
       width: '600px',
-      height: '350px',
+      height: '450px',
     });
   }
 }

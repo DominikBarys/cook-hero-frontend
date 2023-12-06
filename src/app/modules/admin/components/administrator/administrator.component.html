@@ -1,17 +1,32 @@
-<div class='container'>
-  <ul class='nav nav-tabs my-3'>
-    <li class='nav-item'>
-      <a class='nav-link' routerLink='kategorie' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Kategorie</a>
+<!-- Dodaj poniższe linki w sekcji head, aby załadować Bootstrap i Font Awesome (jeśli ich nie masz jeszcze) -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+<!-- Zaktualizowany kod HTML -->
+<div class="container">
+  <ul class="nav nav-tabs my-3">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="kategorie" routerLinkActive="active">
+        <i class="fas fa-folder"></i> Kategorie
+      </a>
     </li>
-    <li class='nav-item'>
-      <a class='nav-link' routerLink='dania' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Dania</a>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="dania" routerLinkActive="active">
+        <i class="fas fa-utensils"></i> Dania
+      </a>
     </li>
-    <li class='nav-item'>
-      <a class='nav-link' routerLink='skladniki' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Składniki</a>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="skladniki" routerLinkActive="active">
+        <i class="fas fa-lemon"></i> Składniki
+      </a>
     </li>
-    <li class='nav-item'>
-      <a class='nav-link' routerLink='uzytkownicy' routerLinkActive='active' [routerLinkActiveOptions]='{exact: true}'>Użytkownicy</a>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="uzytkownicy" routerLinkActive="active">
+        <i class="fas fa-users"></i> Użytkownicy
+      </a>
     </li>
   </ul>
-  <router-outlet></router-outlet>
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

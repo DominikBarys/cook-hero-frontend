@@ -167,7 +167,6 @@ export class CreatorComponent implements OnInit {
       .addTutorial(addTutorialData)
       .pipe(
         switchMap((resp) => {
-          // Zastosuj switchMap, aby przełączyć się do dodawania stron
           postPages = this.pages.map((page, index) => ({
             ...page,
             tutorialShortId: resp.tutorialShortId,
@@ -178,7 +177,6 @@ export class CreatorComponent implements OnInit {
             this.pageService.addPage(page),
           );
 
-          // Zastosuj forkJoin, aby poczekać na zakończenie wszystkich żądań dodawania stron
           return forkJoin(addPageRequests);
         }),
       )
