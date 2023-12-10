@@ -18,7 +18,7 @@
           <h3 class='section-heading'>Główne składniki:</h3>
           <ul class='ingredient-list'>
             <li *ngFor='let mainIngredient of tutorial.mainIngredientsDTOS'>
-              <span class='ingredient'>{{mainIngredient.name}}</span>
+              <span style='display: inline-block; margin-left: 20px; margin-bottom: 5px' class='ingredient'>{{mainIngredient.name}}</span>
             </li>
           </ul>
         </div>
@@ -81,10 +81,10 @@
           <h3 class='section-heading'>Dodatkowe informacje:</h3>
           <ul class='additional-info-list'>
             <ng-container *ngIf='tutorial.hasMeat || tutorial.isSpicyRecipe || tutorial.isSweetRecipe || tutorial.isVeganRecipe; else noInformation'>
-              <li *ngIf='tutorial.hasMeat'>Danie mięsne</li>
-              <li *ngIf='tutorial.isVeganRecipe'>Danie wegańskie</li>
-              <li *ngIf='tutorial.isSweetRecipe'>Danie na słodko</li>
-              <li *ngIf='tutorial.isSpicyRecipe'>Danie na ostro</li>
+              <li style='display: inline-block; margin-left: 20px; margin-bottom: 5px' *ngIf='tutorial.hasMeat'>Danie mięsne</li>
+              <li style='display: inline-block; margin-left: 20px; margin-bottom: 5px' *ngIf='tutorial.isVeganRecipe'>Danie wegańskie</li>
+              <li style='display: inline-block; margin-left: 20px; margin-bottom: 5px' *ngIf='tutorial.isSweetRecipe'>Danie na słodko</li>
+              <li style='display: inline-block; margin-left: 20px; margin-bottom: 5px' *ngIf='tutorial.isSpicyRecipe'>Danie na ostro</li>
             </ng-container>
             <ng-template #noInformation>
               <li>Brak informacji...</li>

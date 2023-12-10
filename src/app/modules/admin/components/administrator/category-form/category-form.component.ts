@@ -39,6 +39,7 @@ export class CategoryFormComponent implements OnInit {
             },
           });
           this.notifierService.notify('success', 'Kategoria została dodana');
+          this.addCategoryForm.reset();
         },
         error: (err) => {
           this.notifierService.notify('error', err);
