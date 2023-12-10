@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import VanillaTilt from 'vanilla-tilt';
 import { AuthenticationService } from '../../../core/services/authentication.service';
 import * as AuthenticationActions from '../../store/authentication.actions';

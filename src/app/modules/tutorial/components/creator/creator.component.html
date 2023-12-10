@@ -1,6 +1,4 @@
-<p class='title'>
-  Witaj w kreatorze poradników!
-</p>
+<p class='title'>Witaj w kreatorze poradników!</p>
 <div class='container'>
   <section class='mt-3'>
     <mat-form-field (click)='fileInput.click()'>
@@ -12,7 +10,6 @@
       <button  type='button' mat-raised-button color='primary' (click)='uploadFile()'>Dodaj zdjęcie</button>
     </div>
     <app-uploaded-images *ngIf='imageUrls.length > 0' [imageUrls]='imageUrls' (deleteImageUrl)='setActiveImagesUrls($event)'></app-uploaded-images>
-
     <form class='container login-form' [formGroup]='addTutorialForm'>
       <div class='form-input'>
         <mat-form-field appearance='fill'>
@@ -21,7 +18,6 @@
           <mat-error *ngIf='controls.name.invalid'>{{getErrorMessage(controls.name)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div class='form-input'>
         <mat-form-field appearance='fill'>
           <mat-label>Krótki opis</mat-label>
@@ -29,7 +25,6 @@
           <mat-error *ngIf='controls.shortDescription.invalid'>{{getErrorMessage(controls.shortDescription)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div class='form-input'>
         <mat-form-field appearance='fill'>
           <mat-label>Czas przygotowania [w minutach]</mat-label>
@@ -37,7 +32,6 @@
           <mat-error *ngIf='controls.timeToPrepare.invalid'>{{getErrorMessage(controls.timeToPrepare)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div class='form-input'>
         <mat-form-field appearance='fill'>
           <mat-label>Poziom trudności [w skali od 1 do 5]</mat-label>
@@ -45,7 +39,6 @@
           <mat-error *ngIf='controls.difficulty.invalid'>{{getErrorMessage(controls.difficulty)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div class='form-input mt-2'>
         <mat-form-field>
           <mat-label>Kategoria</mat-label>
@@ -56,7 +49,6 @@
           <mat-error *ngIf='controls.categoryShortId.invalid'>{{getErrorMessage(controls.categoryShortId)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div class='form-input mt-2'>
         <mat-form-field>
           <mat-label>Typ dania</mat-label>
@@ -67,7 +59,6 @@
           <mat-error *ngIf='controls.dishShortId.invalid'>{{getErrorMessage(controls.dishShortId)}}</mat-error>
         </mat-form-field>
       </div>
-
       <div [formArrayName]='"parameters"' *ngIf='parameters.controls.length > 0'>
         <p>Parametry:</p>
         <div *ngFor='let parameter of parameters.controls; let i = index; let first = first' [formGroupName]='i'>
@@ -94,7 +85,6 @@
         </div>
       </div>
     </form>
-
     <mat-form-field>
       <mat-label>Główne składniki poradnika</mat-label>
       <mat-select [(ngModel)]='selectedIngredient'>
@@ -105,7 +95,6 @@
     <div class='d-flex justify-content-end'>
       <button mat-raised-button color="primary" type='button' (click)='addIngredient()' >Dodaj składnik</button>
     </div>
-
     <p>Lista głównych składników:</p>
     <li class='main-ing' *ngFor='let mainIngredient of mainIngredients'>
       <span>
@@ -115,14 +104,12 @@
         <mat-icon class="icon-display">delete</mat-icon>
       </button>
     </li>
-
     <div class='mt-5'>
       <mat-slide-toggle [(ngModel)]='hasMeat' class='mx-3'>Z mięsem: {{hasMeat}}</mat-slide-toggle>
       <mat-slide-toggle [(ngModel)]='isVeganRecipe' class='mx-3'>Wegańskie: {{isVeganRecipe}}</mat-slide-toggle>
       <mat-slide-toggle [(ngModel)]='isSpicyRecipe' class='mx-3'>Na ostro: {{isSpicyRecipe}}</mat-slide-toggle>
       <mat-slide-toggle [(ngModel)]='isSweetRecipe' class='mx-3'>Na słodko: {{isSweetRecipe}}</mat-slide-toggle>
     </div>
-
     <p class='mt-5 '>Dodaj stronę {{pageCount}}:</p>
     <angular-editor [(ngModel)]='pageContentHtml' [config]='config'></angular-editor>
     <div class='mt-2 d-flex justify-content-end'>

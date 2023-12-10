@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Form,
-  FormArray,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   LoginForm,
   RegisterForm,
@@ -21,7 +15,6 @@ import {
   AddUserIngredientForm,
 } from '../models/forms/user.forms.models';
 import { equalValidator } from '../../shared/validators/equal.validator';
-import { F } from '@angular/cdk/keycodes';
 import { dateValidator } from '../../shared/validators/date.validator';
 
 @Injectable({

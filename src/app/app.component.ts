@@ -15,7 +15,6 @@ import { NotificationService } from './modules/core/services/notification.servic
 })
 export class AppComponent implements OnInit {
   title = 'CookHero-fe';
-  //user$: Observable<UserInterface> | null = null;
 
   constructor(
     private store: Store<AppState>,

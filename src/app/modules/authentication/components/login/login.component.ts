@@ -25,13 +25,14 @@ export class LoginComponent implements OnDestroy {
     selectAuthenticationLoading,
   );
 
-  get controls() {
-    return this.loginForm.controls;
-  }
   constructor(
     private formService: FormService,
     private store: Store<AppState>,
   ) {}
+
+  get controls() {
+    return this.loginForm.controls;
+  }
 
   getErrorMessage(formControl: FormControl): string {
     return this.formService.getErrorMessage(formControl);

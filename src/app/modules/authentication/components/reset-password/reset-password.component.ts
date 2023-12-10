@@ -17,10 +17,6 @@ export class ResetPasswordComponent implements OnInit {
   uuid = '';
   resetPasswordErrorMessage: string | null = null;
 
-  get controls() {
-    return this.resetPasswordForm.controls;
-  }
-
   constructor(
     private formService: FormService,
     private activatedRoute: ActivatedRoute,
@@ -28,6 +24,10 @@ export class ResetPasswordComponent implements OnInit {
     private notifierService: NotifierService,
     private router: Router,
   ) {}
+
+  get controls() {
+    return this.resetPasswordForm.controls;
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({

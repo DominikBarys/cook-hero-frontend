@@ -67,7 +67,6 @@ export class TutorialDetailsComponent implements OnInit {
               console.log(err);
             },
           });
-          // More code if needed within this subscribe block
         },
       });
   }

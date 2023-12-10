@@ -14,9 +14,7 @@ import { IngredientService } from '../../../../core/services/ingredient.service'
 export class IngredientFormComponent implements OnInit {
   addIngredientForm: FormGroup<AddIngredientForm> =
     this.formService.initAddIngredientForm();
-
   ingredientControl = new FormControl<string>('');
-
   ingredients: Ingredient[] = [];
 
   constructor(
@@ -39,6 +37,7 @@ export class IngredientFormComponent implements OnInit {
             },
           });
           this.notifierService.notify('success', 'Składnik został dodany');
+          this.addIngredientForm.reset();
         },
         error: (err) => {
           this.notifierService.notify('error', err);

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SimpleTutorial } from '../../../../core/models/tutorial/tutorial.models';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntil } from 'rxjs';
 
 @Component({

@@ -3,7 +3,6 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import {
-  Dish,
   Ingredient,
   PostCategory,
   Response,
@@ -14,10 +13,9 @@ import {
 })
 export class IngredientService {
   private apiUrl = `${environment.apiUrl}/ingredient`;
+  ingredients = new BehaviorSubject<Ingredient[]>([]);
 
   constructor(private httpClient: HttpClient) {}
-
-  ingredients = new BehaviorSubject<Ingredient[]>([]);
 
   getIngredients(): Observable<Ingredient[]> {
     return this.httpClient.get<Ingredient[]>(`${this.apiUrl}/all`).pipe(

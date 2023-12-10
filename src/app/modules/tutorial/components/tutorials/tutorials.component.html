@@ -53,9 +53,7 @@
           Wyszukaj poradnik
         </button>
       </div>
-      <mat-paginator [pageSizeOptions]='[3, 6, 12, 18]' [length]='totalCount' showFirstLastButtons>
-
-      </mat-paginator>
+      <mat-paginator [pageSizeOptions]='[3, 6, 12, 18]' [length]='totalCount' showFirstLastButtons></mat-paginator>
     </div>
     <div class='tutorials-list'>
       <app-tutorial-card *ngFor='let simpleTutorial of simpleTutorials' [simpleTutorial]='simpleTutorial'></app-tutorial-card>

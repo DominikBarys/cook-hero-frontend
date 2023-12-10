@@ -15,14 +15,14 @@ export class RegisterComponent implements OnDestroy {
   registerForm: FormGroup<RegisterForm> = this.formService.initRegisterForm();
   passwordsNotEqualErrorMessage: string | null = null;
 
-  get controls() {
-    return this.registerForm.controls;
-  }
-
   constructor(
     private formService: FormService,
     private store: Store<AppState>,
   ) {}
+
+  get controls() {
+    return this.registerForm.controls;
+  }
 
   getErrorMessage(formControl: FormControl): string {
     return this.formService.getErrorMessage(formControl);

@@ -36,7 +36,6 @@ import { DishService } from '../../../core/services/dish.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
-  //after view init zeby pobrac z szablonu html mat paginator
   simpleTutorials: SimpleTutorial[] = [];
   totalCount = 0;
   sub$ = new Subscription();
@@ -76,7 +75,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       debounceTime(500),
       distinctUntilChanged(),
       switchMap((value) => {
-        //return this.tutorialService.getTutorials(1, 10, value);
         if (value!.trim() !== '') {
           return this.tutorialService.getTutorials(1, 10, value);
         } else {
@@ -90,7 +88,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.categoriesService.getCategories().subscribe({
       next: (categories) => {
-        //    console.log(categories);
         this.categories = [...categories];
       },
       error: (err) => {
@@ -100,7 +97,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.dishService.getDishes().subscribe({
       next: (dishes) => {
-        //   console.log(dishes);
         this.dishes = [...dishes];
       },
       error: (err) => {
@@ -112,7 +108,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.tutorialService.getTutorials().subscribe({
       next: ({ tutorials, totalCount }) => {
-        //console.log(tutorials);
         this.simpleTutorials = [...tutorials];
         this.totalCount = totalCount;
         console.log(this.simpleTutorials);
@@ -159,7 +154,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
             ? queryMap.get('isSpicyRecipe')
             : null;
 
-          //todo mniej wiecej tutaj dodac spinner do ladowania produktow, tutaj zaczyna sie pobieranie
           return this.tutorialService.getTutorials(
             page,
             itemsPerPage,
@@ -177,12 +171,10 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
         map(({ tutorials, totalCount }) => {
           this.totalCount = totalCount;
           this.simpleTutorials = tutorials;
-          //todo tutaj gdzies sie konczy pobieranie
         }),
       )
       .subscribe({
         error: (err) => {
-          //todo te błędy err pobierają się poprawnie dzięki error handling interceptor
           this.notifierService.notify('error', err);
         },
       });
@@ -216,9 +208,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   searchTutorials() {
     this.paginator.pageIndex = 0;
-    //todo to jest prawdopodobnie niepotrzebne
-    //this.paginator.pageSize = 5;
-
     this.searchParamsNavigate();
   }
 
@@ -229,7 +218,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     if (this.searchControl.value) {
-      //todo tylko tutaj nie powinno byc encodowania, do poprawy w przyszlosci
       queryParams['name'] = this.searchControl.value;
     }
 

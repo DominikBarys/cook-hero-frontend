@@ -14,9 +14,7 @@ import { Category } from '../../../../core/models/tutorial/tutorial.models';
 export class CategoryFormComponent implements OnInit {
   addCategoryForm: FormGroup<AddCategoryForm> =
     this.formService.initAddCategoryForm();
-
   categoryControl = new FormControl<string>('');
-
   categories: Category[] = [];
 
   constructor(

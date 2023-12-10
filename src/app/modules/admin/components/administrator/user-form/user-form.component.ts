@@ -4,11 +4,7 @@ import { NotifierService } from 'angular-notifier';
 import { AuthenticationService } from '../../../../core/services/authentication.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ManageUserForm } from '../../../../core/models/forms/user.forms.models';
-import { Dish } from '../../../../core/models/tutorial/tutorial.models';
-import {
-  User,
-  UserInterface,
-} from '../../../../core/models/authentication/authentication.models';
+import { UserInterface } from '../../../../core/models/authentication/authentication.models';
 
 @Component({
   selector: 'app-user-form',
@@ -18,10 +14,8 @@ import {
 export class UserFormComponent implements OnInit {
   deleteUserForm: FormGroup<ManageUserForm> =
     this.formService.initManageUserForm();
-
   manageUserForm: FormGroup<ManageUserForm> =
     this.formService.initManageUserForm();
-
   users: UserInterface[] = [];
 
   constructor(
@@ -38,6 +32,7 @@ export class UserFormComponent implements OnInit {
       this.authenticationService.deleteUser(user.uuid).subscribe({
         next: () => {
           this.notifierService.notify('success', 'Użytkownik został usunięty');
+          this.deleteUserForm.reset();
         },
         error: (err) => {
           this.notifierService.notify('error', err);
@@ -79,7 +74,6 @@ export class UserFormComponent implements OnInit {
     this.authenticationService.getAllUsers().subscribe({
       next: (users) => {
         this.users = [...users];
-        // console.log(users);
       },
       error: (err) => {
         this.notifierService.notify('error', err);

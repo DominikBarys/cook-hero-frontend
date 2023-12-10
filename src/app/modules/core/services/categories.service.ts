@@ -13,10 +13,9 @@ import {
 })
 export class CategoriesService {
   private apiUrl = `${environment.apiUrl}/category`;
+  categories = new BehaviorSubject<Category[]>([]);
 
   constructor(private httpClient: HttpClient) {}
-
-  categories = new BehaviorSubject<Category[]>([]);
 
   getCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${this.apiUrl}/all`).pipe(

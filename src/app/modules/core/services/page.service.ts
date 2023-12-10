@@ -9,7 +9,6 @@ import { Page, Response } from '../models/tutorial/tutorial.models';
 })
 export class PageService {
   private apiUrl = `${environment.apiUrl}/page`;
-
   pages = new BehaviorSubject<Page[]>([]);
 
   constructor(private httpClient: HttpClient) {}

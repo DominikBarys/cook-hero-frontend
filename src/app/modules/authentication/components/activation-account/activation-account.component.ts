@@ -33,7 +33,7 @@ export class ActivationAccountComponent implements OnInit {
           this.router.navigate(['/logowanie']);
           this.notifierService.notify('success', response.message);
         },
-        error: (err) => {
+        error: () => {
           this.router.navigate(['/']);
         },
       });

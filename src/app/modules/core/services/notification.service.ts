@@ -3,17 +3,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
-import {
-  Dish,
-  Notification,
-  Response,
-  UserIngredient,
-} from '../models/tutorial/tutorial.models';
+import { Notification, Response } from '../models/tutorial/tutorial.models';
 import { User } from '../models/authentication/authentication.models';
 import { selectAuthenticationUser } from '../../authentication/store/authentication.selectors';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.reducer';
-import * as AuthenticationActions from '../../authentication/store/authentication.actions';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({

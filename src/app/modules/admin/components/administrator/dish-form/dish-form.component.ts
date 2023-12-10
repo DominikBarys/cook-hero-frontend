@@ -13,9 +13,7 @@ import { DishService } from '../../../../core/services/dish.service';
 })
 export class DishFormComponent implements OnInit {
   addDishForm: FormGroup<AddDishForm> = this.formService.initAddDishForm();
-
   dishControl = new FormControl<string>('');
-
   dishes: Dish[] = [];
 
   constructor(
@@ -36,6 +34,7 @@ export class DishFormComponent implements OnInit {
           },
         });
         this.notifierService.notify('success', 'Danie zostało dodane');
+        this.addDishForm.reset();
       },
       error: (err) => {
         this.notifierService.notify('error', err);

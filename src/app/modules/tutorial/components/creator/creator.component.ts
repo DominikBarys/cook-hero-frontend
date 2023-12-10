@@ -50,8 +50,6 @@ export class CreatorComponent implements OnInit {
   pages: AddPageData[] = [];
   pageContentHtml: string | null = null;
   pageCount = 1;
-  //todo to nie dzialalo
-  //categories: BehaviorSubject<Category[]> = this.categoriesService.categories;
 
   constructor(
     private imageService: ImageService,
@@ -131,10 +129,6 @@ export class CreatorComponent implements OnInit {
     const parameters = `${JSON.stringify(parametersObject)}`;
 
     const imagesUuid = this.imageUrls.map((url) => {
-      // console.log('DODAWANE ZDJECIE URL');
-      // console.log(url);
-      // const [uuid] = url.url.split('shortId=');
-      // return uuid;
       const parsedUrl = new URL(url.url);
       const shortId = parsedUrl.searchParams.get('shortId')!;
 
@@ -219,7 +213,6 @@ export class CreatorComponent implements OnInit {
       !this.mainIngredients.includes(this.selectedIngredient)
     ) {
       this.mainIngredients.push(this.selectedIngredient);
-      //  console.log(this.mainIngredients);
     } else {
       this.notifierService.notify(
         'warning',
@@ -245,8 +238,6 @@ export class CreatorComponent implements OnInit {
     this.pages.push(page);
     this.pageCount++;
     this.pageContentHtml = '';
-
-    // console.log(this.pages);
   }
 
   onDeletePage(page: AddPageData) {

@@ -13,10 +13,9 @@ import {
 })
 export class DishService {
   private apiUrl = `${environment.apiUrl}/dish`;
+  dishes = new BehaviorSubject<Dish[]>([]);
 
   constructor(private httpClient: HttpClient) {}
-
-  dishes = new BehaviorSubject<Dish[]>([]);
 
   getDishes(): Observable<Dish[]> {
     return this.httpClient.get<Dish[]>(`${this.apiUrl}/all`).pipe(

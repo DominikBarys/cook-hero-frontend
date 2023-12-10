@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserIngredientService } from '../../../core/services/user-ingredient.service';
 import { UserIngredient } from '../../../core/models/tutorial/tutorial.models';
 import { NotifierService } from 'angular-notifier';
 import { BehaviorSubject, switchMap } from 'rxjs';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { AddDialogComponent } from './add-dialog/add-dialog.component';
 
@@ -18,7 +18,6 @@ export class FridgeComponent implements OnInit {
     private notifierService: NotifierService,
     public dialog: MatDialog,
   ) {}
-  //userIngredients: UserIngredient[] = [];
   userIngredients$ = new BehaviorSubject<UserIngredient[]>([]);
   userIngredients: UserIngredient[] | null = null;
 
@@ -51,10 +50,6 @@ export class FridgeComponent implements OnInit {
           console.log(err);
         },
       });
-  }
-
-  test() {
-    //console.log(this.userIngredients);
   }
 
   onEditIngredient(userIngredient: UserIngredient) {

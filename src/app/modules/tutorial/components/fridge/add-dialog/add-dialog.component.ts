@@ -16,9 +16,6 @@ import { IngredientService } from '../../../../core/services/ingredient.service'
 export class AddDialogComponent implements OnInit {
   addUserIngredientForm: FormGroup<AddUserIngredientForm> =
     this.formService.initAddUserIngredientForm();
-
-  // ingredientControl = new FormControl<string>('');
-
   ingredients: Ingredient[] = [];
 
   constructor(

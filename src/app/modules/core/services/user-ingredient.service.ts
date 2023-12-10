@@ -5,7 +5,6 @@ import { BehaviorSubject, EMPTY, Observable, tap } from 'rxjs';
 import {
   AddUserIngredient,
   ChangeUserIngredient,
-  IngredientDTO,
   Response,
   UserIngredient,
 } from '../models/tutorial/tutorial.models';

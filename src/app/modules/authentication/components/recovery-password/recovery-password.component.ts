@@ -14,15 +14,15 @@ export class RecoveryPasswordComponent {
   recoveryPasswordForm: FormGroup<RecoveryPasswordForm> =
     this.formService.initRecoveryPasswordForm();
 
-  get controls() {
-    return this.recoveryPasswordForm.controls;
-  }
-
   constructor(
     private formService: FormService,
     private authenticationService: AuthenticationService,
     private notifierService: NotifierService,
   ) {}
+
+  get controls() {
+    return this.recoveryPasswordForm.controls;
+  }
 
   getErrorMessage(formControl: FormControl): string {
     return this.formService.getErrorMessage(formControl);

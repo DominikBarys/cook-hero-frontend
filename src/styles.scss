@@ -16,17 +16,10 @@ body {
   scroll-behavior: smooth;
 }
 
-
-//html, body { height: 100%; }
-
 mat-form-field {
   width: 100%;
 }
 
-
-
-/* For use in src/lib/core/theming/_palette.scss */
-/* For use in src/lib/core/theming/_palette.scss */
 $md-primary: (
   50 : #fff1e5,
   100 : #ffddbf,
@@ -60,7 +53,6 @@ $md-primary: (
   )
 );
 
-/* For use in src/lib/core/theming/_palette.scss */
 $md-warn: (
   50 : #f9e0e0,
   100 : #f0b3b3,
@@ -94,7 +86,6 @@ $md-warn: (
   )
 );
 
-/* For use in src/lib/core/theming/_palette.scss */
 $md-accent: (
   50 : #e7e7e7,
   100 : #c2c2c2,
@@ -128,8 +119,6 @@ $md-accent: (
   )
 );
 
-
-
 @-webkit-keyframes autofill {
   0%,100% {
     color: #666;
@@ -140,7 +129,6 @@ $md-accent: (
 input:-webkit-autofill {
   -webkit-background-clip: text;
 }
-
 
 $my-app-primary: mat.define-palette($md-primary);
 $my-app-accent:  mat.define-palette($md-accent);

@@ -1,7 +1,6 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-
 $my-app-primary: mat.define-palette($md-elearningsupportportalwebapp-primary);
 $my-app-accent:  mat.define-palette($md-elearningsupportportalwebapp-accent);
 $my-app-warn:    mat.define-palette($mat-deep-orange);
