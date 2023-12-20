@@ -29,14 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(AuthenticationActions.autoLogin());
-    this.authenticationService
-      .getUser()
-      .pipe()
-      .subscribe({
-        next: (resp) => {
-          console.log(resp.uuid);
-        },
-      });
+    this.authenticationService.getUser().pipe().subscribe();
     this.notificationService.getNotifications().subscribe();
   }
 }

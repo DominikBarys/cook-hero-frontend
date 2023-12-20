@@ -34,7 +34,6 @@ export class UserIngredientService {
     return this.authenticationService.getUser().pipe(
       tap((resp) => {
         this.uuid = resp?.uuid || null;
-        console.log(resp?.uuid);
       }),
     );
   }

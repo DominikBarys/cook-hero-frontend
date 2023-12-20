@@ -26,10 +26,5 @@ export class TutorialCardComponent implements OnInit {
     this.vegan = this.simpleTutorial.veganRecipe;
     this.spicy = this.simpleTutorial.spicyRecipe;
     this.sweet = this.simpleTutorial.sweetRecipe;
-
-    console.log(this.meat);
-    console.log(this.vegan);
-    console.log(this.spicy);
-    console.log(this.sweet);
   }
 }

@@ -47,6 +47,11 @@ export class CreatorComponent implements OnInit {
   isSweetRecipe = false;
   isSpicyRecipe = false;
 
+  hasMeatMessage = 'nie';
+  isVeganRecipeMessage = 'nie';
+  isSpicyRecipeMessage = 'nie';
+  isSweetRecipeMessage = 'nie';
+
   pages: AddPageData[] = [];
   pageContentHtml: string | null = null;
   pageCount = 1;
@@ -108,7 +113,6 @@ export class CreatorComponent implements OnInit {
   }
 
   onAddTutorial() {
-    console.log('WBIJAM DO ON ADD TUTORIAL');
     const formValue = this.addTutorialForm.getRawValue();
     const parametersObject: { [key: string]: string } = {};
 
@@ -131,11 +135,6 @@ export class CreatorComponent implements OnInit {
     const imagesUuid = this.imageUrls.map((url) => {
       const parsedUrl = new URL(url.url);
       const shortId = parsedUrl.searchParams.get('shortId')!;
-
-      console.log('DODAWANE ZDJECIE URL');
-      console.log(url);
-      console.log('shortId:', shortId);
-
       return shortId;
     });
 

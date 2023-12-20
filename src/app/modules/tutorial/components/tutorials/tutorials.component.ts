@@ -110,7 +110,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       next: ({ tutorials, totalCount }) => {
         this.simpleTutorials = [...tutorials];
         this.totalCount = totalCount;
-        console.log(this.simpleTutorials);
       },
     });
 
@@ -257,7 +256,6 @@ export class TutorialsComponent implements OnInit, AfterViewInit, OnDestroy {
       relativeTo: this.activatedRoute,
       queryParams,
     });
-    console.log(this.simpleTutorials);
   }
 
   assistantSearch() {

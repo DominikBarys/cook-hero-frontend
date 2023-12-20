@@ -103,7 +103,6 @@ export class NotificationService {
   }
 
   checkNotification(shortId: string): Observable<Response> {
-    console.log('jestem w notyfikacji');
     const params = new HttpParams().append('shortId', shortId);
     return this.httpClient.post<Response>(`${this.apiUrl}`, null, {
       params,

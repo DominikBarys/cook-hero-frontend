@@ -38,7 +38,6 @@ export class NotificationComponent implements OnInit {
       .subscribe({
         next: (notifications) => {
           this.notifications = [...notifications];
-          console.log('Notification checked');
         },
         error: (err) => {
           console.log(err);
